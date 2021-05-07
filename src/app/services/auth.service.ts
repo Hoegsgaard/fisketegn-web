@@ -15,4 +15,16 @@ export class AuthService {
     headers.append('Content-Type', 'application/json');
     return this.http.post('localhost:8080/camel/api/license', user, {headers: headers})
   }
+
+  authenticateUser(user: any){
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('localhost:8080/camel/api/auth/login', user, {headers: headers})
+  }
+
+  logout(){
+    this.token = null;
+    this.user = null;
+    localStorage.clear;
+  }
 }
