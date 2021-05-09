@@ -24,8 +24,9 @@ export class LoginComponent implements OnInit {
       "email": this.email,
       "password": this.password
     }
+    // TODO: Valider felter er udfyldt
+    
     this.auth.authenticateUser(user).subscribe(data => {
-      // TODO: Valider felter er udfyldt
       if(data.status){
         // TODO: Fortæl at brugeren er logget ind
         console.log('Bruger er logget ind')

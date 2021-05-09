@@ -56,11 +56,14 @@ export class RegisterComponent implements OnInit {
       role: "admin" // TODO: SKAL SÆTTES I BACKENDEN
     }
    
-    // Requred Fields all must be fill out
+    // Alle felter skal være udfyldt
     if(!this.validateServide.validateBuyLicense(user)){
+      // TODO: Besked til brugeren
       console.log("Alle felter skal udfyldes")
       return false
     } 
+
+    // Valider de to password felter er ens
 
     // Validate Email by regex
     if(!this.validateServide.validateEmail(user.email)){
@@ -69,6 +72,8 @@ export class RegisterComponent implements OnInit {
     } else {
        // Buy License
       this.auth.buyLicemse(user).subscribe(data => {
+        // TODO: Validering om det er gået godt
+        // TODO: Besked til brugeren om det er gået godt eller skidt        
         console.log(data)
         this.router.navigate(['/login']);
       });
