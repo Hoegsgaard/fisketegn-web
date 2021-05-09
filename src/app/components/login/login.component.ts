@@ -25,7 +25,16 @@ export class LoginComponent implements OnInit {
       "password": this.password
     }
     this.auth.authenticateUser(user).subscribe(data => {
-      console.log(data)
+      // TODO: Valider felter er udfyldt
+      if(data.status){
+        // TODO: Fortæl at brugeren er logget ind
+        console.log('Bruger er logget ind')
+        this.auth.storeToken(data.body)
+        this.router.navigate(['/profile'])
+      } else{
+        // TODO: Vis fejl til brugeren
+        console.log("Fejl ved login")
+      }
     })
   }
 

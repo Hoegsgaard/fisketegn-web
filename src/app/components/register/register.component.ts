@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
       address: this.Address,
       zipCode: this.ZipCode,
       country: this.Country,
-      type: "d", // TODO: SKAL SÆTTES I BACKENDEN
+      type: "d", // TODO: SKAL SÆTTES EFTER BRUGERES VALG
       highQuality: this.HighQuality,
       startDate: `${startData[2]}/${startData[1]}/${startData[0]}`,
       password: this.Password,
@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit {
        // Buy License
       this.auth.buyLicemse(user).subscribe(data => {
         console.log(data)
-        //this.router.navigate(['/login']);
+        this.router.navigate(['/login']);
       });
       return true
     }

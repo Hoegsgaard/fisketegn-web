@@ -16,11 +16,13 @@ import { LandingpageComponent } from './components/landingpage/landingpage.compo
 // Import Services
 import {ValidateService} from './services/validate.service';
 import { AuthService } from './services/auth.service';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const appRoutes: Routes =[
   {path: '', component: LandingpageComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'profile', component: ProfileComponent}
 ]
 
 @NgModule({
@@ -29,7 +31,8 @@ const appRoutes: Routes =[
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    LandingpageComponent
+    LandingpageComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

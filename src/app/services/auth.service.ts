@@ -6,7 +6,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class AuthService {
   token: any;
-  user: any;
 
   constructor(private http : HttpClient) { }
 
@@ -19,12 +18,17 @@ export class AuthService {
   authenticateUser(user: any){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('/camel/api/auth/login', user, {headers: headers})
+    return this.http.post('/camel/api/auth/login', user, {headers: headers, observe: 'response' }) 
+  }
+
+  storeToken(token: any){
+    this.token = token;
+    localStorage.setItem('fiskeToken', token)
   }
 
   logout(){
     this.token = null;
-    this.user = null;
-    localStorage.clear;
+    console.log()
+    localStorage.removeItem('fiskeToken');
   }
 }
