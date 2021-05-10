@@ -1,16 +1,36 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Fisketegn</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav me-auto mb-2 mb-md-0">
-        <li><a [routerLink]="['/login']">Login</a></li>
-        <li><a [routerLink]="['/register']">Køb fisketegn</a></li>
-        <li><a (click)="onLogoutClick()" href="#">Log af</a></li>
-      </ul>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+  <a class="navbar-brand" href="#">Fisketegn</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto navbar">
+      <li *ngIf="!auth.isLoggedIn()" class="nav-item active">
+        <a class="nav-link" [routerLink]="['/login']">login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/register']">Køb fisketegn</a>
+      </li>
+      <li class="nav-item">
+        <a *ngIf="auth.isLoggedIn()" class="nav-link" (click)="onLogoutClick()" href="#">Log af</a>
+      </li>
+    </ul>
   </div>
 </nav>
+
+
+<!-- HVIS VI VIL HAVE EN INNER DROPDOWN
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>-->

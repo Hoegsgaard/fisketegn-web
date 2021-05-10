@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   constructor(
-    private auth : AuthService,
+    public auth : AuthService,
     private router : Router
   ) { }
 
@@ -22,4 +22,6 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/login']);
     return false;
   }
+  
 }
+

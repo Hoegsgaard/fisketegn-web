@@ -18,11 +18,14 @@ import {ValidateService} from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { ProfileComponent } from './components/profile/profile.component';
 
+// Import Guards
+import { AuthGuard } from './guards/auth.guard';
+
 const appRoutes: Routes =[
   {path: '', component: LandingpageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile', component: ProfileComponent}
+  {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]}
 ]
 
 @NgModule({
@@ -43,7 +46,8 @@ const appRoutes: Routes =[
   ],
   providers: [
     ValidateService,
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
