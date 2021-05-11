@@ -11,6 +11,9 @@
         <a class="nav-link" [routerLink]="['/login']">login</a>
       </li>
       <li class="nav-item">
+        <a *ngIf="auth.isLoggedIn()" class="nav-link" [routerLink]="['/profile']">Profil</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" [routerLink]="['/register']">Køb fisketegn</a>
       </li>
       <li class="nav-item">

@@ -20,11 +20,26 @@ export class ValidateService {
       user.country == undefined ||
       user.highQuality == undefined ||
       user.startDate == undefined ||
-      user.password == undefined){
+      user.password == undefined ||
+      user.gentagPassword == undefined){
         return false;
       } else {
         return true
       }
+  }
+
+  validateEqualPassword(user : any){
+    if(user.password == user.gentagPassword){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validateSecurePassword(password : any){
+    // More then 10 chars, at least one number and uppercase letter
+    const re = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{10}$/;
+    return re.test(String(password))
   }
 
   validateEmail(email: any){

@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
   'HighQuality' : String;
   'StartDate' : String;
   'Password' : String;
+  'gentagPassword' : String;
 
   constructor(
     private validateServide: ValidateService,
@@ -53,22 +54,32 @@ export class RegisterComponent implements OnInit {
       highQuality: this.HighQuality,
       startDate: `${startData[2]}/${startData[1]}/${startData[0]}`,
       password: this.Password,
+      gentagPassword: this.gentagPassword,
       role: "admin" // TODO: SKAL SÆTTES I BACKENDEN
     }
    
     // Alle felter skal være udfyldt
     if(!this.validateServide.validateBuyLicense(user)){
       // TODO: Besked til brugeren
-      console.log("Alle felter skal udfyldes")
-      return false
+      console.log("Alle felter skal udfyldes");
+      return false;
     } 
 
-    // Valider de to password felter er ens
+    if(!this.validateServide.validateEqualPassword(user)){
+      // TODO: Besked til brugeren
+      console.log("Password skal være ens");
+      return false;
+    }
+
+    if(!this.validateServide.validateSecurePassword(user.password)){
+      console.log('Password er ikke sikkert nok. Password skal mindst indeholde 10 tegen, både tal, store og små bokstaver');
+      return false;
+    }
 
     // Validate Email by regex
     if(!this.validateServide.validateEmail(user.email)){
-      console.log("Email ugyldig")
-      return false
+      console.log("Email ugyldig");
+      return false;
     } else {
        // Buy License
       this.auth.buyLicense(user).subscribe(data => {
