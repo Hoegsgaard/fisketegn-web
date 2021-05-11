@@ -13,15 +13,15 @@ export class AuthService {
 
   constructor(private http : HttpClient) { }
 
-  buyLicemse(user: any){
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
+  buyLicense(user: any){
+    let headers = new HttpHeaders({
+    'Content-Type':'application/json'});  
     return this.http.post('/camel/api/license', user, {headers: headers})
   }
 
   authenticateUser(user: any){
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
+    let headers = new HttpHeaders({
+    'Content-Type':'application/json'});
     return this.http.post('/camel/api/auth/login', user, {headers: headers, observe: 'response' }) 
   }
 
@@ -38,9 +38,9 @@ export class AuthService {
 
   getUser(){
     this.getUsersToken();
-    let headers = new HttpHeaders();
-    headers.append('fiskeToken', this.token);
-    headers.append('Content-Type', 'application/json');
+    let headers = new HttpHeaders({
+    'Content-Type':'application/json',
+    'fiskeToken':this.token});
     return this.http.get('/camel/api/user/', {headers: headers, observe: 'response'})
   }  
 

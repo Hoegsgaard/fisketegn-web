@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
       return false
     } else {
        // Buy License
-      this.auth.buyLicemse(user).subscribe(data => {
+      this.auth.buyLicense(user).subscribe(data => {
         // TODO: Validering om det er gået godt
         // TODO: Besked til brugeren om det er gået godt eller skidt        
         console.log(data)
