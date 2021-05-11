@@ -88,7 +88,7 @@ export class RegisterComponent implements OnInit {
         console.log(data)
         this.router.navigate(['/login']);
       });
-      return true
+      return true;
     }
   }
 }
