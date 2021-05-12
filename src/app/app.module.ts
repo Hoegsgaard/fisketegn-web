@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 // Import Components
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { buyLystfisketegnComponent } from './components/buyLystfisketegn/buyLystfisketegn.component';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 
 // Import Services
@@ -25,7 +25,7 @@ import { AuthGuard } from './guards/auth.guard';
 const appRoutes: Routes =[
   {path: '', component: LandingpageComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
+  {path: 'buyLystfisketegn', component: buyLystfisketegnComponent},
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]}
 ]
 
@@ -34,7 +34,7 @@ const appRoutes: Routes =[
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    RegisterComponent,
+    buyLystfisketegnComponent,
     LandingpageComponent,
     ProfileComponent
   ],

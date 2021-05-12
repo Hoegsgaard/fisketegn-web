@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import {FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-buyLystfisketegn',
+  templateUrl: './buyLystfisketegn.component.html',
+  styleUrls: ['./buyLystfisketegn.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class buyLystfisketegnComponent implements OnInit {
   'CPR': String;
   'BirthDay' : String;
   'FirstName' : String;
@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
       zipCode: this.ZipCode,
       country: this.Country,
       type: "d", // TODO: SKAL SÆTTES EFTER BRUGERES VALG
-      highQuality: this.HighQuality,
+      highQuality: this.HighQuality ? true : false,
       startDate: `${startData[2]}/${startData[1]}/${startData[0]}`,
       password: this.Password,
       gentagPassword: this.gentagPassword,
