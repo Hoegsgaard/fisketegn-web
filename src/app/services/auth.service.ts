@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { JwtHelperService  } from '@auth0/angular-jwt';
+import { map } from 'rxjs/operators';
 
 const jwtHelper = new JwtHelperService();
 
@@ -21,8 +22,8 @@ export class AuthService {
 
   authenticateUser(user: any){
     let headers = new HttpHeaders({
-    'Content-Type':'application/json'});
-    return this.http.post('/camel/api/auth/login', user, {headers: headers, observe: 'response' }) 
+      'Content-Type':'application/json'});
+    return this.http.post('/camel/api/auth/login', user, {headers: headers, observe: 'response'}) 
   }
 
   isLoggedIn(){
@@ -39,8 +40,8 @@ export class AuthService {
   getUser(){
     this.getUsersToken();
     let headers = new HttpHeaders({
-    'Content-Type':'application/json',
-    'fiskeToken':this.token});
+      'Content-Type':'application/json',
+      'fiskeToken':this.token});
     return this.http.get('/camel/api/user/', {headers: headers, observe: 'response'})
   }  
 

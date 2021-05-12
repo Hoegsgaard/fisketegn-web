@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../../services/validate.service';
 import { AuthService } from '../../services/auth.service'; 
 import { Router } from '@angular/router';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +26,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private validateServide: ValidateService,
     private auth : AuthService,
-    private router : Router
+    private router : Router,
+    private flash : FlashMessagesService
     ) { }
 
   ngOnInit(): void {
@@ -33,9 +35,11 @@ export class RegisterComponent implements OnInit {
 
   onRegisterSubmit(){
     if(this.BirthDay == undefined || this.StartDate == undefined){
-      console.log("Alle felter skal udfyldes");
+      this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
+
+    // TODO: Håndtering hvis højkvalitet ikke er valgt
 
     const birthData = this.BirthDay.split('-')
     const startData = this.StartDate.split('-')
@@ -60,34 +64,34 @@ export class RegisterComponent implements OnInit {
    
     // Alle felter skal være udfyldt
     if(!this.validateServide.validateBuyLicense(user)){
-      // TODO: Besked til brugeren
-      console.log("Alle felter skal udfyldes");
+      this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     } 
 
     if(!this.validateServide.validateEqualPassword(user)){
-      // TODO: Besked til brugeren
-      console.log("Password skal være ens");
+      this.flash.show('Password skal være ens', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
 
     if(!this.validateServide.validateSecurePassword(user.password)){
-      console.log('Password er ikke sikkert nok. Password skal mindst indeholde 10 tegen, både tal, store og små bokstaver');
+      this.flash.show('Password er ikke sikkert nok. Password skal mindst indeholde 10 tegen, både tal, store og små bokstaver', {cssClass: 'alert-danger', timeout: 10000});
       return false;
     }
 
     // Validate Email by regex
     if(!this.validateServide.validateEmail(user.email)){
-      console.log("Email ugyldig");
+      this.flash.show('Email er ugyldig', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     } else {
        // Buy License
       this.auth.buyLicense(user).subscribe(data => {
-        // TODO: Validering om det er gået godt
-        // TODO: Besked til brugeren om det er gået godt eller skidt        
-        console.log(data)
+        this.flash.show(`${this.Email} er oprettet`, {cssClass: 'alert-success', timeout: 3000});
         this.router.navigate(['/login']);
-      });
+      }, err => {
+        // TODO: Hent korrekte fejl fra respons
+        this.flash.show("Noget gik falt", {cssClass: 'alert-success', timeout: 3000});
+        return false;
+      }); 
       return true;
     }
   }
