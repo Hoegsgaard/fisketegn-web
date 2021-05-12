@@ -18,6 +18,7 @@ export class ValidateService {
       user.address == undefined ||
       user.zipCode == undefined ||
       user.country == undefined ||
+      user.type == undefined ||
       user.highQuality == undefined ||
       user.startDate == undefined ||
       user.password == undefined ||

@@ -18,6 +18,7 @@ export class buyLystfisketegnComponent implements OnInit {
   'Address' : String;
   'ZipCode' : String;
   'Country' : String;
+  'Type' : String;
   'HighQuality' : String;
   'StartDate' : String;
   'Password' : String;
@@ -54,13 +55,14 @@ export class buyLystfisketegnComponent implements OnInit {
       address: this.Address,
       zipCode: this.ZipCode,
       country: this.Country,
-      type: "d", // TODO: SKAL SÆTTES EFTER BRUGERES VALG
+      type: this.Type,
       highQuality: this.HighQuality ? true : false,
       startDate: `${startData[2]}/${startData[1]}/${startData[0]}`,
       password: this.Password,
       gentagPassword: this.gentagPassword,
       role: "admin" // TODO: SKAL SÆTTES I BACKENDEN
     }
+    console.log(user)
    
     // Alle felter skal være udfyldt
     if(!this.validateServide.validateBuyLicense(user)){
@@ -89,7 +91,7 @@ export class buyLystfisketegnComponent implements OnInit {
         this.router.navigate(['/login']);
       }, err => {
         // TODO: Hent korrekte fejl fra respons
-        this.flash.show("Noget gik falt", {cssClass: 'alert-success', timeout: 3000});
+        this.flash.show("Noget gik galt", {cssClass: 'alert-success', timeout: 3000});
         return false;
       }); 
       return true;

@@ -33,8 +33,30 @@
     <input type="text" [(ngModel)]="Country" name="Country" class="form-control">
   </div>
   <div class="form-group">
+    <label>Fiskekortstype</label>
+    <div class="form-control">
+      <label class="radio-inline display-block">
+        <input type="radio" value="y" name="Type" [(ngModel)]="Type">
+        Årskort DKK 185,00
+      </label>
+      <label class="radio-inline display-block">
+        <input type="radio" value="w" name="type" [(ngModel)]="Type">
+        Ugekort DKK 130,00
+      </label>
+      <label class="radio-inline display-block">
+        <input type="radio" value="d" name="type" [(ngModel)]="Type">
+        Dagskort DKK 40,00
+      </label>
+    </div>
+  </div>
+  <div class="form-group">
     <label>HighQuality</label>
-    <input type="checkbox" value="true" [(ngModel)]="HighQuality" name="HighQuality" class="form-check-input">
+    <div class="form-control">
+      <label class="radio-inline display-block">
+        <input type="checkbox" value="true" name="HighQuality" [(ngModel)]="HighQuality" class="form-check-input">
+        DKK 15,00
+      </label>
+    </div>
   </div>
   <div class="form-group">
     <label>StartDate</label>
