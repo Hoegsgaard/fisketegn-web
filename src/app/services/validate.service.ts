@@ -39,7 +39,7 @@ export class ValidateService {
 
   validateSecurePassword(password : any){
     // More then 10 chars, at least one number and uppercase letter
-    const re = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{10}$/;
+    const re = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{10,}$/;
     return re.test(String(password))
   }
 
