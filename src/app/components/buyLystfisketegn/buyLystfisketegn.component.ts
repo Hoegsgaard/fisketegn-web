@@ -40,8 +40,6 @@ export class buyLystfisketegnComponent implements OnInit {
       return false;
     }
 
-    // TODO: Håndtering hvis højkvalitet ikke er valgt
-
     const birthData = this.BirthDay.split('-')
     const startData = this.StartDate.split('-')
     const user = {
@@ -59,8 +57,7 @@ export class buyLystfisketegnComponent implements OnInit {
       highQuality: this.HighQuality ? true : false,
       startDate: `${startData[2]}/${startData[1]}/${startData[0]}`,
       password: this.Password,
-      gentagPassword: this.gentagPassword,
-      role: "admin" // TODO: SKAL SÆTTES I BACKENDEN
+      gentagPassword: this.gentagPassword
     }
     console.log(user)
    
@@ -90,7 +87,6 @@ export class buyLystfisketegnComponent implements OnInit {
         this.flash.show(`${this.Email} er oprettet`, {cssClass: 'alert-success', timeout: 3000});
         this.router.navigate(['/login']);
       }, err => {
-        // TODO: Hent korrekte fejl fra respons
         this.flash.show("Noget gik galt", {cssClass: 'alert-success', timeout: 3000});
         return false;
       }); 
