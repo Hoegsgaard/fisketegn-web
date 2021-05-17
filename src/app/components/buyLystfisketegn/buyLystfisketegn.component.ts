@@ -3,6 +3,7 @@ import { ValidateService } from '../../services/validate.service';
 import { AuthService } from '../../services/auth.service'; 
 import { Router } from '@angular/router';
 import {FlashMessagesService} from 'angular2-flash-messages';
+import {NgForm, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-buyLystfisketegn',
@@ -10,19 +11,21 @@ import {FlashMessagesService} from 'angular2-flash-messages';
   styleUrls: ['./buyLystfisketegn.component.scss']
 })
 export class buyLystfisketegnComponent implements OnInit {
-  'CPR': String;
-  'BirthDay' : String;
-  'FirstName' : String;
-  'LastName' : String;
-  'Email' : String;
-  'Address' : String;
-  'ZipCode' : String;
-  'Country' : String;
-  'Type' : String;
-  'HighQuality' : String;
-  'StartDate' : String;
-  'Password' : String;
-  'gentagPassword' : String;
+  form = new FormGroup({
+    FirstName: new FormControl(''),
+    LastName: new FormControl(''),
+    CPR: new FormControl(''),
+    BirthDay: new FormControl(''),
+    Email: new FormControl(''),
+    Address: new FormControl(''),
+    ZipCode: new FormControl(''),
+    Country: new FormControl(''),
+    Type: new FormControl(''),
+    HighQuality: new FormControl(''),
+    StartDate: new FormControl(''),
+    Password: new FormControl(''),
+    gentagPassword: new FormControl('')
+  });
 
   constructor(
     private validateServide: ValidateService,
@@ -34,13 +37,22 @@ export class buyLystfisketegnComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  disableStartDate(){
+    this.form.get('StartDate')?.disable();
+    
+  }
+
+  enableStarteDate(){
+    this.form.get('StartDate')?.enable();
+  }
+
   onRegisterSubmit(){
-    if(this.BirthDay == undefined || this.StartDate == undefined){
+    /*if(this.BirthDay == undefined || this.StartDate == undefined){
       this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
       return false;
-    }
+    }*/
 
-    const birthData = this.BirthDay.split('-')
+    /*const birthData = this.BirthDay.split('-')
     const startData = this.StartDate.split('-')
     const user = {
       cpr: this.CPR,
@@ -59,10 +71,10 @@ export class buyLystfisketegnComponent implements OnInit {
       password: this.Password,
       gentagPassword: this.gentagPassword
     }
-    console.log(user)
+    console.log(user)*/
    
     // Alle felter skal være udfyldt
-    if(!this.validateServide.validateBuyLicense(user)){
+    /*if(!this.validateServide.validateBuyLicense(user)){
       this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     } 
@@ -91,6 +103,6 @@ export class buyLystfisketegnComponent implements OnInit {
         return false;
       }); 
       return true;
-    }
+    }*/
   }
 }

@@ -1,74 +1,216 @@
 <h2>Køb Fisketegn</h2>
-<form (submit)="onRegisterSubmit()">
-  <div class="form-group">
-    <label>CPR nummer</label>
-    <input type="number" [(ngModel)]="CPR" name="CPR" class="form-control">
-  </div>
-  <div class="form-group">
-    <label>BirthDay</label>
-    <input type="date" [(ngModel)]="BirthDay" name="BirthDay" class="form-control">
-  </div>
-  <div class="form-group">
-    <label>FirstName</label>
-    <input type="text" [(ngModel)]="FirstName" name="FirstName" class="form-control">
-  </div>
-  <div class="form-group">
-    <label>LastName</label>
-    <input type="text" [(ngModel)]="LastName" name="LastName" class="form-control">
-  </div>
-  <div class="form-group">
-    <label>Email</label>
-    <input type="text" [(ngModel)]="Email" name="Email" class="form-control">
-  </div>
-  <div class="form-group">
-    <label>Address</label>
-    <input type="text" [(ngModel)]="Address" name="Address" class="form-control">
-  </div>
-  <div class="form-group">
-    <label>ZipCode</label>
-    <input type="text" [(ngModel)]="ZipCode" name="ZipCode" class="form-control">
-  </div>
-  <div class="form-group">
-    <label>Country</label>
-    <input type="text" [(ngModel)]="Country" name="Country" class="form-control">
-  </div>
-  <div class="form-group">
-    <label>Fiskekortstype</label>
-    <div class="form-control">
-      <label class="radio-inline display-block">
-        <input type="radio" value="y" name="Type" [(ngModel)]="Type">
-        Årskort DKK 185,00
-      </label>
-      <label class="radio-inline display-block">
-        <input type="radio" value="w" name="type" [(ngModel)]="Type">
-        Ugekort DKK 130,00
-      </label>
-      <label class="radio-inline display-block">
-        <input type="radio" value="d" name="type" [(ngModel)]="Type">
-        Dagskort DKK 40,00
-      </label>
+<form [formGroup]="form">
+  <div class="row">
+    <div class="form-group col">
+      <label>FirstName</label>
+      <input type="text" formControlName="FirstName" name="FirstName" class="form-control">
+    </div>
+    <div class="form-group col">
+      <label>LastName</label>
+      <input type="text" formControlName="LastName" name="LastName" class="form-control">
     </div>
   </div>
-  <div class="form-group">
-    <label>HighQuality</label>
-    <div class="form-control">
-      <label class="radio-inline display-block">
-        <input type="checkbox" value="true" name="HighQuality" [(ngModel)]="HighQuality" class="form-check-input">
-        DKK 15,00
-      </label>
+
+  <div class="row">
+    <div class="form-group col-6">
+      <label>CPR nummer</label>
+      <input type="number" formControlName="CPR" name="CPR" class="form-control">
+    </div>
+    <div class="form-group col">
+      <label>BirthDay</label>
+      <input type="date" formControlName="BirthDay" name="BirthDay" class="form-control">
     </div>
   </div>
-  <div class="form-group">
-    <label>StartDate</label>
-    <input type="date" [(ngModel)]="StartDate" name="StartDate" class="form-control">
+  
+  <div class="row">
+    <div class="form-group col">
+      <label>Address</label>
+      <input type="text" formControlName="Address" name="Address" class="form-control">
+    </div>
+    <div class="form-group col">
+      <label>ZipCode</label>
+      <input type="text" formControlName="ZipCode" name="ZipCode" class="form-control">
+    </div>
   </div>
-  <div class="form-group">
-    <label>Password</label>
-    <input type="password" [(ngModel)]="Password" name="Password" class="form-control">
+  
+  <div class="row">
+    <div class="form-group col">
+      <label>Country</label>
+      <input type="text" formControlName="Country" name="Country" class="form-control">
+    </div>
+    <div class="form-group col">
+      <label>Email</label>
+      <input type="text" formControlName="Email" name="Email" class="form-control">
+    </div>
   </div>
-  <div class="form-group">
-    <label>Gentag password</label>
-    <input type="password" [(ngModel)]="gentagPassword" name="gentagPassword" class="form-control">
+  
+  <div class="row">
+    <div class="form-group col-6">
+      <label>Fiskekortstype</label>
+      <div class="form-control">
+        <label class="radio-inline display-block">
+          <input (change)="disableStartDate()" type="radio" value="y" name="Type" formControlName="Type">
+          Årskort DKK 185,00
+        </label>
+        <label class="radio-inline display-block">
+          <input (change)="enableStarteDate()" type="radio" value="w" name="Type" formControlName="Type">
+          Ugekort DKK 130,00
+        </label>
+        <label class="radio-inline display-block">
+          <input (change)="enableStarteDate()" type="radio" value="d" name="Type" formControlName="Type">
+          Dagskort DKK 40,00
+        </label>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label>StartDate</label>
+      <input type="date" formControlName="StartDate" name="StartDate" class="form-control">
+    </div>
   </div>
-  <input type="submit" class="btn btn-primary" value="Submit">
+  
+  <div class="row">
+    <div class="form-group col">
+      <label>Password</label>
+      <input type="password" formControlName="Password" name="Password" class="form-control">
+    </div>
+    <div class="form-group col">
+      <label>Gentag password</label>
+      <input type="password" formControlName="gentagPassword" name="gentagPassword" class="form-control">
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="form-groups col-6">
+      <label>HighQuality</label>
+      <div class="form-control">
+        <label class="radio-inline display-block">
+          <input type="checkbox" value="true" name="HighQuality" formControlName="HighQuality" class="form-check-input">
+          DKK 15,00
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="Submit" (click)="onRegisterSubmit()">
 </form>
+
+<!--
+  <h2>Køb Fisketegn</h2>
+<form [formGroup]="form">
+  <div class="row">
+    <div class="form-group col">
+      <label>
+        FirstName
+        <input type="text" formControlName="FirstName" class="form-control">
+      </label>
+    </div>
+    <div class="form-group col">
+      <label>
+        LastName
+        <input type="text" formControlName="LastName" class="form-control">
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-6">
+      <label>
+        CPR nummer
+        <input type="text" formControlName="CPR" class="form-control" >
+      </label>
+    </div>
+    <div class="form-group col">
+      <label>
+        BirthDay
+        <input type="date" formControlName="BirthDay" class="form-control">
+      </label>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="form-group col">
+      <label>
+        Address
+        <input type="text" formControlName="Address" class="form-control">
+      </label>
+    </div>
+    <div class="form-group col">
+      <label>
+        ZipCode
+        <input type="text" formControlName="ZipCode" class="form-control">
+      </label>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="form-group col">
+      <label>
+        Country
+        <input type="text" formControlName="Country" class="form-control">
+      </label>
+    </div>
+    <div class="form-group col">
+      <label>
+        Email
+        <input type="text" formControlName="Email" class="form-control">
+      </label>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="form-group col-6">
+      <label>Fiskekortstype</label>
+      <div class="form-control">
+        <label class="radio-inline display-block">
+          <input (change)="disableStartDate()" type="radio" value="y" name="Type" formControlName="Type">
+          Årskort DKK 185,00
+        </label>
+        <label class="radio-inline display-block">
+          <input (change)="enableStarteDate()" type="radio" value="w" name="Type" formControlName="Type">
+          Ugekort DKK 130,00
+        </label>
+        <label class="radio-inline display-block">
+          <input (change)="enableStarteDate()" type="radio" value="d" name="Type" formControlName="Type">
+          Dagskort DKK 40,00
+        </label>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label>
+        StartDate
+        <input type="date" formControlName="StartDate" class="form-control">
+      </label>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="form-group col">
+      <label>
+        Password
+        <input type="password" formControlName="Password" class="form-control">
+      </label>
+    </div>
+    <div class="form-group col">
+      <label>
+        Gentag password
+        <input type="password" formControlName="gentagPassword" class="form-control">
+      </label>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="form-groups col-6">
+      <label>HighQuality</label>
+      <div class="form-control">
+        <label class="radio-inline display-block">
+          <input type="checkbox" value="true" name="HighQuality" formControlName="HighQuality" class="form-check-input">
+          DKK 15,00
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="Submit" (click)="onRegisterSubmit()">
+</form>
+
+-->

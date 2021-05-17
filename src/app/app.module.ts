@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {RouterModule, Routes} from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { FlashMessagesModule } from 'angular2-flash-messages'
 
@@ -13,6 +13,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { buyLystfisketegnComponent } from './components/buyLystfisketegn/buyLystfisketegn.component';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
+import { BuyFritidsfisketegnComponent } from './components/buyFritidsfisketegn/buyFritidsfisketegn.component';
 
 // Import Services
 import {ValidateService} from './services/validate.service';
@@ -26,6 +27,7 @@ const appRoutes: Routes =[
   {path: '', component: LandingpageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'buyLystfisketegn', component: buyLystfisketegnComponent},
+  {path: 'buyFritidsfisketegn', component: BuyFritidsfisketegnComponent},
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]}
 ]
 
@@ -36,13 +38,15 @@ const appRoutes: Routes =[
     LoginComponent,
     buyLystfisketegnComponent,
     LandingpageComponent,
-    ProfileComponent
+    ProfileComponent,
+    BuyFritidsfisketegnComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     FlashMessagesModule.forRoot()
   ],
