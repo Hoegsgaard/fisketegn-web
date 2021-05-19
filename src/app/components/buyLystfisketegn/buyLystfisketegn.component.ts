@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../../services/validate.service';
 import { AuthService } from '../../services/auth.service'; 
 import { Router } from '@angular/router';
-import {FlashMessagesService} from 'angular2-flash-messages';
-import {NgForm, FormControl, FormGroup} from '@angular/forms';
+import { FlashMessagesService} from 'angular2-flash-messages';
+import { FormControl, FormGroup, FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-buyLystfisketegn',
@@ -20,7 +20,7 @@ export class buyLystfisketegnComponent implements OnInit {
     Address: new FormControl(''),
     ZipCode: new FormControl(''),
     Country: new FormControl(''),
-    Type: new FormControl(''),
+    Type: new FormControl('y'),
     HighQuality: new FormControl(''),
     StartDate: new FormControl(''),
     Password: new FormControl(''),
@@ -35,11 +35,17 @@ export class buyLystfisketegnComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.disableStartDate();
   }
 
   disableStartDate(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
     this.form.get('StartDate')?.disable();
-    
+    this.form.get('StartDate')?.setValue(yyyy + '-' + mm + '-' + dd)
   }
 
   enableStarteDate(){
@@ -47,37 +53,50 @@ export class buyLystfisketegnComponent implements OnInit {
   }
 
   onRegisterSubmit(){
-    /*if(this.BirthDay == undefined || this.StartDate == undefined){
+    let fv = this.form.value;
+    console.log(fv.StartDate)
+
+    if(fv.BirthDay == undefined || 
+      fv.BirthDay == "" || 
+      fv.StartDate == undefined ||
+      fv.StartDate == ""){
       this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
       return false;
-    }*/
+    }
 
-    /*const birthData = this.BirthDay.split('-')
-    const startData = this.StartDate.split('-')
+    const birthData = this.form.get("BirthDay")?.value.split('-')
+    const startData = this.form.get("StartDate")?.value.split('-')
+
     const user = {
-      cpr: this.CPR,
+      cpr: this.form.get('CPR')?.value,
       birthDay: birthData[2],
       birthMonth: birthData[1],
       birthYear: birthData[0],
-      firstName: this.FirstName,
-      lastName: this.LastName,
-      email: this.Email,
-      address: this.Address,
-      zipCode: this.ZipCode,
-      country: this.Country,
-      type: this.Type,
-      highQuality: this.HighQuality ? true : false,
+      firstName: this.form.get('FirstName')?.value,
+      lastName: this.form.get('LastName')?.value,
+      email: this.form.get('Email')?.value,
+      address: this.form.get('Address')?.value,
+      zipCode: this.form.get('ZipCode')?.value,
+      country: this.form.get('Country')?.value,
+      type: this.form.get('Type')?.value,
+      highQuality: this.form.get('HighQuality')?.value ? true : false,
       startDate: `${startData[2]}/${startData[1]}/${startData[0]}`,
-      password: this.Password,
-      gentagPassword: this.gentagPassword
+      password: this.form.get('Password')?.value,
+      gentagPassword: this.form.get('gentagPassword')?.value
     }
-    console.log(user)*/
-   
+
+    console.log(user)
+
     // Alle felter skal være udfyldt
-    /*if(!this.validateServide.validateBuyLicense(user)){
+    if(!this.validateServide.validateBuyLicense(user)){
       this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
       return false;
-    } 
+    }
+    
+    if(!this.validateServide.validateZipcode(user.zipCode)){
+      this.flash.show('Postnummer skal være på 4 tal', {cssClass: 'alert-danger', timeout: 3000});
+      return false;
+    }
 
     if(!this.validateServide.validateEqualPassword(user)){
       this.flash.show('Password skal være ens', {cssClass: 'alert-danger', timeout: 3000});
@@ -96,13 +115,13 @@ export class buyLystfisketegnComponent implements OnInit {
     } else {
        // Buy License
       this.auth.buyLicense(user).subscribe(data => {
-        this.flash.show(`${this.Email} er oprettet`, {cssClass: 'alert-success', timeout: 3000});
+        this.flash.show(`${user.email} er oprettet`, {cssClass: 'alert-success', timeout: 3000});
         this.router.navigate(['/login']);
       }, err => {
         this.flash.show("Noget gik galt", {cssClass: 'alert-success', timeout: 3000});
         return false;
       }); 
       return true;
-    }*/
+    }
   }
 }
