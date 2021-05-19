@@ -22,6 +22,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 // Import Guards
 import { AuthGuard } from './guards/auth.guard';
+import { FooterComponent } from './components/footer/footer.component';
 
 const appRoutes: Routes =[
   {path: '', component: LandingpageComponent},
@@ -39,7 +40,8 @@ const appRoutes: Routes =[
     buyLystfisketegnComponent,
     LandingpageComponent,
     ProfileComponent,
-    BuyFritidsfisketegnComponent
+    BuyFritidsfisketegnComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
