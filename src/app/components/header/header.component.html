@@ -1,23 +1,27 @@
 <header>
     <div class="flex-container">
         <div class = "flex-logo"><img src="assets/svg/Fiskeristyrelsen_crown.svg" height=100></div>
-        <a class = "flex-text">HJÆLP</a>
-        <div class = "separator">|</div>
-        <a class = "flex-text">FAQ</a>
-        <div class = "separator">|</div>
-        <a class = "flex-text">KONTAKT</a>
-        <div class = "separator">|</div>
-        <a href = "https://fiskeristyrelsen.dk/vaerd-at-vide-om-os/om-fiskeristyrelsen/" class = "flex-text">OM FISKERISTYRELSEN</a>
-        <div class = "separator">|</div>
-        <a href="https://fiskeristyrelsen.dk/lyst-og-fritidsfiskeri/" class = "flex-text">OM LYST- OG FRITIDSFISKERI</a>
-        <div class = "separator">|</div>
-        <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-info dropdown-button" id="dropdownBasic1" ngbDropdownToggle>{{selectedLanguage}}</button>
-            <div ngbDropdownMenu class = "dropdown-menu" aria-labelledby="dropdownBasic1">
-              <button class = "dropdown-item" (click)="changeLanguage('Dansk')" ngbDropdownItem>Dansk</button>
-              <button class = "dropdown-item" (click)="changeLanguage('English')" ngbDropdownItem>English</button>
-              <button class = "dropdown-item" (click)="changeLanguage('Deutch')" ngbDropdownItem>Deutch</button>
+        
+            <a class = "flex-text" [routerLink]="['/help']">HJÆLP</a>
+            <div class = "separator">|</div>
+            <a class = "flex-text">FAQ</a>
+            <div class = "separator">|</div>
+            <a class = "flex-text">KONTAKT</a>
+            <div class = "separator">|</div>
+            <a href = "https://fiskeristyrelsen.dk/vaerd-at-vide-om-os/om-fiskeristyrelsen/" class = "flex-text">OM FISKERISTYRELSEN</a>
+            <div class = "separator">|</div>
+            <a href="https://fiskeristyrelsen.dk/lyst-og-fritidsfiskeri/" class = "flex-text">OM LYST- OG FRITIDSFISKERI</a>
+            <div class = "separator">|</div>
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-info dropdown-button" id="dropdownBasic1" ngbDropdownToggle>{{selectedLanguage}}</button>
+                <div ngbDropdownMenu class = "dropdown-menu" aria-labelledby="dropdownBasic1">
+                    <button class = "dropdown-item" (click)="changeLanguage('Dansk')" ngbDropdownItem>Dansk</button>
+                    <button class = "dropdown-item" (click)="changeLanguage('English')" ngbDropdownItem>English</button>
+                    <button class = "dropdown-item" (click)="changeLanguage('Deutch')" ngbDropdownItem>Deutch</button>
+                </div>
             </div>
-          </div>
+            <div *ngIf="!auth.isLoggedIn()" class = "separator">|</div>
+            <button *ngIf="!auth.isLoggedIn()" [routerLink]="['/login']" class = "log-in-button">LOG IND</button>
+        
     </div>
 </header>
