@@ -23,6 +23,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 // Import Guards
 import { AuthGuard } from './guards/auth.guard';
 import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes =[
   {path: '', component: LandingpageComponent},
@@ -41,7 +43,8 @@ const appRoutes: Routes =[
     LandingpageComponent,
     ProfileComponent,
     BuyFritidsfisketegnComponent,
-    FooterComponent
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ const appRoutes: Routes =[
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    NgbModule
   ],
   providers: [
     ValidateService,

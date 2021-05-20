@@ -1,0 +1,8 @@
+a.activeLink {
+    border-bottom: 1px solid white;
+    padding-bottom: 3px;
+    font-weight:bool;
+}
+navbar-nav.collapse a:after{
+    content: "|";
+}

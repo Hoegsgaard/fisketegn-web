@@ -11,16 +11,16 @@
         <a class="nav-link" [routerLink]="['/login']">login</a>
       </li>
       <li class="nav-item">
-        <a *ngIf="auth.isLoggedIn()" class="nav-link" [routerLink]="['/profile']">Profil</a>
+        <a *ngIf="auth.isLoggedIn()" class="nav-link" [routerLink]="['/profile']" routerLinkActive="activeLink">Profil</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/buyLystfisketegn']">Køb Lystfisketegn</a>
+        <a class="nav-link" [routerLink]="['/buyLystfisketegn']" routerLinkActive="activeLink">Køb Lystfisketegn</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/buyFritidsfisketegn']">Køb Fritidsfisketegn</a>
+        <a class="nav-link" [routerLink]="['/buyFritidsfisketegn']" [routerLinkActive]="['activeLink']">Køb Fritidsfisketegn</a>
       </li>
       <li class="nav-item">
-        <a *ngIf="auth.isLoggedIn()" class="nav-link" (click)="onLogoutClick()" href="#">Log af</a>
+        <a *ngIf="auth.isLoggedIn()" class="nav-link" (click)="onLogoutClick()" href="#" [routerLinkActive]="['active']">Log af</a>
       </li>
     </ul>
   </div>
