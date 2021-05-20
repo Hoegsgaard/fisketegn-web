@@ -40,17 +40,22 @@ export class buyLystfisketegnComponent implements OnInit {
   }
 
   disableStartDate(){
+    this.form.get('StartDate')?.disable();
+
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
-
-    this.form.get('StartDate')?.disable();
     this.form.get('StartDate')?.setValue(yyyy + '-' + mm + '-' + dd)
+    
+    this.form.get('HighQuality')?.enable();
+
   }
 
   enableStarteDate(){
     this.form.get('StartDate')?.enable();
+    this.form.get('HighQuality')?.disable();
+    this.form.get('HighQuality')?.reset();
   }
 
   changeLanguage(country : string){
