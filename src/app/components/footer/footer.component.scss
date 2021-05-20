@@ -1,0 +1,16 @@
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 0;
+    flex-shrink: 0;
+    justify-content: flex-start;
+}
+.flex-logo{
+    margin-left: auto;
+    margin-top: auto;
+}
+
+.flex-text{
+    padding-right: 20px;
+}
