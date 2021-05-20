@@ -5,13 +5,14 @@
     flex-grow: 0;
     flex-shrink: 0;
     justify-content: flex-end;
+    padding-right: 5%;
 }
 
 .flex-logo{
     margin-right: auto;
     margin-top: auto;
     padding: 10px;
-    padding-left: 50px;
+    padding-left: 5%;
 }
 
 .flex-text{
@@ -47,5 +48,9 @@
     min-width: 0 !important;
 }
 
-
+.log-in-button{
+    font-size: larger;
+    border:none;
+    background: none;
+}
 

@@ -25,13 +25,15 @@ import { AuthGuard } from './guards/auth.guard';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HelpComponent } from './components/help/help.component';
 
 const appRoutes: Routes =[
   {path: '', component: LandingpageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'buyLystfisketegn', component: buyLystfisketegnComponent},
   {path: 'buyFritidsfisketegn', component: BuyFritidsfisketegnComponent},
-  {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]}
+  {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
+  {path: 'help', component: HelpComponent}
 ]
 
 @NgModule({
@@ -44,7 +46,8 @@ const appRoutes: Routes =[
     ProfileComponent,
     BuyFritidsfisketegnComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
