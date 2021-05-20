@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { FlashMessagesModule } from 'angular2-flash-messages'
@@ -16,7 +16,7 @@ import { LandingpageComponent } from './components/landingpage/landingpage.compo
 import { BuyFritidsfisketegnComponent } from './components/buyFritidsfisketegn/buyFritidsfisketegn.component';
 
 // Import Services
-import {ValidateService} from './services/validate.service';
+import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { ProfileComponent } from './components/profile/profile.component';
 

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ZipOperator } from 'rxjs/internal/observable/zip';
 
 @Injectable({
   providedIn: 'root'
@@ -8,21 +9,21 @@ export class ValidateService {
   constructor() { }
 
   validateBuyLicense(user: any){
-    if(user.cpr == undefined ||
-      user.birthDay == undefined ||
-      user.birthMonth == undefined ||
-      user.birthYear == undefined ||
-      user.firstName == undefined ||
-      user.lastName == undefined ||
-      user.email == undefined ||
-      user.address == undefined ||
-      user.zipCode == undefined ||
-      user.country == undefined ||
-      user.type == undefined ||
-      user.highQuality == undefined ||
-      user.startDate == undefined ||
-      user.password == undefined ||
-      user.gentagPassword == undefined){
+    if(user.cpr == "" ||
+      user.cpr == null ||
+      user.birthDay == "" ||
+      user.birthMonth == "" ||
+      user.birthYear == "" ||
+      user.firstName == "" ||
+      user.lastName == "" ||
+      user.email == "" ||
+      user.address == "" ||
+      user.zipCode == "" ||
+      user.country == "" ||
+      user.type == "" ||
+      user.startDate == "" ||
+      user.password == "" ||
+      user.gentagPassword == ""){
         return false;
       } else {
         return true
@@ -58,6 +59,22 @@ export class ValidateService {
         return true
       }
   }
+
+  validateZipcode(zip: any){
+    const re = /^\d{4}$/
+    if(re.test(zip)){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validateCPR(cpr: any){
+    const re = /^\d{10}$/;
+    if(re.test(cpr)){
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
-
-
