@@ -3,7 +3,7 @@ import { ValidateService } from '../../services/validate.service';
 import { AuthService } from '../../services/auth.service'; 
 import { Router } from '@angular/router';
 import { FlashMessagesService} from 'angular2-flash-messages';
-import { FormControl, FormGroup, FormBuilder} from '@angular/forms';
+import { FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-buyLystfisketegn',
@@ -53,56 +53,66 @@ export class buyLystfisketegnComponent implements OnInit {
   }
 
   onRegisterSubmit(){
-    let fv = this.form.value;
-    console.log(fv.StartDate)
+    let formValue = this.form.value;
 
-    if(fv.BirthDay == undefined || 
-      fv.BirthDay == "" || 
-      fv.StartDate == undefined ||
-      fv.StartDate == ""){
-      this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
-      return false;
+    console.log(formValue.CPR)
+
+    // Valider at der er input i Startdate
+    let startData = undefined;
+    if(this.form.get('StartDate')?.disabled){
+      this.form.get('StartDate')?.enable()
+      startData = this.form.get("StartDate")?.value.split('-')
+      this.form.get('StartDate')?.disable()
+    } else {
+      if(formValue.StartDate == undefined ||
+      formValue.StartDate == ""){
+        this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
+        return false;
+      }
+      startData = this.form.get("StartDate")?.value.split('-')
     }
 
-    const birthData = this.form.get("BirthDay")?.value.split('-')
-    const startData = this.form.get("StartDate")?.value.split('-')
-
+    // Lav en bruger baseret på inputs
     const user = {
-      cpr: this.form.get('CPR')?.value,
-      birthDay: birthData[2],
-      birthMonth: birthData[1],
-      birthYear: birthData[0],
-      firstName: this.form.get('FirstName')?.value,
-      lastName: this.form.get('LastName')?.value,
-      email: this.form.get('Email')?.value,
-      address: this.form.get('Address')?.value,
-      zipCode: this.form.get('ZipCode')?.value,
-      country: this.form.get('Country')?.value,
-      type: this.form.get('Type')?.value,
-      highQuality: this.form.get('HighQuality')?.value ? true : false,
+      cpr: formValue.CPR,
+      firstName: formValue.FirstName,
+      lastName: formValue.LastName,
+      email: formValue.Email,
+      address: formValue.Address,
+      zipCode: formValue.ZipCode,
+      country: formValue.Country,
+      type: formValue.Type,
+      highQuality: formValue.HighQuality ? true : false,
       startDate: `${startData[2]}/${startData[1]}/${startData[0]}`,
-      password: this.form.get('Password')?.value,
-      gentagPassword: this.form.get('gentagPassword')?.value
+      password: formValue.Password,
+      gentagPassword: formValue.gentagPassword
     }
 
-    console.log(user)
-
-    // Alle felter skal være udfyldt
+    // Valider at alle felter er udfyldt
     if(!this.validateServide.validateBuyLicense(user)){
       this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
+
+    // Valider at CPR nummer indeholder 10 tegn
+    if(!this.validateServide.validateCPR(user.cpr)){
+      this.flash.show('CPR nummer skal indeholde 10 tal', {cssClass: 'alert-danger', timeout: 3000});
+      return false;
+    }
     
+    // Valider at postnummer indeholder 4 tegn
     if(!this.validateServide.validateZipcode(user.zipCode)){
       this.flash.show('Postnummer skal være på 4 tal', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
 
+    // Vlider at de indtastede passorews er ens
     if(!this.validateServide.validateEqualPassword(user)){
       this.flash.show('Password skal være ens', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
 
+    // Valider at password er sikkert
     if(!this.validateServide.validateSecurePassword(user.password)){
       this.flash.show('Password er ikke sikkert nok. Password skal mindst indeholde 10 tegen, både tal, store og små bokstaver', {cssClass: 'alert-danger', timeout: 10000});
       return false;
@@ -113,14 +123,15 @@ export class buyLystfisketegnComponent implements OnInit {
       this.flash.show('Email er ugyldig', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     } else {
+      console.log(user)
        // Buy License
-      this.auth.buyLicense(user).subscribe(data => {
+      /*this.auth.buyLicense(user).subscribe(data => {
         this.flash.show(`${user.email} er oprettet`, {cssClass: 'alert-success', timeout: 3000});
         this.router.navigate(['/login']);
       }, err => {
         this.flash.show("Noget gik galt", {cssClass: 'alert-success', timeout: 3000});
         return false;
-      }); 
+      }); */
       return true;
     }
   }

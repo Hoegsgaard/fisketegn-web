@@ -10,6 +10,7 @@ export class ValidateService {
 
   validateBuyLicense(user: any){
     if(user.cpr == "" ||
+      user.cpr == null ||
       user.birthDay == "" ||
       user.birthMonth == "" ||
       user.birthYear == "" ||
@@ -61,13 +62,19 @@ export class ValidateService {
 
   validateZipcode(zip: any){
     const re = /^\d{4}$/
-    console.log(re.test(zip))
     if(re.test(zip)){
       return true;
     } else {
       return false;
     }
   }
+
+  validateCPR(cpr: any){
+    const re = /^\d{10}$/;
+    if(re.test(cpr)){
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
-
-
