@@ -1,6 +1,6 @@
 <header>
     <div class="flex-container">
-        <div class = "flex-logo"><img src="assets/svg/Fiskeristyrelsen_crown.svg" height=100></div>
+        <a class = "flex-logo" [routerLink]="['/']"><img src="assets/svg/Fiskeristyrelsen_crown.svg" height=100></a>
         
             <a class = "flex-text" [routerLink]="['/help']">HJÆLP</a>
             <div class = "separator">|</div>
@@ -8,9 +8,9 @@
             <div class = "separator">|</div>
             <a class = "flex-text">KONTAKT</a>
             <div class = "separator">|</div>
-            <a href = "https://fiskeristyrelsen.dk/vaerd-at-vide-om-os/om-fiskeristyrelsen/" class = "flex-text">OM FISKERISTYRELSEN</a>
+            <a (click)="goToLink('https://fiskeristyrelsen.dk/vaerd-at-vide-om-os/om-fiskeristyrelsen/')" class = "flex-text">OM FISKERISTYRELSEN</a>
             <div class = "separator">|</div>
-            <a href="https://fiskeristyrelsen.dk/lyst-og-fritidsfiskeri/" class = "flex-text">OM LYST- OG FRITIDSFISKERI</a>
+            <a (click)="goToLink('https://fiskeristyrelsen.dk/lyst-og-fritidsfiskeri/')" class = "flex-text">OM LYST- OG FRITIDSFISKERI</a>
             <div class = "separator">|</div>
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-info dropdown-button" id="dropdownBasic1" ngbDropdownToggle>{{selectedLanguage}}</button>
@@ -20,8 +20,9 @@
                     <button class = "dropdown-item" (click)="changeLanguage('Deutch')" ngbDropdownItem>Deutch</button>
                 </div>
             </div>
-            <div *ngIf="!auth.isLoggedIn()" class = "separator">|</div>
+            <div class = "separator">|</div>
             <button *ngIf="!auth.isLoggedIn()" [routerLink]="['/login']" class = "log-in-button">LOG IND</button>
+            <button *ngIf="auth.isLoggedIn()" (click)="onLogoutClick()" class = "log-in-button">LOG AF</button>
         
     </div>
 </header>
