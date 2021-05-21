@@ -17,7 +17,7 @@ export class AuthService {
   buyLicense(user: any){
     let headers = new HttpHeaders({
     'Content-Type':'application/json'});  
-    return this.http.post('/camel/api/license', user, {headers: headers})
+    return this.http.post('/camel/api/license', user, {headers: headers, observe: 'response'})
   }
 
   authenticateUser(user: any){
