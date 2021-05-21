@@ -1,1 +1,72 @@
-<p>landingpage works!</p>
+<div class="row justify-content-center">
+  <div class=" wrapper col">
+    <h2>Velkommen til Fisketegn</h2>
+    <div class="row">
+      <div class="form-group col">
+        <div>
+          <a class="flex-logo" (click)="open(content)"><img src="assets/img/Lystfisketegn.jpeg"></a>
+        </div>
+        <div class="bg-info">
+          <a class="flex-logo text-white" (click)="open(content)"><p>Køb Fisketegn</p></a>
+        </div>
+      </div>
+      <div class="form-group col">
+        <div>
+          <img src="assets/img/forny-fisketegn.jpg">
+        </div>
+        <div class="bg-info text-white">
+          Forny Fisketegn
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col">
+        <div>
+          <img src="assets/img/Genudsaetning.jpg">
+        </div>
+        <div class="bg-info text-white">
+          <p>Vidste du at indtægterne fra salg af fisketegn går til fiskepleje:</p>
+          <ul>
+            <li>Udsætning af fisk - fx havørred og pighvar</li>
+            <li>Vandløbsrestaurering, som hjælper udviklingen af fiskebestande</li>
+            <li>Ny viden om fiskenes adfærd</li>
+          </ul>
+          <p>I hele landet hjælper frivillige med projekterne.</p>
+          <a class="text-white" href="https://www.fiskepleje.dk/">Læs mere om fiskepleje</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Fisketegnstyppe</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="form-group col">
+        <div>
+          <a href="buyLystfisketegn"><img src="../../../assets/img/Lystfisketegn.jpeg"></a>
+        </div>
+        <div>
+          <a href="buyLystfisketegn">
+            <p class="popupTest bg-info text-white">Lystfisketegn</p>
+          </a>
+        </div>
+      </div>
+      <div class="form-group col">
+        <div>
+          <a href="buyFritidsfisketegn"><img src="../../../assets/img/fritidsfisketegn.jpeg"></a>
+        </div>
+        <div>
+          <a href="buyFritidsfisketegn"><p class="popupTest bg-info text-white">Fritidsfisketegn</p></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
