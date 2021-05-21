@@ -30,6 +30,19 @@ export class ValidateService {
       }
   }
 
+  validateUpdatePassword(updatePassword: any){
+    if(updatePassword.oldPassword == "" ||
+    updatePassword.oldPassword == undefined ||
+      updatePassword.password == "" ||
+      updatePassword.password == undefined ||
+      updatePassword.gentagPassword == "" ||
+      updatePassword.gentagPassword == undefined){
+        return false;
+      } else {
+        return true
+      }
+  }
+
   validateEqualPassword(user : any){
     if(user.password == user.gentagPassword){
       return true;

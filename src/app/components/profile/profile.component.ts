@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { FlashMessagesService} from 'angular2-flash-messages';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service'
 import { FormControl, FormGroup} from '@angular/forms';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { ValidateService } from '../../services/validate.service';
 
 
 @Component({
@@ -10,6 +13,7 @@ import { FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  closeResult = '';
   selectedCountry = "Danmark"
   res:any
   editing = false
@@ -23,33 +27,56 @@ export class ProfileComponent implements OnInit {
     Address: new FormControl(''),
     ZipCode: new FormControl(''),
     Country: new FormControl('Danmark'),
-    CountryDisabled: new FormControl('')
+    CountryDisabled: new FormControl(''),
+    oldPassword: new FormControl(''),
+    newPassword: new FormControl(''),
+    repNewPassword: new FormControl(''),
   });
 
   constructor(
-    private router : Router,
     private auth : AuthService,
+    private flash : FlashMessagesService,
+    private modalService: NgbModal,
+    private userService : UserService,
+    private validateServide : ValidateService
   ) { }
 
   ngOnInit(): void {
-    this.auth.getUser().subscribe(data => {
-      //this.auth.saveUser(data.body)
+    this.getUser();
+  }
+  getUser(){
+    this.auth.getUser().subscribe(data => {   
       this.res = (data.body as any)
       console.log(this.res)
       this.firstname = this.res.firstName;
-      //this.res = (data.body as any)
-      //this.res = this.auth.getUser();
       this.disableForm();
     },
     err => {
       console.log(err);
       return false;
     })
-    
+  }
+
+  open(content: any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
   disableForm(){
-    this.editing = false;
+    this.editing = true;
     this.form.get('FirstName')?.disable();
     this.form.get('FirstName')?.setValue(this.res?.firstName);
     this.form.get('LastName')?.disable();
@@ -73,7 +100,6 @@ export class ProfileComponent implements OnInit {
   activateForm(){
     this.editing = true;
     this.form.get('FirstName')?.enable();
-    
     this.form.get('LastName')?.enable();
     this.form.get('CPR')?.enable();
     this.form.get('Email')?.enable();
@@ -87,4 +113,48 @@ export class ProfileComponent implements OnInit {
     console.log(language)
   }
 
+
+
+
+  onRegisterNewPassword(){
+    const updatePassword ={
+      oldPassword : this.form.value.oldPassword,
+      password : this.form.value.newPassword,
+      gentagPassword : this.form.value.repNewPassword
+    }
+
+    // Valider at alle felter er udfyldt
+    if(!this.validateServide.validateUpdatePassword(updatePassword)){
+      this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
+      return false;
+    }
+
+    // Vlider at de indtastede passorews er ens
+    if(!this.validateServide.validateEqualPassword(updatePassword)){
+      this.flash.show('Password skal være ens', {cssClass: 'alert-danger', timeout: 3000});
+      return false;
+    }
+
+    // Valider at password er sikkert
+    if(!this.validateServide.validateSecurePassword(updatePassword.password)){
+      this.flash.show('Password er ikke sikkert nok. Password skal mindst indeholde 10 tegen, både tal, store og små bokstaver', {cssClass: 'alert-danger', timeout: 10000});
+      return false;
+    }
+
+    // Opdater Password
+    const update ={
+      password : this.form.value.newPassword,
+    }
+
+    console.log(update)
+
+    this.userService.updatePassword(update).subscribe(data => {   
+      this.getUser()
+    },
+    err => {
+      console.log(err);
+      return false;
+    }) 
+    return true;
+  }
 }
