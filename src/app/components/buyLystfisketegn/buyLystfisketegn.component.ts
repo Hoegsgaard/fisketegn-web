@@ -10,7 +10,9 @@ import { FormControl, FormGroup} from '@angular/forms';
   templateUrl: './buyLystfisketegn.component.html',
   styleUrls: ['./buyLystfisketegn.component.scss']
 })
+
 export class buyLystfisketegnComponent implements OnInit {
+  selectedLanguage = "Danmark"
   form = new FormGroup({
     FirstName: new FormControl(''),
     LastName: new FormControl(''),
@@ -19,7 +21,7 @@ export class buyLystfisketegnComponent implements OnInit {
     Email: new FormControl(''),
     Address: new FormControl(''),
     ZipCode: new FormControl(''),
-    Country: new FormControl(''),
+    Country: new FormControl('Danmark'),
     Type: new FormControl('y'),
     HighQuality: new FormControl(''),
     StartDate: new FormControl(''),
@@ -31,31 +33,38 @@ export class buyLystfisketegnComponent implements OnInit {
     private validateServide: ValidateService,
     private auth : AuthService,
     private router : Router,
-    private flash : FlashMessagesService
-    ) { }
-
+    private flash : FlashMessagesService,
+    ) {}
   ngOnInit(): void {
     this.disableStartDate();
   }
 
   disableStartDate(){
+    this.form.get('StartDate')?.disable();
+
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
-
-    this.form.get('StartDate')?.disable();
     this.form.get('StartDate')?.setValue(yyyy + '-' + mm + '-' + dd)
+    
+    this.form.get('HighQuality')?.enable();
+
   }
 
   enableStarteDate(){
     this.form.get('StartDate')?.enable();
+    this.form.get('HighQuality')?.disable();
+    this.form.get('HighQuality')?.reset();
+  }
+
+  changeLanguage(country : string){
+    this.form.value.Country = country
+    this.selectedLanguage = country
   }
 
   onRegisterSubmit(){
     let formValue = this.form.value;
-
-    console.log(formValue.CPR)
 
     // Valider at der er input i Startdate
     let startData = undefined;
@@ -122,17 +131,18 @@ export class buyLystfisketegnComponent implements OnInit {
     if(!this.validateServide.validateEmail(user.email)){
       this.flash.show('Email er ugyldig', {cssClass: 'alert-danger', timeout: 3000});
       return false;
-    } else {
-      console.log(user)
-       // Buy License
-      /*this.auth.buyLicense(user).subscribe(data => {
-        this.flash.show(`${user.email} er oprettet`, {cssClass: 'alert-success', timeout: 3000});
-        this.router.navigate(['/login']);
-      }, err => {
-        this.flash.show("Noget gik galt", {cssClass: 'alert-success', timeout: 3000});
-        return false;
-      }); */
-      return true;
-    }
+    } 
+
+    // Buy License
+    this.auth.buyLicense(user).subscribe(data => {
+      const res = (data as any);
+      this.flash.show(`${user.email} er oprettet`, {cssClass: 'alert-success', timeout: 3000});
+      this.auth.storeToken(res.body.token)
+      this.router.navigate(['/profile']) 
+    }, err => {
+      this.flash.show("Noget gik galt, prøv igen", {cssClass: 'alert-danger', timeout: 3000});
+      return false;
+    }); 
+    return true;
   }
 }

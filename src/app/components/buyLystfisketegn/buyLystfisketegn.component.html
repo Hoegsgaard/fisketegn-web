@@ -1,102 +1,149 @@
-<h2>Køb Lystfisketegn</h2>
-<form [formGroup]="form">
-  <div class="row">
-    <div class="form-group col">
-      <label>Fornavn</label>
-      <input type="text" formControlName="FirstName" name="FirstName" class="form-control">
-    </div>
-    <div class="form-group col">
-      <label>Efternavn</label>
-      <input type="text" formControlName="LastName" name="LastName" class="form-control">
-    </div>
-  </div>
+<div class="row justify-content-center">
+  <div class=" wrapper col">
+    <h2>Køb Lystfisketegn</h2>
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="form-group col">
+          <label>Fornavn</label>
+          <input type="text" formControlName="FirstName" name="FirstName" class="form-control">
+        </div>
+        <div class="form-group col">
+          <label>Efternavn</label>
+          <input type="text" formControlName="LastName" name="LastName" class="form-control">
+        </div>
+      </div>
 
-  <div class="row">
-    <div class="form-group col-6">
-      <label>CPR nummer</label>
-      <input type="number" formControlName="CPR" name="CPR" class="form-control">
-    </div>
-    <div class="form-group col">
-      <label>Email</label>
-      <input type="text" formControlName="Email" name="Email" class="form-control">
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="form-group col">
-      <label>Adresse</label>
-     
-        <div ngbDropdown class="d-inline-block">
-          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem>Action - 1</button>
-            <button ngbDropdownItem>Another Action</button>
-            <button ngbDropdownItem>Something else is here</button>
+      <div class="row">
+        <div class="form-group col-6">
+          <label>CPR nummer</label>
+          <input type="number" formControlName="CPR" name="CPR" class="form-control">
+        </div>
+        <div class="form-group col">
+          <label>Email</label>
+          <input type="text" formControlName="Email" name="Email" class="form-control">
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="form-group col">
+          <label>Adresse</label>
+          <input type="text" formControlName="Address" name="Address" class="form-control">
+        </div>
+        <div class="form-group col">
+          <label>Postnummer</label>
+          <input type="number" formControlName="ZipCode" name="ZipCode" class="form-control">
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="form-group col">
+          <label>Land</label>
+          <div class="col">
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-outline-info" id="dropdownBasic1" ngbDropdownToggle>{{selectedLanguage}}</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button (click)="changeLanguage('Danmark')" ngbDropdownItem>Danmark</button>
+                <button (click)="changeLanguage('Tyskland')" ngbDropdownItem>Tyskland</button>
+                <button (click)="changeLanguage('Storbritannien')" ngbDropdownItem>Storbritannien</button>
+                <button (click)="changeLanguage('Albanien')" ngbDropdownItem>Albanien</button>
+                <button (click)="changeLanguage('Andorra')" ngbDropdownItem>Andorra</button>
+                <button (click)="changeLanguage('Belgien')" ngbDropdownItem>Belgien</button>
+                <button (click)="changeLanguage('Bosnien- Hercegovina')" ngbDropdownItem>Bosnien- Hercegovina</button>
+                <button (click)="changeLanguage('Bulgarien')" ngbDropdownItem>Bulgarien</button>
+                <button (click)="changeLanguage('Cypern')" ngbDropdownItem>Cypern</button>
+                <button (click)="changeLanguage('Estland')" ngbDropdownItem>Estland</button>
+                <button (click)="changeLanguage('Finland')" ngbDropdownItem>Finland</button>
+                <button (click)="changeLanguage('Frankrig')" ngbDropdownItem>Frankrig</button>
+                <button (click)="changeLanguage('Georgien')" ngbDropdownItem>Georgien</button>
+                <button (click)="changeLanguage('Grækenland')" ngbDropdownItem>Grækenland</button>
+                <button (click)="changeLanguage('Hviderusland')" ngbDropdownItem>Hviderusland</button>
+                <button (click)="changeLanguage('Irland')" ngbDropdownItem>Irland</button>
+                <button (click)="changeLanguage('Island')" ngbDropdownItem>Island</button>
+                <button (click)="changeLanguage('Italien')" ngbDropdownItem>Italien</button>
+                <button (click)="changeLanguage('Kroatien')" ngbDropdownItem>Kroatien</button>
+                <button (click)="changeLanguage('Letland')" ngbDropdownItem>Letland</button>
+                <button (click)="changeLanguage('Liechtenstein')" ngbDropdownItem>Liechtenstein</button>
+                <button (click)="changeLanguage('Litauen')" ngbDropdownItem>Litauen</button>
+                <button (click)="changeLanguage('Luxembourg')" ngbDropdownItem>Luxembourg</button>
+                <button (click)="changeLanguage('Makedonien')" ngbDropdownItem>Makedonien</button>
+                <button (click)="changeLanguage('Malta')" ngbDropdownItem>Malta</button>
+                <button (click)="changeLanguage('Moldavien')" ngbDropdownItem>Moldavien</button>
+                <button (click)="changeLanguage('Monaco')" ngbDropdownItem>Monaco</button>
+                <button (click)="changeLanguage('Nederlandene')" ngbDropdownItem>Nederlandene</button>
+                <button (click)="changeLanguage('Norge')" ngbDropdownItem>Norge</button>
+                <button (click)="changeLanguage('Polen')" ngbDropdownItem>Polen</button>
+                <button (click)="changeLanguage('Portugal')" ngbDropdownItem>Portugal</button>
+                <button (click)="changeLanguage('Rumænien')" ngbDropdownItem>Rumænien</button>
+                <button (click)="changeLanguage('Rusland')" ngbDropdownItem>Rusland</button>
+                <button (click)="changeLanguage('San Marino')" ngbDropdownItem>San Marino</button>
+                <button (click)="changeLanguage('Schweiz')" ngbDropdownItem>Schweiz</button>
+                <button (click)="changeLanguage('Serbien og Montenegro')" ngbDropdownItem>Serbien og Montenegro</button>
+                <button (click)="changeLanguage('Slovakiet')" ngbDropdownItem>Slovakiet</button>
+                <button (click)="changeLanguage('Slovenien')" ngbDropdownItem>Slovenien</button>
+                <button (click)="changeLanguage('Spanien')" ngbDropdownItem>Spanien</button>
+                <button (click)="changeLanguage('Sverige')" ngbDropdownItem>Sverige</button>
+                <button (click)="changeLanguage('Tjekkiet')" ngbDropdownItem>Tjekkiet</button>
+                <button (click)="changeLanguage('Tyrkiet')" ngbDropdownItem>Tyrkiet</button>
+                <button (click)="changeLanguage('Ukraine')" ngbDropdownItem>Ukraine</button>
+                <button (click)="changeLanguage('Ungarn')" ngbDropdownItem>Ungarn</button>
+                <button (click)="changeLanguage('Vatikanstaten')" ngbDropdownItem>Vatikanstaten</button>
+                <button (click)="changeLanguage('Østrig')" ngbDropdownItem>Østrig</button>
+                <button (click)="changeLanguage('Andet land')" ngbDropdownItem>Andet land</button>
+              </div>
+            </div>
           </div>
         </div>
+        <div class="form-group col-6">
+          <label>Tilsend fisketegn af høj kvalitet</label>
+          <div class="form-check">
+            <label class="radio-inline display-block">
+              <input type="checkbox" value="false" name="HighQuality" formControlName="HighQuality" class="form-check-input">
+              DKK 15,00
+            </label>
+          </div>
+        </div>
+      </div>
       
-
-    </div>
-    <div class="form-group col">
-      <label>Postnummer</label>
-      <input type="number" formControlName="ZipCode" name="ZipCode" class="form-control">
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="form-group col">
-      <label>Land</label>
-      <input type="text" formControlName="Country" name="Country" class="form-control">
-    </div>
-    <div class="form-groups col-6">
-      <label>Tilsend fisketegn af høj kvalitet</label>
-      <div class="form-check">
-        <label class="radio-inline display-block">
-          <input type="checkbox" value="false" name="HighQuality" formControlName="HighQuality" class="form-check-input">
-          DKK 15,00
-        </label>
+      <div class="row">
+        <div class="form-group col-6">
+          <label>Fiskekortstype</label>
+          <div class="form-check">
+            <label class="radio-inline display-block">
+              <input (change)="disableStartDate()" class="form-check-input" type="radio" value="y" name="Type" formControlName="Type">
+              Årskort DKK 185,00
+            </label>
+            <label class="radio-inline display-block">
+              <input (change)="enableStarteDate()" class="form-check-input" type="radio" value="w" name="Type" formControlName="Type">
+              Ugekort DKK 130,00
+            </label>
+            <label class="radio-inline display-block">
+              <input (change)="enableStarteDate()" class="form-check-input" type="radio" value="d" name="Type" formControlName="Type">
+              Dagskort DKK 40,00
+            </label>
+          </div>
+        </div>
+        <div class="form-group col">
+          <label>Hvornår skal fisketegnet gælde fra</label>
+          <input type="date" formControlName="StartDate" name="StartDate" class="form-control">
+        </div>
       </div>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="form-group col-6">
-      <label>Fiskekortstype</label>
-      <div class="form-check">
-        <label class="radio-inline display-block">
-          <input (change)="disableStartDate()" class="form-check-input" type="radio" value="y" name="Type" formControlName="Type">
-          Årskort DKK 185,00
-        </label>
-        <label class="radio-inline display-block">
-          <input (change)="enableStarteDate()" class="form-check-input" type="radio" value="w" name="Type" formControlName="Type">
-          Ugekort DKK 130,00
-        </label>
-        <label class="radio-inline display-block">
-          <input (change)="enableStarteDate()" class="form-check-input" type="radio" value="d" name="Type" formControlName="Type">
-          Dagskort DKK 40,00
-        </label>
+      
+      <div class="row">
+        <div class="form-group col">
+          <label>Password</label>
+          <input type="password" formControlName="Password" name="Password" class="form-control">
+        </div>
+        <div class="form-group col">
+          <label>Gentag password</label>
+          <input type="password" formControlName="gentagPassword" name="gentagPassword" class="form-control">
+        </div>
       </div>
-    </div>
-    <div class="form-group col">
-      <label>Hvornår skal fisketegnet gælde fra</label>
-      <input type="date" formControlName="StartDate" name="StartDate" class="form-control">
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="form-group col">
-      <label>Password</label>
-      <input type="password" formControlName="Password" name="Password" class="form-control">
-    </div>
-    <div class="form-group col">
-      <label>Gentag password</label>
-      <input type="password" formControlName="gentagPassword" name="gentagPassword" class="form-control">
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="form-group col submitButton">
-      <input type="submit" class="btn btn-info" value="Køb fisketegn" (click)="onRegisterSubmit()">
-    </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-3 submitButton">
+          <input type="submit" class="btn btn-info" value="Køb fisketegn" (click)="onRegisterSubmit()">
+        </div>
+      </div>
+    </form>
   </div>
-</form>
+</div>

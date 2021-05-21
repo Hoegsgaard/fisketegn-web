@@ -42,9 +42,9 @@ export class LoginComponent implements OnInit {
     } else {
       this.auth.authenticateUser(user).subscribe(data => {
         const res = (data as any);
-          this.flash.show(`${this.email} er logget ind`, {cssClass: 'alert-success', timeout: 3000});
-          this.auth.storeToken(res.body.token)
-          this.router.navigate(['/profile'])     
+        this.flash.show(`${this.email} er logget ind`, {cssClass: 'alert-success', timeout: 3000});
+        this.auth.storeToken(res.body.token)
+        this.router.navigate(['/profile'])     
       }, err =>{
         this.flash.show("Incorrect username or password", {cssClass: 'alert-danger', timeout: 3000});
       });
