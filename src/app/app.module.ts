@@ -4,9 +4,10 @@ import { RouterModule, Routes} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { FlashMessagesModule } from 'angular2-flash-messages'
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {DatePipe} from '@angular/common';
 
 // Import Components
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -14,6 +15,9 @@ import { LoginComponent } from './components/login/login.component';
 import { buyLystfisketegnComponent } from './components/buyLystfisketegn/buyLystfisketegn.component';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { BuyFritidsfisketegnComponent } from './components/buyFritidsfisketegn/buyFritidsfisketegn.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HelpComponent } from './components/help/help.component';
 
 // Import Services
 import { ValidateService } from './services/validate.service';
@@ -22,10 +26,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 // Import Guards
 import { AuthGuard } from './guards/auth.guard';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HelpComponent } from './components/help/help.component';
+
+
+
 
 const appRoutes: Routes =[
   {path: '', component: LandingpageComponent},
@@ -62,7 +65,8 @@ const appRoutes: Routes =[
   providers: [
     ValidateService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
