@@ -1,1 +1,118 @@
-<p>profile works!</p>
+<div class="row justify-content-center">
+    <div class=" wrapper col">
+      <h2>Køb Lystfisketegn</h2>
+      <form [formGroup]="form">
+        <div class="row">
+          <div class="form-group col">
+            <label>Fornavn</label>
+            <input type="text" formControlName="FirstName" name="FirstName" class="form-control" >
+          </div>
+          <div class="form-group col">
+            <label>Efternavn</label>
+            <input type="text" formControlName="LastName" name="LastName" class="form-control">
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="form-group col-6">
+            <label>CPR nummer</label>
+            <input type="number" formControlName="CPR" name="CPR" class="form-control">
+          </div>
+          <div class="form-group col">
+            <label>Email</label>
+            <input type="text" formControlName="Email" name="Email" class="form-control">
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="form-group col">
+            <label>Adresse</label>
+            <input type="text" formControlName="Address" name="Address" class="form-control">
+          </div>
+          <div class="form-group col">
+            <label>Postnummer</label>
+            <input type="number" formControlName="ZipCode" name="ZipCode" class="form-control">
+          </div>
+        </div>
+        
+        <div class="row" *ngIf="editing">
+          <div class="form-group col">
+            <label>Land</label>
+            <div class="col">
+              <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-info" id="dropdownBasic1" ngbDropdownToggle>{{selectedCountry}}</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button (click)="changeCountry('Danmark')" ngbDropdownItem>Danmark</button>
+                  <button (click)="changeCountry('Tyskland')" ngbDropdownItem>Tyskland</button>
+                  <button (click)="changeCountry('Storbritannien')" ngbDropdownItem>Storbritannien</button>
+                  <button (click)="changeCountry('Albanien')" ngbDropdownItem>Albanien</button>
+                  <button (click)="changeCountry('Andorra')" ngbDropdownItem>Andorra</button>
+                  <button (click)="changeCountry('Belgien')" ngbDropdownItem>Belgien</button>
+                  <button (click)="changeCountry('Bosnien- Hercegovina')" ngbDropdownItem>Bosnien- Hercegovina</button>
+                  <button (click)="changeCountry('Bulgarien')" ngbDropdownItem>Bulgarien</button>
+                  <button (click)="changeCountry('Cypern')" ngbDropdownItem>Cypern</button>
+                  <button (click)="changeCountry('Estland')" ngbDropdownItem>Estland</button>
+                  <button (click)="changeCountry('Finland')" ngbDropdownItem>Finland</button>
+                  <button (click)="changeCountry('Frankrig')" ngbDropdownItem>Frankrig</button>
+                  <button (click)="changeCountry('Georgien')" ngbDropdownItem>Georgien</button>
+                  <button (click)="changeCountry('Grækenland')" ngbDropdownItem>Grækenland</button>
+                  <button (click)="changeCountry('Hviderusland')" ngbDropdownItem>Hviderusland</button>
+                  <button (click)="changeCountry('Irland')" ngbDropdownItem>Irland</button>
+                  <button (click)="changeCountry('Island')" ngbDropdownItem>Island</button>
+                  <button (click)="changeCountry('Italien')" ngbDropdownItem>Italien</button>
+                  <button (click)="changeCountry('Kroatien')" ngbDropdownItem>Kroatien</button>
+                  <button (click)="changeCountry('Letland')" ngbDropdownItem>Letland</button>
+                  <button (click)="changeCountry('Liechtenstein')" ngbDropdownItem>Liechtenstein</button>
+                  <button (click)="changeCountry('Litauen')" ngbDropdownItem>Litauen</button>
+                  <button (click)="changeCountry('Luxembourg')" ngbDropdownItem>Luxembourg</button>
+                  <button (click)="changeCountry('Makedonien')" ngbDropdownItem>Makedonien</button>
+                  <button (click)="changeCountry('Malta')" ngbDropdownItem>Malta</button>
+                  <button (click)="changeCountry('Moldavien')" ngbDropdownItem>Moldavien</button>
+                  <button (click)="changeCountry('Monaco')" ngbDropdownItem>Monaco</button>
+                  <button (click)="changeCountry('Nederlandene')" ngbDropdownItem>Nederlandene</button>
+                  <button (click)="changeCountry('Norge')" ngbDropdownItem>Norge</button>
+                  <button (click)="changeCountry('Polen')" ngbDropdownItem>Polen</button>
+                  <button (click)="changeCountry('Portugal')" ngbDropdownItem>Portugal</button>
+                  <button (click)="changeCountry('Rumænien')" ngbDropdownItem>Rumænien</button>
+                  <button (click)="changeCountry('Rusland')" ngbDropdownItem>Rusland</button>
+                  <button (click)="changeCountry('San Marino')" ngbDropdownItem>San Marino</button>
+                  <button (click)="changeCountry('Schweiz')" ngbDropdownItem>Schweiz</button>
+                  <button (click)="changeCountry('Serbien og Montenegro')" ngbDropdownItem>Serbien og Montenegro</button>
+                  <button (click)="changeCountry('Slovakiet')" ngbDropdownItem>Slovakiet</button>
+                  <button (click)="changeCountry('Slovenien')" ngbDropdownItem>Slovenien</button>
+                  <button (click)="changeCountry('Spanien')" ngbDropdownItem>Spanien</button>
+                  <button (click)="changeCountry('Sverige')" ngbDropdownItem>Sverige</button>
+                  <button (click)="changeCountry('Tjekkiet')" ngbDropdownItem>Tjekkiet</button>
+                  <button (click)="changeCountry('Tyrkiet')" ngbDropdownItem>Tyrkiet</button>
+                  <button (click)="changeCountry('Ukraine')" ngbDropdownItem>Ukraine</button>
+                  <button (click)="changeCountry('Ungarn')" ngbDropdownItem>Ungarn</button>
+                  <button (click)="changeCountry('Vatikanstaten')" ngbDropdownItem>Vatikanstaten</button>
+                  <button (click)="changeCountry('Østrig')" ngbDropdownItem>Østrig</button>
+                  <button (click)="changeCountry('Andet land')" ngbDropdownItem>Andet land</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="!editing">
+            <div class="form-group col-6">
+              <label>Land</label>
+              <input type="text" formControlName="CountryDisabled" name="Country" class="form-control">
+            </div>
+          </div>
+        <div class="row justify-content-center" *ngIf="!editing">
+            <div class="form-group col-3 submitButton">
+              <input class="btn btn-info button" value="Rediger" (click)="activateForm()">
+            </div>
+          </div>
+          <div class="row " *ngIf="editing">
+            <div class="form-group col submitButton justify-content-center">
+              <input class="btn btn-info" value="Gem" (click)="activateForm()">
+            </div>
+            <div class="form-group col submitButton justify-content-end justify-content-center">
+                <input class="btn btn-info" value="Annuler" (click)="disableForm()">
+              </div>
+          </div>
+      </form>
+    </div>
+  </div>

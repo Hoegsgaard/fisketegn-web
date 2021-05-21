@@ -12,7 +12,7 @@ import { FormControl, FormGroup} from '@angular/forms';
 })
 
 export class buyLystfisketegnComponent implements OnInit {
-  selectedLanguage = "Danmark"
+  selectedCountry = "Danmark"
   form = new FormGroup({
     FirstName: new FormControl(''),
     LastName: new FormControl(''),
@@ -58,9 +58,9 @@ export class buyLystfisketegnComponent implements OnInit {
     this.form.get('HighQuality')?.reset();
   }
 
-  changeLanguage(country : string){
+  changeCountry(country : string){
     this.form.value.Country = country
-    this.selectedLanguage = country
+    this.selectedCountry = country
   }
 
   onRegisterSubmit(){
