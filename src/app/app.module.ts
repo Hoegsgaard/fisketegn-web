@@ -41,7 +41,8 @@ const appRoutes: Routes =[
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   {path: 'help', component: HelpComponent},
   {path: 'twoTyps', component: TwoTypsOfLicenseComponent},
-  {path: 'contact', component: ContactComponent}
+  {path: 'contact', component: ContactComponent},
+  {path: 'faq', component: FaqComponent}
 ]
 
 @NgModule({
