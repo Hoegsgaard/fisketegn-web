@@ -26,6 +26,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 // Import Guards
 import { AuthGuard } from './guards/auth.guard';
+import { TwoTypsOfLicenseComponent } from './components/two-typs-of-license/two-typs-of-license.component';
 
 
 
@@ -36,7 +37,8 @@ const appRoutes: Routes =[
   {path: 'buyLystfisketegn', component: buyLystfisketegnComponent},
   {path: 'buyFritidsfisketegn', component: BuyFritidsfisketegnComponent},
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
-  {path: 'help', component: HelpComponent}
+  {path: 'help', component: HelpComponent},
+  {path: 'twoTyps', component: TwoTypsOfLicenseComponent}
 ]
 
 @NgModule({
@@ -50,7 +52,8 @@ const appRoutes: Routes =[
     BuyFritidsfisketegnComponent,
     FooterComponent,
     HeaderComponent,
-    HelpComponent
+    HelpComponent,
+    TwoTypsOfLicenseComponent
   ],
   imports: [
     BrowserModule,
