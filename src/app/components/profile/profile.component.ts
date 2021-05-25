@@ -17,7 +17,12 @@ export class ProfileComponent implements OnInit {
   selectedCountry = "Danmark"
   res:any
   editing = false
-  firstname = ""
+  firstnamePH = "n/a"
+  lastnamePH = "n/a"
+  cprPH = "n/a"
+  emailPH = "n/a"
+  addressPH = "n/a"
+  zipcodePH = "n/a"
   "user": Object;
   form = new FormGroup({
     FirstName: new FormControl(''),
@@ -48,7 +53,15 @@ export class ProfileComponent implements OnInit {
     this.auth.getUser().subscribe(data => {   
       this.res = (data.body as any)
       console.log(this.res)
-      this.firstname = this.res.firstName;
+      this.firstnamePH = this.res.firstName;
+      this.lastnamePH = this.res.lastName;
+      this.cprPH = this.res.cpr;
+      this.emailPH = this.res.email;
+      this.addressPH = this.res.address;
+      this.zipcodePH = this.res.zipCode;
+      //this.res = (data.body as any)
+      //this.res = this.auth.getUser();
+
       this.disableForm();
     },
     err => {
@@ -100,12 +113,20 @@ export class ProfileComponent implements OnInit {
   activateForm(){
     this.editing = true;
     this.form.get('FirstName')?.enable();
+    this.form.get('FirstName')?.reset();
     this.form.get('LastName')?.enable();
+    this.form.get('LastName')?.reset();
     this.form.get('CPR')?.enable();
+    this.form.get('CPR')?.reset();
     this.form.get('Email')?.enable();
+    this.form.get('Email')?.reset();
     this.form.get('Address')?.enable();
+    this.form.get('Address')?.reset();
     this.form.get('ZipCode')?.enable();
+    this.form.get('ZipCode')?.reset();
     this.form.get('CountryDisabled')?.enable();
+    this.form.get('CountryDisabled')?.reset();
+
   }
 
   changeCountry(language: string){

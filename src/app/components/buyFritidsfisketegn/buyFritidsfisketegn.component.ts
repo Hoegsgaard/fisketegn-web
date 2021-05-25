@@ -97,8 +97,6 @@ export class BuyFritidsfisketegnComponent implements OnInit {
       this.auth.storeToken(res.body.token)
       this.router.navigate(['/profile']) 
     }, err => {
-      // TODO: Hvis status er 401 skal denne fejl vises: "Incorrect username or password"
-      // Ellers nedenstående.
       this.flash.show("Noget gik galt, prøv igen", {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }); 
