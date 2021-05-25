@@ -140,8 +140,11 @@
       </div>
 
       <div class="row justify-content-center">
-        <div class="form-group col-3 submitButton">
+        <div *ngIf="!loading" class="form-group col-3 submitButton">
           <input type="submit" class="btn btn-info" value="Køb fisketegn" (click)="onRegisterSubmit()">
+        </div>
+        <div *ngIf="loading" class="spinner-border text-info" role="status">
+          <span class="sr-only"></span>
         </div>
       </div>
     </form>

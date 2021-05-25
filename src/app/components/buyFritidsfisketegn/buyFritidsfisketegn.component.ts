@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./buyFritidsfisketegn.component.scss']
 })
 export class BuyFritidsfisketegnComponent implements OnInit {
+  loading = false;
   form = new FormGroup({
     FirstName: new FormControl(''),
     LastName: new FormControl(''),
@@ -36,6 +37,7 @@ export class BuyFritidsfisketegnComponent implements OnInit {
   }
 
   onRegisterSubmit(){
+    this.loading = true;
     let formValue = this.form.value;
 
     // Lav en bruger baseret på inputs
@@ -57,48 +59,63 @@ export class BuyFritidsfisketegnComponent implements OnInit {
     // Valider at alle felter er udfyldt
     if(!this.validateServide.validateBuyLicense(user)){
       this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
+      this.loading = false;
       return false;
     }
 
     // Valider at CPR nummer indeholder 10 tegn
     if(!this.validateServide.validateCPR(user.cpr)){
       this.flash.show('CPR nummer skal indeholde 10 tal', {cssClass: 'alert-danger', timeout: 3000});
+      this.loading = false;
       return false;
     }
     
     // Valider at postnummer indeholder 4 tegn
     if(!this.validateServide.validateZipcode(user.zipCode)){
       this.flash.show('Postnummer skal være på 4 tal', {cssClass: 'alert-danger', timeout: 3000});
+      this.loading = false;
       return false;
     }
 
     // Vlider at de indtastede passwords er ens
     if(!this.validateServide.validateEqualPassword(user)){
       this.flash.show('Password skal være ens', {cssClass: 'alert-danger', timeout: 3000});
+      this.loading = false;
       return false;
     }
 
     // Valider at password er sikkert
     if(!this.validateServide.validateSecurePassword(user.password)){
       this.flash.show('Password er ikke sikkert nok. Password skal mindst indeholde 10 tegen, både tal, store og små bokstaver', {cssClass: 'alert-danger', timeout: 10000});
+      this.loading = false;
       return false;
     }
 
     // Validate Email by regex
     if(!this.validateServide.validateEmail(user.email)){
       this.flash.show('Email er ugyldig', {cssClass: 'alert-danger', timeout: 3000});
+      this.loading = false;
       return false;
     } 
 
     // Buy License
     this.auth.buyLicense(user).subscribe(data => {
       const res = (data as any);
-      this.flash.show(`${user.email} er oprettet`, {cssClass: 'alert-success', timeout: 3000});
+      this.flash.show(`Fisketegn oprettet`, {cssClass: 'alert-success', timeout: 3000});
       this.auth.storeToken(res.body.token)
       this.router.navigate(['/profile']) 
     }, err => {
-      this.flash.show("Noget gik galt, prøv igen", {cssClass: 'alert-danger', timeout: 3000});
-      return false;
+      switch(err.status) {
+        case 401: { 
+          this.flash.show("Email og password stemmer ikke over ens", {cssClass: 'alert-danger', timeout: 3000}); 
+          break; 
+        } 
+        default: { 
+          this.flash.show("Noget gik galt, prøv igen", {cssClass: 'alert-danger', timeout: 3000});
+          break; 
+        } 
+      }
+      this.loading = false; 
     }); 
     return true;
   }

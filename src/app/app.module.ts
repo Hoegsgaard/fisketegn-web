@@ -18,6 +18,10 @@ import { BuyFritidsfisketegnComponent } from './components/buyFritidsfisketegn/b
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HelpComponent } from './components/help/help.component';
+import { TwoTypsOfLicenseComponent } from './components/two-typs-of-license/two-typs-of-license.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { FaqComponent } from './components/faq/faq.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 // Import Services
 import { ValidateService } from './services/validate.service';
@@ -26,12 +30,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 // Import Guards
 import { AuthGuard } from './guards/auth.guard';
-import { TwoTypsOfLicenseComponent } from './components/two-typs-of-license/two-typs-of-license.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { FaqComponent } from './components/faq/faq.component';
-
-
-
 
 const appRoutes: Routes =[
   {path: '', component: LandingpageComponent},
@@ -42,7 +40,9 @@ const appRoutes: Routes =[
   {path: 'help', component: HelpComponent},
   {path: 'twoTyps', component: TwoTypsOfLicenseComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'faq', component: FaqComponent}
+  {path: 'faq', component: FaqComponent},
+  {path: '404', component: PageNotFoundComponent},
+  {path: '**', redirectTo: '/404'}
 ]
 
 @NgModule({
@@ -59,7 +59,8 @@ const appRoutes: Routes =[
     HelpComponent,
     TwoTypsOfLicenseComponent,
     ContactComponent,
-    FaqComponent
+    FaqComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

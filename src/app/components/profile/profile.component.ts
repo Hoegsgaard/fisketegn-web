@@ -232,18 +232,24 @@ export class ProfileComponent implements OnInit {
 
     // Opdater Password
     const update ={
-      password : this.form.value.newPassword,
+      oldPassword: this.form.value.oldPassword,
+      password : this.form.value.newPassword
     }
-
-    console.log(update)
-
     this.userService.updatePassword(update).subscribe(data => {   
       this.getUser()
-    },
-    err => {
-      console.log(err);
-      return false;
-    }) 
+      this.flash.show("Password er ændret", {cssClass: 'alert-success', timeout: 3000}); 
+    }, err => {
+      switch(err.status) { 
+        case 401: { 
+          this.flash.show("Gammelt password er ikke korrekt", {cssClass: 'alert-danger', timeout: 3000}); 
+          break; 
+        } 
+        default: { 
+          this.flash.show("Noget gik galt, prøv igen", {cssClass: 'alert-danger', timeout: 3000});
+          break; 
+        } 
+      } 
+    })
     return true;
   }
 }
