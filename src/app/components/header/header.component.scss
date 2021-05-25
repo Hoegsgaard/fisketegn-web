@@ -1,56 +1,59 @@
-.flex-container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    flex-grow: 0;
-    flex-shrink: 0;
-    justify-content: flex-end;
-    padding-right: 5%;
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  padding-right: 5%;
 }
 
-.flex-logo{
-    margin-right: auto;
-    margin-top: auto;
-    padding: 10px;
-    padding-left: 5%;
+.flex-logo {
+  margin-right: auto;
+  margin-top: auto;
+  padding: 10px;
+  padding-left: 5%;
 }
 
-.flex-text{
-    align-self: center;
-    text-decoration: none;
-    color: black;
+.flex-text {
+  align-self: center;
+  text-decoration: none;
+  color: black;
 }
 
-.flex-text:hover{
-    color:red;
-    text-decoration: underline;
+.flex-text:hover {
+  color: red;
+  text-decoration: underline;
 }
 
-.separator{
-    align-self: center;
-    padding-left: 10px;
-    padding-right: 10px;
+.separator {
+  align-self: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-.dropdown{
-    align-self: center;
+.dropdown {
+  align-self: center;
 }
 
-.dropdown-button{
-    width: 100px;
+.dropdown-button {
+  width: 100px;
 }
 
-.btn-outline-info{
-    border-radius: 0px;
+.btn-outline-info {
+  border-radius: 0px;
 }
-.dropdown-menu{
-    width: 100px;
-    min-width: 0 !important;
-}
-
-.log-in-button{
-    font-size: larger;
-    border:none;
-    background: none;
+.dropdown-menu {
+  width: 100px;
+  min-width: 0 !important;
 }
 
+.log-in-button {
+  font-size: larger;
+  border: none;
+  background: none;
+}
+
+.clicker {
+  cursor: pointer;
+}
