@@ -100,16 +100,14 @@
             <input type="text" formControlName="CountryDisabled" name="Country" class="form-control">
           </div>
         </div>
-        <div class="row justify-content-center" *ngIf="!editing">
-          <div class="form-group col-3 submitButton">
+        <div class="row justify-content-center">
+          <div class="form-group col-3 submitButton" *ngIf="!editing">
             <input class="btn btn-info button" value="Rediger" (click)="activateForm()">
           </div>
-        </div>
-        <div class="row justify-content-center" *ngIf="editing">
-          <div class="form-group col-3 submitButton justify-content-center">
-            <input class="btn btn-info" value="Gem" (click)="activateForm()">
+          <div class="form-group col-3 submitButton justify-content-center" *ngIf="editing">
+            <input class="btn btn-info" value="Gem">
           </div>
-          <div class="form-group col-3 submitButton justify-content-end justify-content-center">
+          <div class="form-group col-3  justify-content-end justify-content-center" *ngIf="editing">
             <input class="btn btn-info" value="Annuler" (click)="disableForm()">
           </div>
           <div class="form-group col-3 submitButton justify-content-end justify-content-center">

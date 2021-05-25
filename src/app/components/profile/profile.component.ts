@@ -89,7 +89,7 @@ export class ProfileComponent implements OnInit {
   }
 
   disableForm(){
-    this.editing = true;
+    this.editing = false;
     this.form.get('FirstName')?.disable();
     this.form.get('FirstName')?.setValue(this.res?.firstName);
     this.form.get('LastName')?.disable();
