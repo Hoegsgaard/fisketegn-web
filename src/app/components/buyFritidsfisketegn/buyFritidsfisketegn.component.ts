@@ -101,13 +101,21 @@ export class BuyFritidsfisketegnComponent implements OnInit {
     // Buy License
     this.auth.buyLicense(user).subscribe(data => {
       const res = (data as any);
-      this.flash.show(`${user.email} er oprettet`, {cssClass: 'alert-success', timeout: 3000});
+      this.flash.show(`Fisketegn oprettet`, {cssClass: 'alert-success', timeout: 3000});
       this.auth.storeToken(res.body.token)
       this.router.navigate(['/profile']) 
     }, err => {
-      this.flash.show("Noget gik galt, prøv igen", {cssClass: 'alert-danger', timeout: 3000});
-      this.loading = false;
-      return false;
+      switch(err.status) {
+        case 401: { 
+          this.flash.show("Email og password stemmer ikke over ens", {cssClass: 'alert-danger', timeout: 3000}); 
+          break; 
+        } 
+        default: { 
+          this.flash.show("Noget gik galt, prøv igen", {cssClass: 'alert-danger', timeout: 3000});
+          break; 
+        } 
+      }
+      this.loading = false; 
     }); 
     return true;
   }
