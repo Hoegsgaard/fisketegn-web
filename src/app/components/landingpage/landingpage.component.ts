@@ -9,7 +9,9 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class LandingpageComponent implements OnInit {
   closeResult = '';
 
-  constructor(private modalService: NgbModal) { }
+  constructor(
+    private modalService: NgbModal
+  ) { }
 
   open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
