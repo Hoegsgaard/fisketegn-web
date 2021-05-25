@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FlashMessagesService} from 'angular2-flash-messages';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service'
 import { FormControl, FormGroup} from '@angular/forms';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ValidateService } from '../../services/validate.service';
 
 
@@ -13,9 +13,12 @@ import { ValidateService } from '../../services/validate.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  
+  selectedLicense:any;
   closeResult = '';
   selectedCountry = "Danmark"
   res:any
+  in:any 
   editing = false
   firstnamePH = "n/a"
   lastnamePH = "n/a"
@@ -37,6 +40,9 @@ export class ProfileComponent implements OnInit {
     newPassword: new FormControl(''),
     repNewPassword: new FormControl(''),
   });
+  licenseList:any
+  testList = [{id: 1, name: 'one'},
+              {id: 2, name: 'two'}];
 
   constructor(
     private auth : AuthService,
@@ -48,6 +54,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
+    this.getLicenses();
   }
   getUser(){
     this.auth.getUser().subscribe(data => {   
@@ -70,8 +77,37 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  getLicenses(){
+  this.auth.getLicenses().subscribe(data => {
+    this.in = (data.body as any)
+    this.licenseList = new Array
+    this.in.forEach((element: { status: any; }) => {
+      if(element.status){
+        this.licenseList.push(element)
+      }
+    });
+    this.in.forEach((element: { status: any; deletedFlag: any; }) => {
+      if(!element.status || element.deletedFlag){
+        this.licenseList.push(element)
+      }
+    });
+    console.log(this.licenseList)
+  });
+  }
+
+  openLicense(content: any, license: any) {
+    const modalRef = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+    modalRef.result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+    this.selectedLicense = license;
+    console.log(license)
+  }
   open(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    const modalRef = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+    modalRef.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -106,10 +142,6 @@ export class ProfileComponent implements OnInit {
     this.form.get('CountryDisabled')?.setValue(this.res.country)
   }
 
-  getUserData(){
-
-  }
-
   activateForm(){
     this.editing = true;
     this.form.get('FirstName')?.enable();
@@ -132,6 +164,42 @@ export class ProfileComponent implements OnInit {
   changeCountry(language: string){
     this.selectedCountry = language
     console.log(language)
+  }
+
+  onUpdateUser(){
+    let formValue = this.form.value;
+
+    const user = {
+      cpr: formValue.CPR ? formValue.CPR : this.res.cpr,
+      firstName: formValue.FirstName ? formValue.FirstName : this.res.firstName,
+      lastName: formValue.LastName ? formValue.LastName : this.res.lastName,
+      email: formValue.Email ? formValue.Email : this.res.email,
+      address: formValue.Address ? formValue.Address : this.res.address,
+      zipCode: formValue.ZipCode ? formValue.ZipCode : this.res.zipCode,
+      country: formValue.Country ? formValue.Country : this.res.country
+    }
+    if(!this.validateServide.validateUpdateUser(user, this.res)){
+      this.flash.show('Mindst et skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
+      return false;
+    }
+    this.auth.updateUser(user).subscribe(data => {
+      this.flash.show('Oplysninger opdateret.', {cssClass: 'alert-success', timeout: 3000})
+      console.log(user)
+      this.getUser();
+    }, err=> {
+      this.flash.show('Noget gik galt, prøv igen', {cssClass: 'alert-danger', timeout: 3000})
+      return false
+    });
+
+    return true;
+  }
+
+  onRenewLicense(license: any){
+    this.auth.renewLicense({licenseID: license}).subscribe(data => {
+      this.flash.show('Fisketegn fornyet!', {cssClass: 'alert-success', timeout: 3000})
+        this.getLicenses();
+    })
+    
   }
 
 
@@ -179,3 +247,4 @@ export class ProfileComponent implements OnInit {
     return true;
   }
 }
+

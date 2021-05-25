@@ -36,13 +36,37 @@ export class AuthService {
     localStorage.removeItem('fiskeToken');
   }
 
+  getLicenses(){
+    this.getUsersToken();
+    let headers = new HttpHeaders({
+      'Content-Type':'application/json',
+      'fiskeToken':this.token});
+    return this.http.get('/camel/api/user/license/', {headers: headers, observe: 'response'})
+  }
+
   getUser(){
     this.getUsersToken();
     let headers = new HttpHeaders({
       'Content-Type':'application/json',
       'fiskeToken':this.token});
     return this.http.get('/camel/api/user/', {headers: headers, observe: 'response'})
-  }  
+  }
+  
+  updateUser(user: any){
+    this.getUsersToken();
+    let headers = new HttpHeaders({
+      'Content-Type':'application/json',
+      'fiskeToken':this.token});
+      return this.http.put('/camel/api/user', user, {headers: headers, observe: 'response'})
+  }
+
+  renewLicense(license: any){
+    this.getUsersToken();
+    let headers = new HttpHeaders({
+      'Content-Type':'application/json',
+      'fiskeToken':this.token});
+      return this.http.put('/camel/api/license', license, {headers: headers, observe: 'response'})
+  }
 
   storeToken(token: any){
     this.token = token;

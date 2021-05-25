@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
     <div class=" wrapper col">
-      <h2>Køb Lystfisketegn</h2>
+      <h2>Din profil</h2>
       <form [formGroup]="form">
         <div class="row">
           <div class="form-group col">
@@ -101,58 +101,104 @@
           </div>
         </div>
         <div class="row justify-content-center">
-          <div class="form-group col-3 submitButton" *ngIf="!editing">
+          <div class="form-group col-3 " *ngIf="!editing">
             <input class="btn btn-info button" value="Rediger" (click)="activateForm()">
           </div>
           <div class="form-group col-3 submitButton justify-content-center" *ngIf="editing">
-            <input class="btn btn-info" value="Gem">
+            <input class="btn btn-info" value="Gem" (click)="onUpdateUser()">
           </div>
           <div class="form-group col-3  justify-content-end justify-content-center" *ngIf="editing">
             <input class="btn btn-info" value="Annuler" (click)="disableForm()">
           </div>
-          <div class="form-group col-3 submitButton justify-content-end justify-content-center">
+          <div class="form-group col-3 submitButton justify-content-end justify-content-center" *ngIf="!editing">
             <input class="btn btn-info" value="Skift Password" (click)="open(content)">
           </div>
         </div>
       </form>
     </div>
   </div>
+  <hr>
+  <!-- list of licenses-->
+  <h2>Licenser</h2>
+  <ul>
+    <li>
+      <div class = "row listPadding">
+        <h3 class="col-3">Licensnummer</h3>
+        <h3 class="col-3">Udløbsdato</h3>
+        <h3 class="col-3">Status</h3>
+      </div>
+    </li>
+  </ul>
+  <ul class = "licenseList" *ngFor = "let license of licenseList">
+    <li class = "listElement listPadding" >
+      <div class = "row">
+        <div class="col-3">{{license.licenseNumber}}</div>
+        <div class="col-3">{{license.endDate}}</div>
+        <div *ngIf = "license.deletedFlag" class="col-3">Slettet</div>
+        <div *ngIf = "!license.deletedFlag && license.status" class="col-3"> Aktiv</div>
+        <div *ngIf = "!license.deletedFlag && !license.status" class="col-3">Udløbet</div>
+        <button class="col-3 btn btn-info button" *ngIf = "!license.deletedFlag && license.status" (click)="openLicense(content2, license)">Forny</button>
+      </div>
+    </li>
+  </ul>
 
-  <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Skift password</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form [formGroup]="form">
-        <div class="row">
-          <div class="form-group col">
-            <label>Gammelt password</label>
-            <input type="password" formControlName="oldPassword" name="oldPassword" class="form-control">
-          </div>
+
+      <!-- renew license popup -->
+      <ng-template #content2 let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Forny fisketegn</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-      
-        <div class="row">
-          <div class="form-group col">
-            <label>Nyt Password</label>
-            <input type="password" formControlName="newPassword" name="newPassword" class="form-control">
-          </div>
+        <div class="modal-body">
+          <p>Er du sikker på at du vil fornye fisketegn {{selectedLicense.licenseNumber}}?</p>
+          <form [formGroup]="form">
+            <div class="row justify-content-center">
+              <div class="form-group col submitButton">
+                <input type="submit" class="btn btn-info" value="Forny fisketegn" (click)="modal.close(onRenewLicense(selectedLicense.licenseID))">
+              </div>
+            </div>
+          </form>
         </div>
-      
-        <div class="row">
-          <div class="form-group col">
-            <label>Gentag nyt Password</label>
-            <input type="password" formControlName="repNewPassword" name="repNewPassword" class="form-control">
+      </ng-template>
+
+    <!-- New password popup -->
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Skift password</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form">
+          <div class="row">
+            <div class="form-group col">
+              <label>Gammelt password</label>
+              <input type="password" formControlName="oldPassword" name="oldPassword" class="form-control">
+            </div>
           </div>
-        </div>
-      
-        <div class="row justify-content-center">
-          <div class="form-group col submitButton">
-            <input type="submit" class="btn btn-info" value="Skift Password" (click)="modal.close(onRegisterNewPassword())">
+        
+          <div class="row">
+            <div class="form-group col">
+              <label>Nyt Password</label>
+              <input type="password" formControlName="newPassword" name="newPassword" class="form-control">
+            </div>
           </div>
-        </div>
-      </form>
-    </div>
-  </ng-template>
+        
+          <div class="row">
+            <div class="form-group col">
+              <label>Gentag nyt Password</label>
+              <input type="password" formControlName="repNewPassword" name="repNewPassword" class="form-control">
+            </div>
+          </div>
+        
+          <div class="row justify-content-center">
+            <div class="form-group col submitButton">
+              <input type="submit" class="btn btn-info" value="Skift Password" (click)="modal.close(onRegisterNewPassword())">
+            </div>
+          </div>
+        </form>
+      </div>
+    </ng-template>

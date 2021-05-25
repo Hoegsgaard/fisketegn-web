@@ -30,6 +30,20 @@ export class ValidateService {
       }
   }
 
+  validateUpdateUser(user: any, originalUser: any){
+    if(user.cpr == originalUser.cpr &&
+      user.firstName == originalUser.firstName &&
+      user.lastName == originalUser.lastName &&
+      user.address == originalUser.address &&
+      user.email == originalUser.email &&
+      user.zipCode == originalUser.zipCode &&
+      user.country == originalUser.country){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
   validateUpdatePassword(updatePassword: any){
     if(updatePassword.oldPassword == "" ||
     updatePassword.oldPassword == undefined ||
