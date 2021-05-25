@@ -12,6 +12,7 @@ import { FormControl, FormGroup} from '@angular/forms';
 })
 
 export class buyLystfisketegnComponent implements OnInit {
+  loading= false;
   selectedCountry = "Danmark"
   form = new FormGroup({
     FirstName: new FormControl(''),
@@ -64,6 +65,7 @@ export class buyLystfisketegnComponent implements OnInit {
   }
 
   onRegisterSubmit(){
+    this.loading = true;
     let formValue = this.form.value;
 
     // Valider at der er input i Startdate
@@ -76,6 +78,7 @@ export class buyLystfisketegnComponent implements OnInit {
       if(formValue.StartDate == undefined ||
       formValue.StartDate == ""){
         this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
+        this.loading = false;
         return false;
       }
       startData = this.form.get("StartDate")?.value.split('-')
@@ -100,36 +103,42 @@ export class buyLystfisketegnComponent implements OnInit {
     // Valider at alle felter er udfyldt
     if(!this.validateServide.validateBuyLicense(user)){
       this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
+      this.loading = false;
       return false;
     }
 
     // Valider at CPR nummer indeholder 10 tegn
     if(!this.validateServide.validateCPR(user.cpr)){
       this.flash.show('CPR nummer skal indeholde 10 tal', {cssClass: 'alert-danger', timeout: 3000});
+      this.loading = false;
       return false;
     }
     
     // Valider at postnummer indeholder 4 tegn
     if(!this.validateServide.validateZipcode(user.zipCode)){
       this.flash.show('Postnummer skal være på 4 tal', {cssClass: 'alert-danger', timeout: 3000});
+      this.loading = false;
       return false;
     }
 
     // Vlider at de indtastede passorews er ens
     if(!this.validateServide.validateEqualPassword(user)){
       this.flash.show('Password skal være ens', {cssClass: 'alert-danger', timeout: 3000});
+      this.loading = false;
       return false;
     }
 
     // Valider at password er sikkert
     if(!this.validateServide.validateSecurePassword(user.password)){
       this.flash.show('Password er ikke sikkert nok. Password skal mindst indeholde 10 tegen, både tal, store og små bokstaver', {cssClass: 'alert-danger', timeout: 10000});
+      this.loading = false;
       return false;
     }
 
     // Validate Email by regex
     if(!this.validateServide.validateEmail(user.email)){
       this.flash.show('Email er ugyldig', {cssClass: 'alert-danger', timeout: 3000});
+      this.loading = false;
       return false;
     } 
 
@@ -141,6 +150,7 @@ export class buyLystfisketegnComponent implements OnInit {
       this.router.navigate(['/profile']) 
     }, err => {
       this.flash.show("Noget gik galt, prøv igen", {cssClass: 'alert-danger', timeout: 3000});
+      this.loading = false;
       return false;
     }); 
     return true;
