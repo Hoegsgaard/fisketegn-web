@@ -22,6 +22,8 @@
     "@angular/router": "~11.2.9",
     "@auth0/angular-jwt": "^5.0.2",
     "@ng-bootstrap/ng-bootstrap": "^9.1.1",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
     "angular2-flash-messages": "^3.0.1",
     "bootstrap": "^5.0.0",
     "rxjs": "~6.6.0",

@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { FlashMessagesModule } from 'angular2-flash-messages'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {DatePipe} from '@angular/common';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 // Import Components
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -32,6 +34,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 // Import Guards
 import { AuthGuard } from './guards/auth.guard';
 import { UserRoleGuard } from './guards/user-role.guard';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+  }
 
 const appRoutes: Routes =[
   {path: '', component: LandingpageComponent},
@@ -74,7 +80,14 @@ const appRoutes: Routes =[
     ReactiveFormsModule,
     HttpClientModule,
     FlashMessagesModule.forRoot(),
-    NgbModule
+    NgbModule,
+    TranslateModule.forRoot({
+      loader: {
+      provide: TranslateLoader,
+      useFactory: HttpLoaderFactory,
+      deps: [HttpClient]
+      }
+      })
   ],
   providers: [
     ValidateService,
