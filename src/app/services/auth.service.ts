@@ -31,6 +31,11 @@ export class AuthService {
     return !jwtHelper.isTokenExpired(this.token)
   }
 
+  isAdmin(){
+    this.getUsersToken()
+    return jwtHelper.decodeToken(this.token).role == 'admin'
+  }
+
   logout(){
     this.token = null;
     console.log()
