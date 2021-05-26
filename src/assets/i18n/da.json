@@ -1,0 +1,67 @@
+{
+    "HeaderLabels": {
+        "help": "Hjælp",
+        "faq": "Spørgsmål og svar",
+        "contact": "Kontakt",
+        "aboutAgency": "Om Fiskeristyrelsen",
+        "aboutLicense": "Om lyst- og fritidsfiskeri",
+        "log-in": "LOG IND",
+        "log-off": "LOG AF"
+    },
+    "FooterLabels":{
+        "title": "Fisketegn",
+        "phone": "Tlf.",
+        "email": "Email",
+        "opening-hours-label": "Åbningstider for fisketegntelefonen",
+        "opening-hours": "Mandag - Fredag 10.00-14.00",
+        "cvr": "CVR nr.",
+        "ean": "EAN nr."
+    },
+    "NavbarLabels":{
+        "title": "Fisketegn",
+        "profile": "Profil",
+        "angler": "Køb lystfisketegn",
+        "hobby": "Køb fritidsfisketegn"
+    },
+    "formLabels":{
+        "profile-title": "Din profil",
+        "angler-title": "Køb Lystfisketegn",
+        "hobby-title": "Køb Fritidsfisketegn",
+        "firstname": "Fornavn",
+        "lastname": "Efternavn",
+        "cpr": "CPR nummer",
+        "email": "Email",
+        "address": "Adresse",
+        "zipcode": "Postnummer",
+        "country": "Land",
+        "highquality": "Tilsend fisketegn af høj kvalitet",
+        "license-type": "Fisketegnstype",
+        "year-license": "Årskort",
+        "week-license": "Ugekort",
+        "day-license": "Dagskort",
+        "start-label": "Hvornår skal fisketegnet gælde fra",
+        "password": "Password",
+        "repeat-password": "Gentag password",
+        "buy-license": "Køb fisketegn",
+        "edit": "Rediger",
+        "save": "Gem",
+        "cancel": "Annuler",
+        "change-password": "Skift password"
+    },
+    "LicenseLabels": {
+        "title": "Licenser",
+        "number": "Licensnummer",
+        "expiration": "Udløbsdato",
+        "status": "Status",
+        "active": "Aktiv",
+        "inactive": "Udløbet",
+        "deleted": "Slettet",
+        "renew": "Forny",
+        "renew-license": "Forny fisketegn",
+        "old-password": "Gammel password",
+        "new-password": "Nyt password",
+        "repeat-password": "Gentag password",
+        "change-password": "Skift password",
+        "are-you-sure": "Er du sikker på at du vil fornye fisketegn"
+    }
+}

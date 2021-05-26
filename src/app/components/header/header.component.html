@@ -2,15 +2,15 @@
     <div class="flex-container">
         <a class = "flex-logo" [routerLink]="['/']"><img src="assets/svg/Fiskeristyrelsen_crown.svg" height=100></a>
         
-            <a class = "flex-text" [routerLink]="['/help']">HJÆLP</a>
+            <a class = "flex-text" [routerLink]="['/help']">{{'HeaderLabels.help' | translate}}</a>
             <div class = "separator">|</div>
-            <a class = "flex-text clicker" [routerLink]="['/faq']">FAQ</a>
+            <a class = "flex-text clicker" [routerLink]="['/faq']">{{'HeaderLabels.faq' | translate}}</a>
             <div class = "separator">|</div>
-            <a class = "flex-text clicker" [routerLink]="['/contact']">KONTAKT</a>
+            <a class = "flex-text clicker" [routerLink]="['/contact']">{{'HeaderLabels.contact' | translate}}</a>
             <div class = "separator">|</div>
-            <a (click)="goToLink('https://fiskeristyrelsen.dk/vaerd-at-vide-om-os/om-fiskeristyrelsen/')" class = "flex-text clicker">OM FISKERISTYRELSEN</a>
+            <a (click)="goToLink('https://fiskeristyrelsen.dk/vaerd-at-vide-om-os/om-fiskeristyrelsen/')" class = "flex-text clicker">{{'HeaderLabels.aboutAgency' | translate}}</a>
             <div class = "separator">|</div>
-            <a (click)="goToLink('https://fiskeristyrelsen.dk/lyst-og-fritidsfiskeri/')" class = "flex-text clicker">OM LYST- OG FRITIDSFISKERI</a>
+            <a (click)="goToLink('https://fiskeristyrelsen.dk/lyst-og-fritidsfiskeri/')" class = "flex-text clicker">{{'HeaderLabels.aboutLicense' | translate}}</a>
             <div class = "separator">|</div>
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-info dropdown-button" id="dropdownBasic1" ngbDropdownToggle>{{selectedLanguage}}</button>
@@ -21,8 +21,8 @@
                 </div>
             </div>
             <div class = "separator">|</div>
-            <button *ngIf="!auth.isLoggedIn()" [routerLink]="['/login']" class = "log-in-button">LOG IND</button>
-            <button *ngIf="auth.isLoggedIn()" (click)="onLogoutClick()" class = "log-in-button">LOG AF</button>
+            <button *ngIf="!auth.isLoggedIn()" [routerLink]="['/login']" class = "log-in-button">{{'HeaderLabels.log-in' | translate}}</button>
+            <button *ngIf="auth.isLoggedIn()" (click)="onLogoutClick()" class = "log-in-button">{{'HeaderLabels.log-off' | translate}}</button>
         
     </div>
 </header>

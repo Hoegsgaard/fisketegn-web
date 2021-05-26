@@ -1,0 +1,67 @@
+{
+    "HeaderLabels": {
+        "help": "Help",
+        "faq": "FAQ",
+        "contact": "Contact",
+        "aboutAgency": "About the agency",
+        "aboutLicense": "About anglers' license",
+        "log-in": "LOG IN",
+        "log-off": "LOG OFF"
+    },
+    "FooterLabels":{
+        "title": "Fishing license",
+        "phone": "Phone",
+        "email": "Email",
+        "opening-hours-label": "Opening hours for the fishing license phone",
+        "opening-hours": "Monday - Friday 10.00am- 2.00pm",
+        "cvr": "CVR no.",
+        "ean": "EAN no."
+    },
+    "NavbarLabels":{
+        "title": "Fishing license",
+        "profile": "Profile",
+        "angler": "Buy angler fishing lisence",
+        "hobby": "Buy hobby fishing license"
+    },
+    "formLabels":{
+        "profile-title": "Your profile",
+        "angler-title": "Buy Angler Fishing License",
+        "hobby-title": "Buy Hobby Fishing License",
+        "firstname": "First name",
+        "lastname": "Last name",
+        "cpr": "CPR number",
+        "email": "Email",
+        "address": "Address",
+        "zipcode": "Zipcode",
+        "country": "Country",
+        "highquality": "Send high-quality license",
+        "license-type": "License type",
+        "year-license": "1-year license",
+        "week-license": "Week license",
+        "day-license": "Day license",
+        "start-label": "Start date",
+        "password": "Password",
+        "repeat-password": "Repeat password",
+        "buy-license": "Buy license",
+        "edit": "Edit",
+        "save": "Save",
+        "cancel": "Cancel",
+        "change-password": "Change password"
+    },
+    "LicenseLabels": {
+        "title": "Licenses",
+        "number": "License number",
+        "expiration": "Expiration date",
+        "status": "Status",
+        "active": "Active",
+        "inactive": "Expired",
+        "deleted": "Deleted",
+        "renew": "Renew",
+        "renew-license": "Renew license",
+        "old-password": "Old password",
+        "new-password": "New password",
+        "repeat-password": "Repeat password",
+        "change-password": "Change password",
+        "are-you-sure": "Are you sure you want to renew license with number"
+    }
+}
