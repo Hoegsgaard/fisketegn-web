@@ -22,6 +22,7 @@ import { TwoTypsOfLicenseComponent } from './components/two-typs-of-license/two-
 import { ContactComponent } from './components/contact/contact.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AdminBrugerComponent } from './components/admin-bruger/admin-bruger.component';
 
 // Import Services
 import { ValidateService } from './services/validate.service';
@@ -30,6 +31,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 // Import Guards
 import { AuthGuard } from './guards/auth.guard';
+import { UserRoleGuard } from './guards/user-role.guard';
 
 const appRoutes: Routes =[
   {path: '', component: LandingpageComponent},
@@ -42,6 +44,7 @@ const appRoutes: Routes =[
   {path: 'contact', component: ContactComponent},
   {path: 'faq', component: FaqComponent},
   {path: '404', component: PageNotFoundComponent},
+  {path: 'adminbruger', component: AdminBrugerComponent, canActivate:[UserRoleGuard], data: {role: 'admin'}},
   {path: '**', redirectTo: '/404'}
 ]
 
@@ -60,7 +63,8 @@ const appRoutes: Routes =[
     TwoTypsOfLicenseComponent,
     ContactComponent,
     FaqComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AdminBrugerComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,7 @@ const appRoutes: Routes =[
     ValidateService,
     AuthService,
     AuthGuard,
+    UserRoleGuard,
     DatePipe
   ],
   bootstrap: [AppComponent]

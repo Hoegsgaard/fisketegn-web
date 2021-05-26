@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { JwtHelperService  } from '@auth0/angular-jwt';
+import { map } from 'rxjs/operators'
 
 const jwtHelper = new JwtHelperService();
 
@@ -76,5 +77,18 @@ export class AuthService {
   getUsersToken(){
     const token = localStorage.getItem('fiskeToken');
     this.token = token;
-  }  
+  }
+  
+  async getUserRole(){
+    this.getUsersToken();
+    let headers = new HttpHeaders({
+      'Content-Type':'application/json',
+      'fiskeToken':this.token});
+    return await this.http.post('/camel/api/auth/validateToken','', {headers: headers, observe: 'response'}).pipe(
+      map(res => {
+        const role = jwtHelper.decodeToken(this.token).role
+        return role;
+      })
+    ).toPromise()
+  }
 }
