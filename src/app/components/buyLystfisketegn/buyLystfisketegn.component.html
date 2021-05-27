@@ -36,10 +36,10 @@
       </div>
       
       <div class="row">
-        <div class="form-group col">
+        <div class="form-group col" >
           <label>{{'formLabels.country' | translate}}</label>
           <div class="col">
-            <div ngbDropdown class="d-inline-block ">
+            <div ngbDropdown class="d-inline-block " *ngIf = "!this.auth.isLoggedIn()">
               <button class="btn btn-outline-info" id="dropdownBasic1" ngbDropdownToggle>{{selectedCountry}}</button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                 <button (click)="changeCountry('Danmark')" ngbDropdownItem>Danmark</button>
@@ -91,8 +91,10 @@
                 <button (click)="changeCountry('Andet land')" ngbDropdownItem>Andet land</button>
               </div>
             </div>
+            <input type="text" formControlName="CountryDisabled" name="Country" class="form-control" *ngIf="this.auth.isLoggedIn()">
           </div>
         </div>
+
         <div class="form-group col-6">
           <label>{{'formLabels.highquality' | translate}}</label>
           <div class="form-check">
