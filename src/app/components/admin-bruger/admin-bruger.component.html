@@ -1,1 +1,189 @@
-<p>admin-bruger works!</p>
+<div class="row justify-content-center">
+  <div class=" wrapper col">
+    <h2>{{'formLabels.admin-user-title' | translate}}</h2>
+    <form [formGroup]="form">
+
+      <div class="row justify-content-center" *ngIf="!userFound">
+        <div class="form-group col-3">
+          <label>{{'formLabels.search-user' | translate}}</label>
+          <input type="text" formControlName="SerchUser" name="SerchUser" class="form-control" placeholder="{{'formLabels.serch-for-user' | translate}}">
+        </div>
+      </div>
+
+      <div class="row justify-content-center" *ngIf="userFound">
+        <div class="form-group col">
+          <input class="btn btn-danger button-cancel" value="{{'formLabels.cancel-search' | translate}}" (click)="cancelSearch()">
+        </div>
+      </div>
+
+      
+
+      <div class="row" *ngIf="userFound">
+        <div class="form-group col">
+          <label>{{'formLabels.firstname' | translate}}</label>
+          <input type="text" formControlName="FirstName" name="FirstName" class="form-control"
+            [placeholder]="firstnamePH">
+        </div>
+        <div class="form-group col">
+          <label>{{'formLabels.lastname' | translate}}</label>
+          <input type="text" formControlName="LastName" name="LastName" class="form-control" [placeholder]="lastnamePH">
+        </div>
+      </div>
+
+      <div class="row" *ngIf="userFound">
+        <div class="form-group col-6">
+          <label>{{'formLabels.cpr' | translate}}</label>
+          <input type="number" formControlName="CPR" name="CPR" class="form-control" [placeholder]="cprPH">
+        </div>
+        <div class="form-group col">
+          <label>{{'formLabels.email' | translate}}</label>
+          <input type="text" formControlName="Email" name="Email" class="form-control" [placeholder]="emailPH">
+        </div>
+      </div>
+
+      <div class="row" *ngIf="userFound">
+        <div class="form-group col">
+          <label>{{'formLabels.address' | translate}}</label>
+          <input type="text" formControlName="Address" name="Address" class="form-control" [placeholder]="addressPH">
+        </div>
+        <div class="form-group col">
+          <label>{{'formLabels.zipcode' | translate}}</label>
+          <input type="number" formControlName="ZipCode" name="ZipCode" class="form-control" [placeholder]="zipcodePH">
+        </div>
+      </div>
+
+      <div class="row" *ngIf="editing && userFound">
+        <div class="form-group col">
+          <label>{{'formLabels.country' | translate}}</label>
+          <div class="col">
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-outline-info" id="dropdownBasic1" ngbDropdownToggle>{{selectedCountry}}</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button (click)="changeCountry('Danmark')" ngbDropdownItem>Danmark</button>
+                <button (click)="changeCountry('Tyskland')" ngbDropdownItem>Tyskland</button>
+                <button (click)="changeCountry('Storbritannien')" ngbDropdownItem>Storbritannien</button>
+                <button (click)="changeCountry('Albanien')" ngbDropdownItem>Albanien</button>
+                <button (click)="changeCountry('Andorra')" ngbDropdownItem>Andorra</button>
+                <button (click)="changeCountry('Belgien')" ngbDropdownItem>Belgien</button>
+                <button (click)="changeCountry('Bosnien- Hercegovina')" ngbDropdownItem>Bosnien- Hercegovina</button>
+                <button (click)="changeCountry('Bulgarien')" ngbDropdownItem>Bulgarien</button>
+                <button (click)="changeCountry('Cypern')" ngbDropdownItem>Cypern</button>
+                <button (click)="changeCountry('Estland')" ngbDropdownItem>Estland</button>
+                <button (click)="changeCountry('Finland')" ngbDropdownItem>Finland</button>
+                <button (click)="changeCountry('Frankrig')" ngbDropdownItem>Frankrig</button>
+                <button (click)="changeCountry('Georgien')" ngbDropdownItem>Georgien</button>
+                <button (click)="changeCountry('Grækenland')" ngbDropdownItem>Grækenland</button>
+                <button (click)="changeCountry('Hviderusland')" ngbDropdownItem>Hviderusland</button>
+                <button (click)="changeCountry('Irland')" ngbDropdownItem>Irland</button>
+                <button (click)="changeCountry('Island')" ngbDropdownItem>Island</button>
+                <button (click)="changeCountry('Italien')" ngbDropdownItem>Italien</button>
+                <button (click)="changeCountry('Kroatien')" ngbDropdownItem>Kroatien</button>
+                <button (click)="changeCountry('Letland')" ngbDropdownItem>Letland</button>
+                <button (click)="changeCountry('Liechtenstein')" ngbDropdownItem>Liechtenstein</button>
+                <button (click)="changeCountry('Litauen')" ngbDropdownItem>Litauen</button>
+                <button (click)="changeCountry('Luxembourg')" ngbDropdownItem>Luxembourg</button>
+                <button (click)="changeCountry('Makedonien')" ngbDropdownItem>Makedonien</button>
+                <button (click)="changeCountry('Malta')" ngbDropdownItem>Malta</button>
+                <button (click)="changeCountry('Moldavien')" ngbDropdownItem>Moldavien</button>
+                <button (click)="changeCountry('Monaco')" ngbDropdownItem>Monaco</button>
+                <button (click)="changeCountry('Nederlandene')" ngbDropdownItem>Nederlandene</button>
+                <button (click)="changeCountry('Norge')" ngbDropdownItem>Norge</button>
+                <button (click)="changeCountry('Polen')" ngbDropdownItem>Polen</button>
+                <button (click)="changeCountry('Portugal')" ngbDropdownItem>Portugal</button>
+                <button (click)="changeCountry('Rumænien')" ngbDropdownItem>Rumænien</button>
+                <button (click)="changeCountry('Rusland')" ngbDropdownItem>Rusland</button>
+                <button (click)="changeCountry('San Marino')" ngbDropdownItem>San Marino</button>
+                <button (click)="changeCountry('Schweiz')" ngbDropdownItem>Schweiz</button>
+                <button (click)="changeCountry('Serbien og Montenegro')" ngbDropdownItem>Serbien og Montenegro</button>
+                <button (click)="changeCountry('Slovakiet')" ngbDropdownItem>Slovakiet</button>
+                <button (click)="changeCountry('Slovenien')" ngbDropdownItem>Slovenien</button>
+                <button (click)="changeCountry('Spanien')" ngbDropdownItem>Spanien</button>
+                <button (click)="changeCountry('Sverige')" ngbDropdownItem>Sverige</button>
+                <button (click)="changeCountry('Tjekkiet')" ngbDropdownItem>Tjekkiet</button>
+                <button (click)="changeCountry('Tyrkiet')" ngbDropdownItem>Tyrkiet</button>
+                <button (click)="changeCountry('Ukraine')" ngbDropdownItem>Ukraine</button>
+                <button (click)="changeCountry('Ungarn')" ngbDropdownItem>Ungarn</button>
+                <button (click)="changeCountry('Vatikanstaten')" ngbDropdownItem>Vatikanstaten</button>
+                <button (click)="changeCountry('Østrig')" ngbDropdownItem>Østrig</button>
+                <button (click)="changeCountry('Andet land')" ngbDropdownItem>Andet land</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="!editing && userFound">
+        <div class="form-group col-6">
+          <label>{{'formLabels.country' | translate}}</label>
+          <input type="text" formControlName="CountryDisabled" name="Country" class="form-control">
+        </div>
+      </div>
+      <div class="row justify-content-center" *ngIf="userFound">
+        <div class="form-group col-3 " *ngIf="!editing">
+          <input class="btn btn-info button" value="{{'formLabels.edit' | translate}}" (click)="activateForm()">
+        </div>
+        <div class="form-group col-3 " *ngIf="!editing">
+          <input class="btn btn-info button" value="{{'formLabels.editRole' | translate}}" (click)="onEditRole()">
+        </div>
+        <div class="form-group col-3 submitButton justify-content-center" *ngIf="editing">
+          <input class="btn btn-info button" value="{{'formLabels.save' | translate}}" (click)="onUpdateUser()">
+        </div>
+        <div class="form-group col-3  justify-content-end justify-content-center" *ngIf="editing">
+          <input class="btn btn-info button" value="{{'formLabels.cancel' | translate}}" (click)="disableForm()">
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group col-3" *ngIf="!userFound">
+          <input type="submit" class="btn btn-info button" value="{{'formLabels.serch' | translate}}" (click)="serchUser()">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<hr>
+<!-- list of licenses-->
+<div *ngIf="userFound">
+  <h2>{{'LicenseLabels.title' | translate}}</h2>
+  <ul>
+    <li>
+      <div class="row listPadding">
+        <h3 class="col-3">{{'LicenseLabels.number' | translate}}</h3>
+        <h3 class="col-3">{{'LicenseLabels.expiration' | translate}}</h3>
+        <h3 class="col-3">{{'LicenseLabels.status' | translate}}</h3>
+      </div>
+    </li>
+  </ul>
+  <ul class="licenseList" *ngFor="let license of licenseList">
+    <li class="listElement listPadding">
+      <div class="row">
+        <div class="col-3">{{license.licenseNumber}}</div>
+        <div class="col-3">{{license.endDate}}</div>
+        <div *ngIf="license.deletedFlag" class="col-3">{{'LicenseLabels.deleted' | translate}}</div>
+        <div *ngIf="!license.deletedFlag && license.status" class="col-3"> {{'LicenseLabels.active' | translate}}</div>
+        <div *ngIf="!license.deletedFlag && !license.status" class="col-3">{{'LicenseLabels.expired' | translate}}</div>
+        <button class="col-3 btn btn-info button" *ngIf="!license.deletedFlag && license.status"
+          (click)="openLicense(content2, license)">{{'LicenseLabels.renew' | translate}}</button>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- refound license popup -->
+<ng-template #content2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{'LicenseLabels.renew-license' | translate}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{'LicenseLabels.are-you-sure' | translate}} {{selectedLicense.licenseNumber}}?</p>
+    <form [formGroup]="form">
+      <div class="row justify-content-center">
+        <div class="form-group col submitButton">
+          <input type="submit" class="btn btn-info button" value="{{'LicenseLabels.renew-license' | translate}}"
+            (click)="modal.close(onRefundLicense(selectedLicense.licenseID))">
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

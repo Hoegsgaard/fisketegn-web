@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FlashMessagesService} from 'angular2-flash-messages';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service'
@@ -41,8 +41,6 @@ export class ProfileComponent implements OnInit {
     repNewPassword: new FormControl(''),
   });
   licenseList:any
-  testList = [{id: 1, name: 'one'},
-              {id: 2, name: 'two'}];
 
   constructor(
     private auth : AuthService,
