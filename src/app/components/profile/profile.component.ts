@@ -79,16 +79,25 @@ export class ProfileComponent implements OnInit {
   this.auth.getLicenses().subscribe(data => {
     this.in = (data.body as any)
     this.licenseList = new Array
-    this.in.forEach((element: { status: any; deletedFlag: any; }) => {
-      if(element.status && !element.deletedFlag){
-        this.licenseList.push(element)
+    let today = new Date()
+    this.in.forEach((element: { endDate: string; endDateNumber: number; type: string; deletedFlag: any; renewable: boolean; }) => {
+      let endDate = element.endDate.split("/",3);
+      element.endDateNumber = Date.parse(endDate[2]+"-"+endDate[1]+"-"+endDate[0]);
+      console.log((element.endDateNumber.valueOf() - today.valueOf())/(1000 * 3600 * 24));
+      if((element.endDateNumber.valueOf() - today.valueOf())/(1000 * 3600 * 24) <= 30 && (element.type == "y" || element.type == "f") && !element.deletedFlag){
+        element.renewable = true;
+        
+      }else{
+        element.renewable = false;
       }
+      
     });
-    this.in.forEach((element: { status: any; deletedFlag: any; }) => {
-      if(!element.status || element.deletedFlag){
-        this.licenseList.push(element)
-      }
-    });
+
+    this.in.sort(function(a: { endDateNumber: number; },b: { endDateNumber: number; }){
+      return b.endDateNumber - a.endDateNumber;
+    })
+    this.licenseList = this.in
+    console.log(this.in)
   });
   }
 
