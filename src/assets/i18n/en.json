@@ -1,68 +1,111 @@
 {
-  "HeaderLabels": {
-    "help": "Help",
-    "faq": "FAQ",
-    "contact": "Contact",
-    "aboutAgency": "About the agency",
-    "aboutLicense": "About anglers' license",
-    "log-in": "LOG IN",
-    "log-off": "LOG OFF"
-  },
-  "FooterLabels": {
-    "title": "Fishing license",
-    "phone": "Phone",
-    "email": "Email",
-    "opening-hours-label": "Opening hours for the fishing license phone",
-    "opening-hours": "Monday - Friday 10.00am- 2.00pm",
-    "cvr": "CVR no.",
-    "ean": "EAN no."
-  },
-  "NavbarLabels": {
-    "title": "Fishing license",
-    "profile": "Profile",
-    "angler": "Buy angler fishing lisence",
-    "hobby": "Buy hobby fishing license",
-    "admin-user": "Administrate user"
-  },
-  "formLabels": {
-    "profile-title": "Your profile",
-    "angler-title": "Buy Angler Fishing License",
-    "hobby-title": "Buy Hobby Fishing License",
-    "firstname": "First name",
-    "lastname": "Last name",
-    "cpr": "CPR number",
-    "email": "Email",
-    "address": "Address",
-    "zipcode": "Zipcode",
-    "country": "Country",
-    "highquality": "Send high-quality license",
-    "license-type": "License type",
-    "year-license": "1-year license",
-    "week-license": "Week license",
-    "day-license": "Day license",
-    "start-label": "Start date",
-    "password": "Password",
-    "repeat-password": "Repeat password",
-    "buy-license": "Buy license",
-    "edit": "Edit",
-    "save": "Save",
-    "cancel": "Cancel",
-    "change-password": "Change password"
-  },
-  "LicenseLabels": {
-    "title": "Licenses",
-    "number": "License number",
-    "expiration": "Expiration date",
-    "status": "Status",
-    "active": "Active",
-    "inactive": "Expired",
-    "deleted": "Deleted",
-    "renew": "Renew",
-    "renew-license": "Renew license",
-    "old-password": "Old password",
-    "new-password": "New password",
-    "repeat-password": "Repeat password",
-    "change-password": "Change password",
-    "are-you-sure": "Are you sure you want to renew license with number"
-  }
+    "HeaderLabels": {
+        "help": "Help",
+        "faq": "FAQ",
+        "contact": "Contact",
+        "aboutAgency": "About the agency",
+        "aboutLicense": "About anglers' license",
+        "log-in": "LOG IN",
+        "log-off": "LOG OFF"
+    },
+    "FooterLabels":{
+        "title": "Fishing license",
+        "phone": "Phone",
+        "email": "Email",
+        "opening-hours-label": "Opening hours for the fishing license phone",
+        "opening-hours": "Monday - Friday 10.00am- 2.00pm",
+        "cvr": "CVR no.",
+        "ean": "EAN no."
+    },
+    "NavbarLabels":{
+        "title": "Fishing license",
+        "profile": "Profile",
+        "angler": "Buy angler fishing lisence",
+        "hobby": "Buy hobby fishing license"
+    },
+    "formLabels":{
+        "profile-title": "Your profile",
+        "angler-title": "Buy Angler Fishing License",
+        "hobby-title": "Buy Hobby Fishing License",
+        "firstname": "First name",
+        "lastname": "Last name",
+        "cpr": "CPR number",
+        "email": "Email",
+        "address": "Address",
+        "zipcode": "Zipcode",
+        "country": "Country",
+        "highquality": "Send high-quality license",
+        "license-type": "License type",
+        "year-license": "1-year license",
+        "week-license": "Week license",
+        "day-license": "Day license",
+        "start-label": "Start date",
+        "password": "Password",
+        "repeat-password": "Repeat password",
+        "buy-license": "Buy license",
+        "edit": "Edit",
+        "save": "Save",
+        "cancel": "Cancel",
+        "change-password": "Change password"
+    },
+    "LicenseLabels": {
+        "title": "Licenses",
+        "number": "License number",
+        "expiration": "Expiration date",
+        "status": "Status",
+        "active": "Active",
+        "inactive": "Expired",
+        "deleted": "Deleted",
+        "renew": "Renew",
+        "renew-license": "Renew license",
+        "old-password": "Old password",
+        "new-password": "New password",
+        "repeat-password": "Repeat password",
+        "change-password": "Change password",
+        "are-you-sure": "Are you sure you want to renew license with number"
+    },
+    "FrontpageLabels": {
+        "welcome": "Welcome to the fishing license system",
+        "buy": "Buy fishing license",
+        "renew": "Renew fishing license",
+        "did-you-know": "The fishcare management in Denmark is financed by funds from the Danish fishing licence fees and covers activities such as:",
+        "dyk-one": "fish releases in order to recreate fish stocks",
+        "dyk-two": "improvement of the living conditions and habitats for fish",
+        "dyk-three": "studies on fish behavior",
+        "dyk-four": " The activities are carried out with help from volunteers from local fishing associations.",
+        "read-more": "Here you can read more about the fishcare management in Denmark",
+        "type": "Type of fishing license",
+        "angler": "Angler fishing license",
+        "hobby":"Hobby fishing license",
+        "which-license": "Angler or hobby fishing license? Read more about the differences here"
+    },
+    "PageMissingLabels":{
+        "not-found": "Page not found",
+        "go-back": "Go back to the front page"
+    },
+    "ContactLabels":{
+        "contact": "Contact the agency ",
+        "days": "The agency is available Monday-Friday from",
+        "phone": "Phone:"
+    },
+    "HelpLabels":{
+        "title": "Help texts",
+        "description": "Here you can find help to the Fishing licence system.",
+        "frontpage": "Front page",
+        "login-label": "Login",
+        "buy-hobby-label": "Buy recreational fisherman’s licence",
+        "renew-hobby-label": "Renew recreational fisherman’s licence",
+        "buy-angler-label": "Buy angler’s fishing licence",
+        "renew-angler-label": "Renew angler’s fishing licence",
+        "get-help-label": "How to get assistance"
+    },
+    "HelpTexts":{
+        "introduction":"Here you can buy recreational fisherman’s licences and angler’s licences, renew fishing licences and log in as a fisherman or a point of sale.\n\nYou are an angler if you fish with rod. You are a recreational fisherman if you fish with nets or other stationary tools.\n\nThe address of The Danish Fisheries Agency etc. is mentioned at the bottom of the page.\n\n All prices stated for fishing licences etc. include fees and costs of delivery. No VAT is levied on fishing licences.\n\nIf you buy a fishing licence, the system saves some pieces of information. This includes, among other things, name and address information, CPR no. (if stated), e-mail address (if stated), fishing number, type of fishing licence, validity period for fishing licences, registration date of the information and receipt code for payment.\n\nThe information about purchase of fishing licences is saved for 5 years after the purchase. If the fishing licence is renewed, the information is saved for 5 years from the date of renewal. If the fishing licence has not been used/renewed, the information will be deleted after 5 years.\n\nThe services of the homepage are in conformity with \"Act no. 227 of 22 April 2002 on Services in the information society, including certain aspects of electronic commerce\". In addition, the services of the homepage fulfil the guidelines of the Consumers’ Ombudsman, in particular the guidelines for electronic payment.",
+        "login": "Login can be used by fishermen and points of sale.\n\nIf you already have an annual recreational fisherman’s licence or an annual angler’s fishing licence, you may log in by entering your fishing number in \"User ID\" and your postal code in \"Password\" or the password which the postal code has been changed to.\n\nIf a point of sale is registered in the system, it may log in by entering the shop number in \"User ID\" and the assigned or corrected password in \"Password\".",
+        "buy-hobby": "When buying recreational fisherman’s licence, you must enter some pieces of information on the screen.\n\nAfter doing this, click on \"Go to payment\". If you are going to buy several recreational fisherman’s licences, click on \"Add to shopping basket\" instead, and enter new information in the fields, and then click again on \"Add to shopping basket\". The fishing licence will be placed in the basket together with the previous one(s).\n\nIf you do not wish to buy more recreational fisherman’s licences, click on \"Go to payment\".\n\nA new screen image will be shown where you are to enter the payment information according to the instructions on the screen.\n\nMake the payment transaction, and afterwards you will receive a message if the payment has been made or not.\n\nAfter completion of payment you can print your fishing licence with the fishing number. This can be done in either text format or PDF format. Adobe Acrobat Reader is necessary for you to read PDF format. Acrobat Reader can be downloaded from a link on the print page. \n\nWhen going fishing, you must bring your fishing number and proof of identity with you. If you are checked, you only have to state the number.",
+        "renew-hobby": "If you are not already logged in, you must enter \"User ID\" and \"Password\" which are your fishing number and postal code or the password which the postal code has been changed to.\n\nHere you can renew your recreational fisherman’s licence. If you renew your fishing licence before it expires, the licence will be renewed in continuation of the current validity period of the recreational fisherman’s licence. Otherwise the validity period of the recreational fisherman’s licence will be from today and 1 year ahead.",
+        "buy-angler": "When buying angler’s fishing licence, you must enter some pieces of information on the screen.\n\nRemember to indicate if you want it to be a day, week or annual licence. Day and week licences may be predated up to 30 days. Annual licences are valid from the day of payment or in continuation of the current validity period of the angler’s fishing licence.\n\nAfter doing this, click on \"Go to payment\". If you are going to buy several angler’s fishing licences, click on \"Add to shopping basket\" instead, and enter new information in the fields, and then click again on \"Add to shopping basket\". The fishing licence will be placed in the basket together with the previous one(s).\n\nIf you do not wish to buy more angler’s fishing licences, click on \"Go to payment\".\n\nA new screen image will be shown where you are to enter the payment information according to the instructions on the screen.\n\nMake the payment transaction, and afterwards you will receive a message if the payment has been made or not.\n\nAfter completion of payment you can print your fishing licence with the fishing number. This can be done in either text format or PDF format. Adobe Acrobat Reader is necessary for you to read PDF format. Acrobat Reader can be downloaded from a link on the print page. \n\nWhen going fishing, you must bring your fishing number and proof of identity with you. If you are checked, you only have to state the number.",
+        "renew-angler": "If you are not already logged in, you must enter \"User ID\" and \"Password\" which are your fishing number and postal code or the password which the postal code has been changed to\n\nHere you can renew your angler’s fishing licence. If you renew your fishing licence before it expires, the angler’s fishing licence will be renewed in continuation of the current validity period of the angler’s fishing licence. Otherwise the validity period of the angler’s fishing licence will be from today and 1 year ahead.",
+        "get-help": "If you have any questions as to: The homepage, the set of rules, payments etc. just contact The Danish Fisheries Agency via e-mail: fisketegn@fiskeristyrelsen.dk, or call telephone +45 7218 5606, (office hours: Monday, Tuesday, Wednesday and Friday: 9-12. Thursday: 13-15).\n\nYou may also write to:\nThe Danish Fisheries Agency\nNyropsgade 30\nDK-1780 København V."
+    }
 }

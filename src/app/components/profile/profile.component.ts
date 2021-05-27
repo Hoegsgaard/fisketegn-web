@@ -79,8 +79,8 @@ export class ProfileComponent implements OnInit {
   this.auth.getLicenses().subscribe(data => {
     this.in = (data.body as any)
     this.licenseList = new Array
-    this.in.forEach((element: { status: any; }) => {
-      if(element.status){
+    this.in.forEach((element: { status: any; deletedFlag: any; }) => {
+      if(element.status && !element.deletedFlag){
         this.licenseList.push(element)
       }
     });
