@@ -53,7 +53,6 @@ export class BuyFritidsfisketegnComponent implements OnInit {
     this.form.get('Address')?.setValue(this.res?.address);
     this.form.get('ZipCode')?.setValue(this.res.zipCode);
     this.form.get('CountryDisabled')?.setValue(this.res.country)
-    console.log(this.res)
   })
   }
 
