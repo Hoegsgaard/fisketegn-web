@@ -13,7 +13,6 @@ export class FaqComponent implements OnInit {
   }
 
   scrollTo(element : string){
-    console.log('element', element)
     document.getElementById(element)?.scrollIntoView()
   }
 }

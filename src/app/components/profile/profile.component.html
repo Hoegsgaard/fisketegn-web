@@ -141,7 +141,7 @@
         <div class="col-2" *ngIf = "license.type == 'd'">{{'LicenseLabels.angler-day' | translate}}</div>
         <div *ngIf = "license.deletedFlag" class="col-2">{{'LicenseLabels.deleted' | translate}}</div>
         <div *ngIf = "!license.deletedFlag && license.status" class="col-2"> {{'LicenseLabels.active' | translate}}</div>
-        <div *ngIf = "!license.deletedFlag && !license.status" class="col-2">{{'LicenseLabels.expired' | translate}}</div>
+        <div *ngIf = "!license.deletedFlag && !license.status" class="col-2">{{'LicenseLabels.inactive' | translate}}</div>
         <button class="col-4 btn btn-info button" *ngIf = "license.renewable" (click)="openLicense(content2, license)">{{'LicenseLabels.renew' | translate}}</button>
       </div>
     </li>

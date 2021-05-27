@@ -157,21 +157,26 @@
   <ul>
     <li>
       <div class="row listPadding">
-        <h3 class="col-3">{{'LicenseLabels.number' | translate}}</h3>
-        <h3 class="col-3">{{'LicenseLabels.expiration' | translate}}</h3>
-        <h3 class="col-3">{{'LicenseLabels.status' | translate}}</h3>
+        <h3 class="col-2">{{'LicenseLabels.number' | translate}}</h3>
+        <h3 class="col-2">{{'LicenseLabels.expiration' | translate}}</h3>
+        <h3 class="col-2">{{'LicenseLabels.type' | translate}}</h3>
+        <h3 class="col-2">{{'LicenseLabels.status' | translate}}</h3>
       </div>
     </li>
   </ul>
   <ul class="licenseList" *ngFor="let license of licenseList">
     <li class="listElement listPadding">
       <div class="row">
-        <div class="col-3">{{license.licenseNumber}}</div>
-        <div class="col-3">{{license.endDate}}</div>
-        <div *ngIf="license.deletedFlag" class="col-3">{{'LicenseLabels.deleted' | translate}}</div>
-        <div *ngIf="!license.deletedFlag && license.status" class="col-3"> {{'LicenseLabels.active' | translate}}</div>
-        <div *ngIf="!license.deletedFlag && !license.status" class="col-3">{{'LicenseLabels.expired' | translate}}</div>
-        <button class="col-3 btn btn-danger" *ngIf="!license.deletedFlag && license.status"
+        <div class="col-2">{{license.licenseNumber}}</div>
+        <div class="col-2">{{license.endDate}}</div>
+        <div class="col-2" *ngIf="license.type == 'f'">{{'LicenseLabels.hobby' | translate}}</div>
+        <div class="col-2" *ngIf="license.type == 'y'">{{'LicenseLabels.angler-year' | translate}}</div>
+        <div class="col-2" *ngIf="license.type == 'w'">{{'LicenseLabels.angler-week' | translate}}</div>
+        <div class="col-2" *ngIf="license.type == 'd'">{{'LicenseLabels.angler-day' | translate}}</div>
+        <div *ngIf="license.deletedFlag" class="col-2">{{'LicenseLabels.deleted' | translate}}</div>
+        <div *ngIf="!license.deletedFlag && license.status" class="col-2"> {{'LicenseLabels.active' | translate}}</div>
+        <div *ngIf="!license.deletedFlag && !license.status" class="col-2">{{'LicenseLabels.inactive' | translate}}</div>
+        <button class="col-4 btn btn-danger" *ngIf="!license.deletedFlag && license.status"
           (click)="openLicense(refoundPop, license)">{{'LicenseLabels.refund' | translate}}</button>
       </div>
     </li>

@@ -6,6 +6,7 @@ import { AdminService } from '../../services/admin.service'
 import { FormControl, FormGroup} from '@angular/forms';
 import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ValidateService } from '../../services/validate.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-admin-bruger',
@@ -32,7 +33,7 @@ export class AdminBrugerComponent implements OnInit {
   "user": Object;
   licenseList:any;
   form = new FormGroup({
-    SearchUser: new FormControl('asd@asd.dk'),
+    SearchUser: new FormControl(''),
     FirstName: new FormControl(''),
     LastName: new FormControl(''),
     CPR: new FormControl(''),
@@ -53,7 +54,8 @@ export class AdminBrugerComponent implements OnInit {
     private flash : FlashMessagesService,
     private modalService: NgbModal,
     private userService : UserService,
-    private validateServide : ValidateService
+    private validateServide : ValidateService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit(): void {}
@@ -85,7 +87,7 @@ export class AdminBrugerComponent implements OnInit {
     },
     err => {
       this.userFound = false;
-      this.flash.show(`brugern ${this.form.value.SearchUser} findes ikke`, {cssClass: 'alert-danger', timeout: 3000});
+      this.flash.show(`${this.translate.instant('FlashMsq.user')} ${this.form.value.SearchUser} ${this.translate.instant('FlashMsq.doesnt-exist')}`, {cssClass: 'alert-danger', timeout: 3000});
       return false;
     })
   }
@@ -94,16 +96,14 @@ export class AdminBrugerComponent implements OnInit {
     this.adminService.getUsersLicenses(usersemail).subscribe(data => {
       this.in = (data.body as any)
       this.licenseList = new Array
-      this.in.forEach((element: { status: any; deletedFlag: any; }) => {
-      if(element.status && !element.deletedFlag){
-        this.licenseList.push(element)
-      }
-    });
-      this.in.forEach((element: { status: any; deletedFlag: any; }) => {
-        if(!element.status || element.deletedFlag){
-          this.licenseList.push(element)
-        }
+      this.in.forEach((element: { endDate: string; endDateNumber: number; type: string; deletedFlag: any; renewable: boolean; }) => {
+        let endDate = element.endDate.split("/",3);
+        element.endDateNumber = Date.parse(endDate[2]+"-"+endDate[1]+"-"+endDate[0]);
       });
+      this.in.sort(function(a: { endDateNumber: number; },b: { endDateNumber: number; }){
+        return b.endDateNumber - a.endDateNumber;
+      })
+      this.licenseList = this.in
     });
   }
 
@@ -177,14 +177,13 @@ export class AdminBrugerComponent implements OnInit {
   onEditRole(){
     const newRole = this.selectedRole.toLowerCase()
     this.adminService.editRole(this.form.value.SearchUser, newRole).subscribe(data => {
-      this.flash.show(`Brugers rolle er nu ${this.selectedRole}`, {cssClass: 'alert-success', timeout: 3000})
+      this.flash.show(`${this.translate.instant('FlashMsq.users-role-is-now')} ${this.selectedRole}`, {cssClass: 'alert-success', timeout: 3000})
       this.getUser(this.form.value.SearchUser);
     })
   }
 
   changeCountry(language: string){
     this.selectedCountry = language
-    console.log(language)
   }
 
   changeRole(role: string){
@@ -206,14 +205,14 @@ export class AdminBrugerComponent implements OnInit {
       oldEmail : formValue.SearchUser
     }
     if(!this.validateServide.validateUpdateUser(user, this.res)){
-      this.flash.show('Mindst et skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
+      this.flash.show(this.translate.instant('FlashMsq.fill-at-least-one'), {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
     this.adminService.updateUser(user).subscribe(data => {  
-      this.flash.show('Oplysninger opdateret.', {cssClass: 'alert-success', timeout: 3000})
+      this.flash.show(this.translate.instant('FlashMsq.info-updated'), {cssClass: 'alert-success', timeout: 3000})
       this.getUser(this.form.value.SearchUser);
     }, err=> {
-      this.flash.show('Noget gik galt, prøv igen', {cssClass: 'alert-danger', timeout: 3000})
+      this.flash.show(this.translate.instant('FlashMsq.something-went-wrong'), {cssClass: 'alert-danger', timeout: 3000})
       return false
     });
     return true;
@@ -221,10 +220,10 @@ export class AdminBrugerComponent implements OnInit {
 
   onRefundLicense(license: any){
     this.adminService.refund(license).subscribe(data => {
-      this.flash.show('Fisketegn refunderet!', {cssClass: 'alert-success', timeout: 3000})
+      this.flash.show(this.translate.instant('FlashMsq.Fisketegn blev refunderet'), {cssClass: 'alert-success', timeout: 3000})
         this.getLicenses(this.form.value.SearchUser);
     }, err => {
-      this.flash.show('Noget gik galt!', {cssClass: 'alert-danger', timeout: 3000})
+      this.flash.show(this.translate.instant('FlashMsq.something-went-wrong'), {cssClass: 'alert-danger', timeout: 3000})
     })
   }
 }

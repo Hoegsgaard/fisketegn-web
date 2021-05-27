@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FlashMessagesService} from 'angular2-flash-messages';
 import { FormControl, FormGroup} from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-buyFritidsfisketegn',
@@ -30,7 +31,8 @@ export class BuyFritidsfisketegnComponent implements OnInit {
     private auth : AuthService,
     private router : Router,
     private flash : FlashMessagesService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private translate: TranslateService
     ) {}
 
   ngOnInit(): void {
@@ -58,42 +60,42 @@ export class BuyFritidsfisketegnComponent implements OnInit {
 
     // Valider at alle felter er udfyldt
     if(!this.validateServide.validateBuyLicense(user)){
-      this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
+      this.flash.show(this.translate.instant('FlashMsq.all-fields-requred'), {cssClass: 'alert-danger', timeout: 3000});
       this.loading = false;
       return false;
     }
 
     // Valider at CPR nummer indeholder 10 tegn
     if(!this.validateServide.validateCPR(user.cpr)){
-      this.flash.show('CPR nummer skal indeholde 10 tal', {cssClass: 'alert-danger', timeout: 3000});
+      this.flash.show(this.translate.instant('FlashMsq.cpr-ten-digts'), {cssClass: 'alert-danger', timeout: 3000});
       this.loading = false;
       return false;
     }
     
     // Valider at postnummer indeholder 4 tegn
     if(!this.validateServide.validateZipcode(user.zipCode)){
-      this.flash.show('Postnummer skal være på 4 tal', {cssClass: 'alert-danger', timeout: 3000});
+      this.flash.show(this.translate.instant('FlashMsq.zipcode-four-digts'), {cssClass: 'alert-danger', timeout: 3000});
       this.loading = false;
       return false;
     }
 
     // Vlider at de indtastede passwords er ens
     if(!this.validateServide.validateEqualPassword(user)){
-      this.flash.show('Password skal være ens', {cssClass: 'alert-danger', timeout: 3000});
+      this.flash.show(this.translate.instant('FlashMsq.password-must-match'), {cssClass: 'alert-danger', timeout: 3000});
       this.loading = false;
       return false;
     }
 
     // Valider at password er sikkert
     if(!this.validateServide.validateSecurePassword(user.password)){
-      this.flash.show('Password er ikke sikkert nok. Password skal mindst indeholde 10 tegen, både tal, store og små bokstaver', {cssClass: 'alert-danger', timeout: 10000});
+      this.flash.show(this.translate.instant('FlashMsq.password-must-be-safe'), {cssClass: 'alert-danger', timeout: 10000});
       this.loading = false;
       return false;
     }
 
     // Validate Email by regex
     if(!this.validateServide.validateEmail(user.email)){
-      this.flash.show('Email er ugyldig', {cssClass: 'alert-danger', timeout: 3000});
+      this.flash.show(this.translate.instant('FlashMsq.email-invalid'), {cssClass: 'alert-danger', timeout: 3000});
       this.loading = false;
       return false;
     } 
@@ -101,17 +103,17 @@ export class BuyFritidsfisketegnComponent implements OnInit {
     // Buy License
     this.auth.buyLicense(user).subscribe(data => {
       const res = (data as any);
-      this.flash.show(`Fisketegn oprettet`, {cssClass: 'alert-success', timeout: 3000});
+      this.flash.show(this.translate.instant('FlashMsq.license-created'), {cssClass: 'alert-success', timeout: 3000});
       this.auth.storeToken(res.body.token)
       this.router.navigate(['/profile']) 
     }, err => {
       switch(err.status) {
         case 401: { 
-          this.flash.show("Email og password stemmer ikke over ens", {cssClass: 'alert-danger', timeout: 3000}); 
+          this.flash.show(this.translate.instant('FlashMsq.invalid-credentials'), {cssClass: 'alert-danger', timeout: 3000}); 
           break; 
         } 
         default: { 
-          this.flash.show("Noget gik galt, prøv igen", {cssClass: 'alert-danger', timeout: 3000});
+          this.flash.show(this.translate.instant('FlashMsq.something-went-wrong'), {cssClass: 'alert-danger', timeout: 3000});
           break; 
         } 
       }

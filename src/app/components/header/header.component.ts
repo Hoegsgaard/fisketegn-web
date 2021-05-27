@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { dashCaseToCamelCase } from '@angular/compiler/src/util';
 
 
 @Component({
@@ -43,7 +42,6 @@ export class HeaderComponent implements OnInit {
       this.sysLang = "de";
     }
     this.translate.use(this.sysLang);
-    console.log(language)
   }
 
 

@@ -5,6 +5,7 @@ import { UserService } from '../../services/user.service'
 import { FormControl, FormGroup} from '@angular/forms';
 import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ValidateService } from '../../services/validate.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -47,7 +48,8 @@ export class ProfileComponent implements OnInit {
     private flash : FlashMessagesService,
     private modalService: NgbModal,
     private userService : UserService,
-    private validateServide : ValidateService
+    private validateServide : ValidateService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -57,20 +59,16 @@ export class ProfileComponent implements OnInit {
   getUser(){
     this.auth.getUser().subscribe(data => {   
       this.res = (data.body as any)
-      console.log(this.res)
       this.firstnamePH = this.res.firstName;
       this.lastnamePH = this.res.lastName;
       this.cprPH = this.res.cpr;
       this.emailPH = this.res.email;
       this.addressPH = this.res.address;
       this.zipcodePH = this.res.zipCode;
-      //this.res = (data.body as any)
-      //this.res = this.auth.getUser();
 
       this.disableForm();
     },
     err => {
-      console.log(err);
       return false;
     })
   }
@@ -83,8 +81,7 @@ export class ProfileComponent implements OnInit {
     this.in.forEach((element: { endDate: string; endDateNumber: number; type: string; deletedFlag: any; renewable: boolean; }) => {
       let endDate = element.endDate.split("/",3);
       element.endDateNumber = Date.parse(endDate[2]+"-"+endDate[1]+"-"+endDate[0]);
-      console.log((element.endDateNumber.valueOf() - today.valueOf())/(1000 * 3600 * 24));
-      if((element.endDateNumber.valueOf() - today.valueOf())/(1000 * 3600 * 24) <= 30 && (element.type == "y" || element.type == "f") && !element.deletedFlag){
+      if((element.endDateNumber.valueOf() - today.valueOf())/(1000 * 3600 * 24) <= 30 && (element.endDateNumber.valueOf() - today.valueOf())/(1000 * 3600 * 24) > 0 && (element.type == "y" || element.type == "f") && !element.deletedFlag){
         element.renewable = true;
         
       }else{
@@ -97,7 +94,6 @@ export class ProfileComponent implements OnInit {
       return b.endDateNumber - a.endDateNumber;
     })
     this.licenseList = this.in
-    console.log(this.in)
   });
   }
 
@@ -109,7 +105,6 @@ export class ProfileComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
     this.selectedLicense = license;
-    console.log(license)
   }
   open(content: any) {
     const modalRef = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
@@ -169,7 +164,6 @@ export class ProfileComponent implements OnInit {
 
   changeCountry(language: string){
     this.selectedCountry = language
-    console.log(language)
   }
 
   onUpdateUser(){
@@ -185,15 +179,14 @@ export class ProfileComponent implements OnInit {
       country: formValue.Country ? formValue.Country : this.res.country
     }
     if(!this.validateServide.validateUpdateUser(user, this.res)){
-      this.flash.show('Mindst et skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
+      this.flash.show(this.translate.instant('FlashMsq.fill-at-least-one'), {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
     this.auth.updateUser(user).subscribe(data => {
-      this.flash.show('Oplysninger opdateret.', {cssClass: 'alert-success', timeout: 3000})
-      console.log(user)
+      this.flash.show(this.translate.instant('FlashMsq.info-updated'), {cssClass: 'alert-success', timeout: 3000})
       this.getUser();
     }, err=> {
-      this.flash.show('Noget gik galt, prøv igen', {cssClass: 'alert-danger', timeout: 3000})
+      this.flash.show(this.translate.instant('FlashMsq.something-went-wrong'), {cssClass: 'alert-danger', timeout: 3000})
       return false
     });
 
@@ -202,7 +195,7 @@ export class ProfileComponent implements OnInit {
 
   onRenewLicense(license: any){
     this.auth.renewLicense({licenseID: license}).subscribe(data => {
-      this.flash.show('Fisketegn fornyet!', {cssClass: 'alert-success', timeout: 3000})
+      this.flash.show(this.translate.instant('FlashMsq.license-renewed'), {cssClass: 'alert-success', timeout: 3000})
         this.getLicenses();
     }) 
   }
@@ -216,19 +209,19 @@ export class ProfileComponent implements OnInit {
 
     // Valider at alle felter er udfyldt
     if(!this.validateServide.validateUpdatePassword(updatePassword)){
-      this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
+      this.flash.show(this.translate.instant('FlashMsq.all-fields-requred'), {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
 
     // Vlider at de indtastede passorews er ens
     if(!this.validateServide.validateEqualPassword(updatePassword)){
-      this.flash.show('Password skal være ens', {cssClass: 'alert-danger', timeout: 3000});
+      this.flash.show(this.translate.instant('FlashMsq.password-must-match'), {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
 
     // Valider at password er sikkert
     if(!this.validateServide.validateSecurePassword(updatePassword.password)){
-      this.flash.show('Password er ikke sikkert nok. Password skal mindst indeholde 10 tegen, både tal, store og små bokstaver', {cssClass: 'alert-danger', timeout: 10000});
+      this.flash.show(this.translate.instant('FlashMsq.password-must-be-safe'), {cssClass: 'alert-danger', timeout: 10000});
       return false;
     }
 
@@ -239,15 +232,15 @@ export class ProfileComponent implements OnInit {
     }
     this.userService.updatePassword(update).subscribe(data => {   
       this.getUser()
-      this.flash.show("Password er ændret", {cssClass: 'alert-success', timeout: 3000}); 
+      this.flash.show(this.translate.instant('FlashMsq.password-changed'), {cssClass: 'alert-success', timeout: 3000}); 
     }, err => {
       switch(err.status) { 
         case 401: { 
-          this.flash.show("Gammelt password er ikke korrekt", {cssClass: 'alert-danger', timeout: 3000}); 
+          this.flash.show(this.translate.instant('FlashMsq.old-password-wrong'), {cssClass: 'alert-danger', timeout: 3000}); 
           break; 
         } 
         default: { 
-          this.flash.show("Noget gik galt, prøv igen", {cssClass: 'alert-danger', timeout: 3000});
+          this.flash.show(this.translate.instant('FlashMsq.something-went-wrong'), {cssClass: 'alert-danger', timeout: 3000});
           break; 
         } 
       } 

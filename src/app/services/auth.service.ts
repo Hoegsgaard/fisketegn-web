@@ -38,7 +38,6 @@ export class AuthService {
 
   logout(){
     this.token = null;
-    console.log()
     localStorage.removeItem('fiskeToken');
   }
 
