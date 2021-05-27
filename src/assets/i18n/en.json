@@ -147,5 +147,30 @@
     "doesnt-exist": "findes ikke",
     "users-role-is-now": "Brugerens rolle er nu",
     "license-refund": "Fisketegn blev refunderet"
+  },
+  "TypeLabels":{
+      "title": "Two types of fishing licenses",
+      "angler": "Anglers' fishing license",
+      "hobby": "Hobby fishing license",
+      "angler-fisher": "Angler",
+      "hobby-fisher": "Recreational fisherman",
+      "angler-description": "If you fish with light fishing tackle, you should have an angler's fishing licence. Hand fishing tackle comprises for example fishing rod, jig and harpoon - tackle that you fish actively with.",
+      "hobby-description": "If you fish with tackle such as nets, traps and hooks, you should have a recreational fisherman's licence. The tackle fishes passively without you having to be present.",
+      "angler-excl-one": "Who do",
+      "angler-excl-two": "not",
+      "angler-excl-three": "need an angler's fishing licence?",
+      "angler-list-one": "Persons under the age of 18",
+      "angler-list-two": "Persons, who have achieved the right to a state pension",
+      "angler-list-three": "Recreational fishermen who already have a recreational fisherman's licence",
+      "angler-list-four-a": "The owner of the lot lying closest to the",
+      "angler-list-four-b": "fresh water ",
+      "angler-list-four-c": "used for fishing and the rest of his household",
+      "angler-list-five": "Anglers fishing in \"put and take\" lakes (trout lakes)",
+      "angler-end": "The fishing licence is personal and must not be used by others - neither persons in the family nor persons with the same address. ",
+      "hobby-req": "To be a recreational fisherman, you should:",
+      "hobby-list-one": "Be 12 years old (there is no upper age limit)",
+      "hobby-list-two": "Have permanent residence in Denmark unless you come from an EU country, Iceland or Norway and for example on account of your work have close affiliations to Denmark.",
+      "hobby-end-one": "You must have a hobby fishing licence, even if you have achieved the right to a state pension.",
+      "hobby-end-two": "The fishing licence is personal and must not be used by others - neither persons in the family nor persons with the same address."
   }
 }
