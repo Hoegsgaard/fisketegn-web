@@ -9,7 +9,10 @@
     <ul class="navbar-nav mr-auto navbar">
 
       <li class="nav-item">
-        <a *ngIf="auth.isLoggedIn()" class="nav-link" [routerLink]="['/profile']" routerLinkActive="activeLink">{{'NavbarLabels.profile' | translate}}</a>
+        <a *ngIf="auth.isLoggedIn() && !auth.isAdmin()" class="nav-link" [routerLink]="['/profile']" routerLinkActive="activeLink">{{'NavbarLabels.profile' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a *ngIf="auth.isLoggedIn() && auth.isAdmin()" class="nav-link" [routerLink]="['/adminbruger']" [routerLinkActive]="['activeLink']">{{'NavbarLabels.admin-user' | translate}}</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/buyLystfisketegn']" routerLinkActive="activeLink">{{'NavbarLabels.angler' | translate}}</a>
