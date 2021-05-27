@@ -2,39 +2,43 @@
   <div class=" wrapper col">
     <h2>{{'FrontpageLabels.welcome' | translate}}</h2>
     <div class="row">
-      <div class="form-group col">
+      <div class="col">
         <div>
-          <a class="flex-logo clicker" (click)="open(content)"><img src="assets/img/Lystfisketegn.jpeg"></a>
+          <a class="flex-logo clicker" (click)="open(content)"><img class= "frontpage-image" src="assets/img/Lystfisketegn.jpeg"></a>
         </div>
-        <div class="bg-info">
-          <a class="flex-logo text-white clicker" (click)="open(content)"><p>{{'FrontpageLabels.buy' | translate}}</p></a>
+        <div class="bg-info frontpage-box" >
+          <a class="flex-logo text-white clicker" (click)="open(content)">
+            <p class = "frontpage-text">{{'FrontpageLabels.buy' | translate}}</p>
+          </a>
         </div>
       </div>
-      <div class="form-group col">
+      <div class=" col">
         <div>
-          <a href="/profile"><img src="assets/img/forny-fisketegn.jpg"></a>
+          <a href="/profile"><img class= "frontpage-image" src="assets/img/forny-fisketegn.jpg"></a>
         </div>
-        <div class="bg-info text-white">
+        <div class="bg-info frontpage-box">
           <a class="flex-logo text-white clicker" href="/profile">
-            <p>{{'FrontpageLabels.renew' | translate}}</p>
+            <p class = "frontpage-text">{{'FrontpageLabels.renew' | translate}}</p>
           </a>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="form-group col">
+      <div class=" col">
         <div>
-          <img src="assets/img/Genudsaetning.jpg">
+          <img class= "frontpage-image" src="assets/img/Genudsaetning.jpg">
         </div>
-        <div class="bg-info text-white">
-          <p>{{'FrontpageLabels.did-you-know' | translate}}</p>
-          <ul>
-            <li>{{'FrontpageLabels.dyk-one' | translate}}</li>
-            <li>{{'FrontpageLabels.dyk-two' | translate}}</li>
-            <li>{{'FrontpageLabels.dyk-three' | translate}}</li>
-          </ul>
-          <p>{{'FrontpageLabels.dyk-four' | translate}}</p>
-          <a class="text-white" href="https://www.fiskepleje.dk/">{{'FrontpageLabels.read-more' | translate}}</a>
+        <div class="bg-info text-white frontpage-box">
+          <div class = "frontpage-text">
+            <p>{{'FrontpageLabels.did-you-know' | translate}}</p>
+            <ul>
+              <li>{{'FrontpageLabels.dyk-one' | translate}}</li>
+              <li>{{'FrontpageLabels.dyk-two' | translate}}</li>
+              <li>{{'FrontpageLabels.dyk-three' | translate}}</li>
+            </ul>
+            <p>{{'FrontpageLabels.dyk-four' | translate}}</p>
+            <a class="text-white" href="https://www.fiskepleje.dk/">{{'FrontpageLabels.read-more' | translate}}</a>
+          </div>
         </div>
       </div>
       
@@ -53,9 +57,9 @@
   </div>
   <div class="modal-body">
     <div class="row">
-      <div class="form-group col">
+      <div class=" col">
         <div>
-          <a href="buyLystfisketegn"><img src="../../../assets/img/Lystfisketegn.jpeg"></a>
+          <a href="buyLystfisketegn"><img class= "frontpage-image" src="../../../assets/img/Lystfisketegn.jpeg"></a>
         </div>
         <div>
           <a href="buyLystfisketegn">
@@ -63,9 +67,9 @@
           </a>
         </div>
       </div>
-      <div class="form-group col">
+      <div class=" col">
         <div>
-          <a href="buyFritidsfisketegn"><img src="../../../assets/img/fritidsfisketegn.jpeg"></a>
+          <a href="buyFritidsfisketegn"><img class= "frontpage-image" src="../../../assets/img/fritidsfisketegn.jpeg"></a>
         </div>
         <div>
           <a href="buyFritidsfisketegn"><p class="popupTest bg-info text-white">{{'FrontpageLabels.hobby' | translate}}</p></a>

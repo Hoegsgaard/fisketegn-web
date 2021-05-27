@@ -14,6 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class BuyFritidsfisketegnComponent implements OnInit {
   loading = false;
+  res: any
   form = new FormGroup({
     FirstName: new FormControl(''),
     LastName: new FormControl(''),
@@ -36,9 +37,46 @@ export class BuyFritidsfisketegnComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+    if(this.auth.isLoggedIn()){
+      this.getUser()
+    }
+  }
+
+  getUser(){
+    this.auth.getUser().subscribe(data =>{
+    this.res = (data.body as any)
+    this.disableForm();
+    this.form.get('FirstName')?.setValue(this.res?.firstName);
+    this.form.get('LastName')?.setValue(this.res?.lastName);
+    this.form.get('CPR')?.setValue(this.res?.cpr);
+    this.form.get('Email')?.setValue(this.res?.email);
+    this.form.get('Address')?.setValue(this.res?.address);
+    this.form.get('ZipCode')?.setValue(this.res.zipCode);
+    this.form.get('CountryDisabled')?.setValue(this.res.country)
+    console.log(this.res)
+  })
+  }
+
+  activateForm(){
+    this.form.get('FirstName')?.enable();
+    this.form.get('LastName')?.enable();
+    this.form.get('CPR')?.enable();
+    this.form.get('Email')?.enable();
+    this.form.get('Address')?.enable();
+    this.form.get('ZipCode')?.enable();
+  }
+
+  disableForm(){
+    this.form.get('FirstName')?.disable();
+    this.form.get('LastName')?.disable();
+    this.form.get('CPR')?.disable();
+    this.form.get('Email')?.disable();
+    this.form.get('Address')?.disable();
+    this.form.get('ZipCode')?.disable();
   }
 
   onRegisterSubmit(){
+    this.activateForm();
     this.loading = true;
     let formValue = this.form.value;
 
@@ -57,6 +95,7 @@ export class BuyFritidsfisketegnComponent implements OnInit {
       password: formValue.Password,
       gentagPassword: formValue.gentagPassword
     }
+    this.disableForm();
 
     // Valider at alle felter er udfyldt
     if(!this.validateServide.validateBuyLicense(user)){

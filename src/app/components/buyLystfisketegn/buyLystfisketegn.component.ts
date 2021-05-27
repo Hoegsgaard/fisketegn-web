@@ -15,6 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class buyLystfisketegnComponent implements OnInit {
   loading= false;
   selectedCountry = "Danmark"
+  res: any
   form = new FormGroup({
     FirstName: new FormControl(''),
     LastName: new FormControl(''),
@@ -24,6 +25,7 @@ export class buyLystfisketegnComponent implements OnInit {
     Address: new FormControl(''),
     ZipCode: new FormControl(''),
     Country: new FormControl('Danmark'),
+    CountryDisabled: new FormControl(''),
     Type: new FormControl('y'),
     HighQuality: new FormControl(''),
     StartDate: new FormControl(''),
@@ -33,13 +35,31 @@ export class buyLystfisketegnComponent implements OnInit {
 
   constructor(
     private validateServide: ValidateService,
-    private auth : AuthService,
+    public auth : AuthService,
     private router : Router,
     private flash : FlashMessagesService,
     private translate: TranslateService
     ) {}
   ngOnInit(): void {
     this.disableStartDate();
+    if(this.auth.isLoggedIn()){
+      this.getUser()
+    }
+  }
+
+  getUser(){
+    this.auth.getUser().subscribe(data =>{
+    this.res = (data.body as any)
+    this.disableForm();
+    this.form.get('FirstName')?.setValue(this.res?.firstName);
+    this.form.get('LastName')?.setValue(this.res?.lastName);
+    this.form.get('CPR')?.setValue(this.res?.cpr);
+    this.form.get('Email')?.setValue(this.res?.email);
+    this.form.get('Address')?.setValue(this.res?.address);
+    this.form.get('ZipCode')?.setValue(this.res.zipCode);
+    this.form.get('CountryDisabled')?.setValue(this.res.country)
+    console.log(this.res)
+  })
   }
 
   disableStartDate(){
@@ -66,7 +86,28 @@ export class buyLystfisketegnComponent implements OnInit {
     this.selectedCountry = country
   }
 
+  activateForm(){
+    this.form.get('FirstName')?.enable();
+    this.form.get('LastName')?.enable();
+    this.form.get('CPR')?.enable();
+    this.form.get('Email')?.enable();
+    this.form.get('Address')?.enable();
+    this.form.get('ZipCode')?.enable();
+    this.form.get('CountryDisabled')?.enable();
+  }
+
+  disableForm(){
+    this.form.get('FirstName')?.disable();
+    this.form.get('LastName')?.disable();
+    this.form.get('CPR')?.disable();
+    this.form.get('Email')?.disable();
+    this.form.get('Address')?.disable();
+    this.form.get('ZipCode')?.disable();
+    this.form.get('CountryDisabled')?.disable();
+  }
+
   onRegisterSubmit(){
+    this.activateForm();
     this.loading = true;
     let formValue = this.form.value;
 
@@ -101,7 +142,7 @@ export class buyLystfisketegnComponent implements OnInit {
       password: formValue.Password,
       gentagPassword: formValue.gentagPassword
     }
-
+    this.disableForm();
     // Valider at alle felter er udfyldt
     if(!this.validateServide.validateBuyLicense(user)){
       this.flash.show(this.translate.instant('FlashMsq.all-fields-requred'), {cssClass: 'alert-danger', timeout: 3000});
