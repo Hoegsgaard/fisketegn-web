@@ -1,13 +1,13 @@
 <div class="row justify-content-center">
   <div class=" wrapper col">
-    <h2>Velkommen til Fisketegn</h2>
+    <h2>{{'FrontpageLabels.welcome' | translate}}</h2>
     <div class="row">
       <div class="form-group col">
         <div>
           <a class="flex-logo clicker" (click)="open(content)"><img src="assets/img/Lystfisketegn.jpeg"></a>
         </div>
         <div class="bg-info">
-          <a class="flex-logo text-white clicker" (click)="open(content)"><p>Køb Fisketegn</p></a>
+          <a class="flex-logo text-white clicker" (click)="open(content)"><p>{{'FrontpageLabels.buy' | translate}}</p></a>
         </div>
       </div>
       <div class="form-group col">
@@ -16,7 +16,7 @@
         </div>
         <div class="bg-info text-white">
           <a class="flex-logo text-white clicker" href="/profile">
-            <p>Forny Fisketegn</p>
+            <p>{{'FrontpageLabels.renew' | translate}}</p>
           </a>
         </div>
       </div>
@@ -27,14 +27,14 @@
           <img src="assets/img/Genudsaetning.jpg">
         </div>
         <div class="bg-info text-white">
-          <p>Vidste du at indtægterne fra salg af fisketegn går til fiskepleje:</p>
+          <p>{{'FrontpageLabels.did-you-know' | translate}}</p>
           <ul>
-            <li>Udsætning af fisk - fx havørred og pighvar</li>
-            <li>Vandløbsrestaurering, som hjælper udviklingen af fiskebestande</li>
-            <li>Ny viden om fiskenes adfærd</li>
+            <li>{{'FrontpageLabels.dyk-one' | translate}}</li>
+            <li>{{'FrontpageLabels.dyk-two' | translate}}</li>
+            <li>{{'FrontpageLabels.dyk-three' | translate}}</li>
           </ul>
-          <p>I hele landet hjælper frivillige med projekterne.</p>
-          <a class="text-white" href="https://www.fiskepleje.dk/">Læs mere om fiskepleje</a>
+          <p>{{'FrontpageLabels.dyk-four' | translate}}</p>
+          <a class="text-white" href="https://www.fiskepleje.dk/">{{'FrontpageLabels.read-more' | translate}}</a>
         </div>
       </div>
       
@@ -46,7 +46,7 @@
 <!--Popup til valg af  fisketgnstyppe-->
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Fisketegnstyppe</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{'FrontpageLabels.type' | translate}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -59,7 +59,7 @@
         </div>
         <div>
           <a href="buyLystfisketegn">
-            <p class="popupTest bg-info text-white">Lystfisketegn</p>
+            <p class="popupTest bg-info text-white">{{'FrontpageLabels.angler' | translate}}</p>
           </a>
         </div>
       </div>
@@ -68,14 +68,14 @@
           <a href="buyFritidsfisketegn"><img src="../../../assets/img/fritidsfisketegn.jpeg"></a>
         </div>
         <div>
-          <a href="buyFritidsfisketegn"><p class="popupTest bg-info text-white">Fritidsfisketegn</p></a>
+          <a href="buyFritidsfisketegn"><p class="popupTest bg-info text-white">{{'FrontpageLabels.hobby' | translate}}</p></a>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col popupTest">
         <a href="twoTyps">
-          <p>Lyst- eller Fritidsfisketegn? Læs omkring forskellene her</p>
+          <p>{{'FrontpageLabels.which-license' | translate}}</p>
         </a>
       </div>
     </div>
