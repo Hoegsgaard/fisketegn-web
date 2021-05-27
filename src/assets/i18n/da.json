@@ -62,7 +62,12 @@
         "new-password": "Nyt password",
         "repeat-password": "Gentag password",
         "change-password": "Skift password",
-        "are-you-sure": "Er du sikker på at du vil fornye fisketegn"
+        "are-you-sure": "Er du sikker på at du vil fornye fisketegn",
+        "type": "Type",
+        "hobby": "Fritidsfisketegn",
+        "angler-year": "Lystfisketegn - Årskort",
+        "angler-week": "Lystfisketegn - Ugekort",
+        "angler-day": "Lystfisketegn - Dagskort"
     },
     "FrontpageLabels": {
         "welcome": "Velkommen til Fisketegn",

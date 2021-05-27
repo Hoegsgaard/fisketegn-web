@@ -62,7 +62,12 @@
         "new-password": "New password",
         "repeat-password": "Repeat password",
         "change-password": "Change password",
-        "are-you-sure": "Are you sure you want to renew license with number"
+        "are-you-sure": "Are you sure you want to renew license with number",
+        "type": "Type",
+        "hobby": "Hobby license",
+        "angler-year": "Anglers' license - year",
+        "angler-week": "Anglers' license - week",
+        "angler-day": "Angler's license - day"
     },
     "FrontpageLabels": {
         "welcome": "Welcome to the fishing license system",
