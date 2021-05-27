@@ -89,7 +89,6 @@ export class ProfileComponent implements OnInit {
         this.licenseList.push(element)
       }
     });
-    console.log(this.licenseList)
   });
   }
 
@@ -196,12 +195,8 @@ export class ProfileComponent implements OnInit {
     this.auth.renewLicense({licenseID: license}).subscribe(data => {
       this.flash.show('Fisketegn fornyet!', {cssClass: 'alert-success', timeout: 3000})
         this.getLicenses();
-    })
-    
+    }) 
   }
-
-
-
 
   onRegisterNewPassword(){
     const updatePassword ={

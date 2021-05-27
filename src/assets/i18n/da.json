@@ -1,112 +1,125 @@
 {
-    "HeaderLabels": {
-        "help": "Hjælp",
-        "faq": "Spørgsmål og svar",
-        "contact": "Kontakt",
-        "aboutAgency": "Om Fiskeristyrelsen",
-        "aboutLicense": "Om lyst- og fritidsfiskeri",
-        "log-in": "LOG IND",
-        "log-off": "LOG AF"
-    },
-    "FooterLabels":{
-        "title": "Fisketegn",
-        "phone": "Tlf.",
-        "email": "Email",
-        "opening-hours-label": "Åbningstider for fisketegntelefonen",
-        "opening-hours": "Mandag - Fredag 10.00-14.00",
-        "cvr": "CVR nr.",
-        "ean": "EAN nr."
-    },
-    "NavbarLabels":{
-        "title": "Fisketegn",
-        "profile": "Profil",
-        "angler": "Køb lystfisketegn",
-        "hobby": "Køb fritidsfisketegn"
-    },
-    "formLabels":{
-        "profile-title": "Din profil",
-        "angler-title": "Køb Lystfisketegn",
-        "hobby-title": "Køb Fritidsfisketegn",
-        "firstname": "Fornavn",
-        "lastname": "Efternavn",
-        "cpr": "CPR nummer",
-        "email": "Email",
-        "address": "Adresse",
-        "zipcode": "Postnummer",
-        "country": "Land",
-        "highquality": "Tilsend fisketegn af høj kvalitet",
-        "license-type": "Fisketegnstype",
-        "year-license": "Årskort",
-        "week-license": "Ugekort",
-        "day-license": "Dagskort",
-        "start-label": "Hvornår skal fisketegnet gælde fra",
-        "password": "Password",
-        "repeat-password": "Gentag password",
-        "buy-license": "Køb fisketegn",
-        "edit": "Rediger",
-        "save": "Gem",
-        "cancel": "Annuler",
-        "change-password": "Skift password"
-    },
-    "LicenseLabels": {
-        "title": "Licenser",
-        "number": "Licensnummer",
-        "expiration": "Udløbsdato",
-        "status": "Status",
-        "active": "Aktiv",
-        "inactive": "Udløbet",
-        "deleted": "Slettet",
-        "renew": "Forny",
-        "renew-license": "Forny fisketegn",
-        "old-password": "Gammel password",
-        "new-password": "Nyt password",
-        "repeat-password": "Gentag password",
-        "change-password": "Skift password",
-        "are-you-sure": "Er du sikker på at du vil fornye fisketegn"
-    },
-    "FrontpageLabels": {
-        "welcome": "Velkommen til Fisketegn",
-        "buy": "Køb Fisketegn",
-        "renew": "Forny Fisketegn",
-        "did-you-know": "Vidste u at indtægterne fra salg af fisketegn går til fiskepleje:",
-        "dyk-one": "Udsætning af fisk - fx havørred og pighvar",
-        "dyk-two": "Vandløbsrestaurering. som hjælper udviklingen af fiskebestande",
-        "dyk-three": "Ny viden om fiskenes adfær",
-        "dyk-four": "I hele landet hjælper frivillige med projekterne",
-        "read-more": "Læs mere om fiskepleje",
-        "type": "Fisketegnstype",
-        "angler": "Lystfisketegn",
-        "hobby":"Fritidsfisketegn",
-        "which-license": "Lyst- eller Fritidsfisketegn? Læs mere omkring forskellene her"
-    },
-    "PageMissingLabels":{
-        "not-found": "Siden findes ikke",
-        "go-back": "Gå tilbage til forsiden"
-    },
-    "ContactLabels":{
-        "contact": "Kontakt fiskeristyrelsen",
-        "days": "Fisketegn kan kontaktes: mandag-fredag fra ",
-        "phone": "Tlf."
-    },
-    "HelpLabels":{
-        "title": "Hjælpetekster",
-        "description": " Dette dokument indeholder hjælp til Fisketegnsystemet.",
-        "frontpage": "Forside",
-        "login-label": "Login",
-        "buy-hobby-label": "Køb fritidsfisketegn",
-        "renew-hobby-label": "forny fritidsfisketegn",
-        "buy-angler-label": "Køb lystfisketegn",
-        "renew-angler-label": "Forny lystfisketegn",
-        "get-help-label": "Hvordan får man hjælp?"
-    },
-    "HelpTexts":{
-        "introduction": "Fra denne side gives mulighed for at købe fritidsfisketegn, købe lystfisketegn, forny fisketegn og logge ind som fisker eller udsalgssted.\n\nMan er lystfisker når man fisker med stang. Man er fritidsfisker når man fisker med garn eller andre faststående redskaber.\n\nFiskeristyrelsens adresse m.v. er anført nederst på siden.\n\nAlle priser angivet vedr. køb af fisketegn m.v. er inklusive gebyrer og leveringsomkostninger. Der er ikke moms på fisketegn.\n\nFor købere af fisketegn gemmes en række oplysninger. Det er bl.a. navn- og adresseoplysninger, CPR-nr. (hvis angivet), e-mail-adresse (hvis angivet), fiskerinummer, fisketegnstype, gyldighedsperiode for fisketegn, registreringsdato for oplysningerne, samt kvitteringskode for betaling.\n\nOplysningerne vedrørende køb af fisketegn gemmes i 5 år efter købet. Hvis fisketegnet fornys, gemmes oplysningerne 5 år fra fornyelsesdato. Hvis fisketegnet ikke har været benyttet/fornyet slettes oplysningerne efter 5 år.\n\nHjemmesidens tjenesteydelser opfylder i øvrigt \"Lov nr. 227 af 22. april 2002 om tjenester i informationssamfundet, herunder visse aspekter af elektronisk handel\". Desuden opfylder hjemmesidens tjenesteydelser Forbrugerombudsmandensretningslinjer,specielt retningslinierne vedr. elektronisk betaling.",
-        "login": "Login kan benyttes af fiskere og udsalgssteder.\n\nEn fisker, som allerede har et fritidsfisketegn eller et lystfisketegn årskort, kan logge ind ved at indtaste fiskerinummer i \"Bruger ID\" og vedkommendes postnummer i \"Kodeord\".\n\nFor et udsalgssted gælder, at et udsalgssted som er registreret i systemet, kan logge på ved at indtaste udsalgsstedets butiksnummer i \"Bruger ID\" og det tildelte eller rettede kodeord i \"Kodeord\".",
-        "buy-hobby": "Ved køb af fritidsfisketegn udfyldes skærmen med en række oplysninger.\n\nNår dette er sket klikkes på \"Tilføj til kurv\". Hvis der ikke skal købes flere fritidsfisketegn, klikkes på \"Gå til betaling\".\n\nHvis der skal købes flere fritidsfisketegn, udfyldes felterne med nye oplysninger og der klikkes igen på \"Tilføj til kurv\". Fisketegnet vil blive placeret i kurven sammen med de(t) forrige.\n\nDette fortsættes indtil der ikke ønskes købt flere fritidsfisketegn. Herefter trykkes på \"Gå til betaling\".\n\nMan kommer herefter til et nyt skærmbillede, hvor man udfylder betalingsoplysningerne som angivet i vejledningen på skærmen.\n\nBetalingen foretages og meddelelse om hvorvidt betalingen er gennemført eller ej, vil fås på skærmen.\n\nHvis betalingen er gennemført, kan man herefter printe sit fisketegn ud enten i tekst- eller i PDF-format. Adobe Acrobat Reader er nødvendig for at kunne læse PDF-format. Acrobat Reader kan downloades vha. link på printsiden.",
-        "renew-hobby": "Fiskeren får her mulighed at forny et allerede eksisterende fritidsfisketegn. Hvis fornyelsen sker inden udløb af allerede eksisterende fisketegn, vil fritidsfisketegnet blive fornyet i forlængelse af fritidsfisketegnets nuværende gyldighedsperiode. Ellers vil fritidsfisketegnet få en gyldighedsperiode fra dags dato og 1 år frem.",
-        "buy-angler": "Ved køb af lystfisketegn udfyldes skærmen med en række oplysninger.\n\nHusk at angive om lystfisketegnet skal være et dag-, uge- eller årskort.\n\nNår dette er sket klikkes på \"Tilføj til kurv\". Hvis der ikke skal købes flere lystfisketegn, klik på \"Gå til betaling\".\n\nHvis der skal købes flere lystfisketegn, udfyldes felterne med nye oplysninger og der klikkes igen på \"Tilføj til kurv\". Lystfisketegnet vil blive placeret i kurven sammen med de(t) forrige.\n\nDette fortsættes indtil der ikke ønskes købt flere lystfisketegn. Herefter trykkes på \"Gå til betaling\".\n\nMan kommer herefter til et nyt skærmbillede, hvor man udfylder betalingsoplysningerne som angivet i vejledningen på skærmen.\n\nBetalingen foretages og meddelelse om hvorvidt betalingen er gennemført eller ej, vil fås på skærmen.\nHvis betalingen er gennemført, kan man herefter printe sit fisketegn ud enten i tekst- eller PDF-format. Adobe Acrobat Reader er nødvendig for at kunne læse PDF-format. Acrobat Reader kan downloades vha. link på printsiden.",
-        "renew-angler": "Fiskeren får her mulighed at forny et allerede eksisterende lystfisketegn. Hvis fornyelsen sker inden udløb af allerede eksisterende lystfisketegn, vil lystfisketegnet blive fornyet i forlængelse af lystfisketegnets nuværende gyldighedsperiode. Ellers vil lystfisketegnet få en gyldighedsperiode fra dags dato og 1 år frem.",
-        "get-help": "Alle eventuelle spørgsmål om: Hjemmesiden, regelsættet, betalinger m.v. skal rettes til Fiskeristyrelsen, helst via e-mail: fisketegn@fiskeristyrelsen.dk, ellers på telefon 7218 5606, (tlf.tid: mandag, tirsdag, onsdag og fredag: 9-12, torsdag 13-15).\n\nEller via alm. post:\nFiskeristyrelsen\nNyropsgade 30\n1780 København V."
-    }
-}
+  "HeaderLabels": {
+    "help": "Hjælp",
+    "faq": "Spørgsmål og svar",
+    "contact": "Kontakt",
+    "aboutAgency": "Om Fiskeristyrelsen",
+    "aboutLicense": "Om lyst- og fritidsfiskeri",
+    "log-in": "LOG IND",
+    "log-off": "LOG AF"
+  },
+  "FooterLabels": {
+    "title": "Fisketegn",
+    "phone": "Tlf.",
+    "email": "Email",
+    "opening-hours-label": "Åbningstider for fisketegntelefonen",
+    "opening-hours": "Mandag - Fredag 10.00-14.00",
+    "cvr": "CVR nr.",
+    "ean": "EAN nr."
+  },
+  "NavbarLabels": {
+    "title": "Fisketegn",
+    "profile": "Profil",
+    "angler": "Køb lystfisketegn",
+    "hobby": "Køb fritidsfisketegn",
+    "admin-user": "Administrer Bruger"
+  },
+  "formLabels": {
+    "profile-title": "Din profil",
+    "angler-title": "Køb Lystfisketegn",
+    "hobby-title": "Køb Fritidsfisketegn",
+    "firstname": "Fornavn",
+    "lastname": "Efternavn",
+    "cpr": "CPR nummer",
+    "email": "Email",
+    "address": "Adresse",
+    "zipcode": "Postnummer",
+    "country": "Land",
+    "highquality": "Tilsend fisketegn af høj kvalitet",
+    "license-type": "Fisketegnstype",
+    "year-license": "Årskort",
+    "week-license": "Ugekort",
+    "day-license": "Dagskort",
+    "start-label": "Hvornår skal fisketegnet gælde fra",
+    "password": "Password",
+    "repeat-password": "Gentag password",
+    "buy-license": "Køb fisketegn",
+    "edit": "Rediger",
+    "save": "Gem",
+    "cancel": "Annuler",
+    "change-password": "Skift password",
+    "role": "Role",
 
+    "admin-user-title": "Administrer Brugere",
+    "find-user": "Find bruger",
+    "serch-for-user": "Indtast brugers email",
+    "serch": "Søg efter bruger",
+    "cancel-search": "Annuler søgning",
+    "editRole": "Rediger rolle"
+  },
+  "LicenseLabels": {
+    "title": "Licenser",
+    "number": "Licensnummer",
+    "expiration": "Udløbsdato",
+    "status": "Status",
+    "active": "Aktiv",
+    "inactive": "Udløbet",
+    "deleted": "Slettet",
+    "renew": "Forny",
+    "renew-license": "Forny fisketegn",
+    "old-password": "Gammel password",
+    "new-password": "Nyt password",
+    "repeat-password": "Gentag password",
+    "change-password": "Skift password",
+    "are-you-sure": "Er du sikker på at du vil fornye fisketegn",
+    "refund": "Refunder",
+    "refund-license": "Refunder fisketegn",
+    "refund-are-you-sure": "Er du sikker på du vil refundere fisketegn",
+    "edit-role": "Rediger rolle",
+    "choose-role": "Hvilken rolle skal brugeren have?"
+  },
+  "FrontpageLabels": {
+    "welcome": "Velkommen til Fisketegn",
+    "buy": "Køb Fisketegn",
+    "renew": "Forny Fisketegn",
+    "did-you-know": "Vidste u at indtægterne fra salg af fisketegn går til fiskepleje:",
+    "dyk-one": "Udsætning af fisk - fx havørred og pighvar",
+    "dyk-two": "Vandløbsrestaurering. som hjælper udviklingen af fiskebestande",
+    "dyk-three": "Ny viden om fiskenes adfær",
+    "dyk-four": "I hele landet hjælper frivillige med projekterne",
+    "read-more": "Læs mere om fiskepleje",
+    "type": "Fisketegnstype",
+    "angler": "Lystfisketegn",
+    "hobby": "Fritidsfisketegn",
+    "which-license": "Lyst- eller Fritidsfisketegn? Læs mere omkring forskellene her"
+  },
+  "PageMissingLabels": {
+    "not-found": "Siden findes ikke",
+    "go-back": "Gå tilbage til forsiden"
+  },
+  "ContactLabels": {
+    "contact": "Kontakt fiskeristyrelsen",
+    "days": "Fisketegn kan kontaktes: mandag-fredag fra ",
+    "phone": "Tlf."
+  },
+  "HelpLabels": {
+    "title": "Hjælpetekster",
+    "description": " Dette dokument indeholder hjælp til Fisketegnsystemet.",
+    "frontpage": "Forside",
+    "login-label": "Login",
+    "buy-hobby-label": "Køb fritidsfisketegn",
+    "renew-hobby-label": "forny fritidsfisketegn",
+    "buy-angler-label": "Køb lystfisketegn",
+    "renew-angler-label": "Forny lystfisketegn",
+    "get-help-label": "Hvordan får man hjælp?"
+  },
+  "HelpTexts": {
+    "introduction": "Fra denne side gives mulighed for at købe fritidsfisketegn, købe lystfisketegn, forny fisketegn og logge ind som fisker eller udsalgssted.\n\nMan er lystfisker når man fisker med stang. Man er fritidsfisker når man fisker med garn eller andre faststående redskaber.\n\nFiskeristyrelsens adresse m.v. er anført nederst på siden.\n\nAlle priser angivet vedr. køb af fisketegn m.v. er inklusive gebyrer og leveringsomkostninger. Der er ikke moms på fisketegn.\n\nFor købere af fisketegn gemmes en række oplysninger. Det er bl.a. navn- og adresseoplysninger, CPR-nr. (hvis angivet), e-mail-adresse (hvis angivet), fiskerinummer, fisketegnstype, gyldighedsperiode for fisketegn, registreringsdato for oplysningerne, samt kvitteringskode for betaling.\n\nOplysningerne vedrørende køb af fisketegn gemmes i 5 år efter købet. Hvis fisketegnet fornys, gemmes oplysningerne 5 år fra fornyelsesdato. Hvis fisketegnet ikke har været benyttet/fornyet slettes oplysningerne efter 5 år.\n\nHjemmesidens tjenesteydelser opfylder i øvrigt \"Lov nr. 227 af 22. april 2002 om tjenester i informationssamfundet, herunder visse aspekter af elektronisk handel\". Desuden opfylder hjemmesidens tjenesteydelser Forbrugerombudsmandensretningslinjer,specielt retningslinierne vedr. elektronisk betaling.",
+    "login": "Login kan benyttes af fiskere og udsalgssteder.\n\nEn fisker, som allerede har et fritidsfisketegn eller et lystfisketegn årskort, kan logge ind ved at indtaste fiskerinummer i \"Bruger ID\" og vedkommendes postnummer i \"Kodeord\".\n\nFor et udsalgssted gælder, at et udsalgssted som er registreret i systemet, kan logge på ved at indtaste udsalgsstedets butiksnummer i \"Bruger ID\" og det tildelte eller rettede kodeord i \"Kodeord\".",
+    "buy-hobby": "Ved køb af fritidsfisketegn udfyldes skærmen med en række oplysninger.\n\nNår dette er sket klikkes på \"Tilføj til kurv\". Hvis der ikke skal købes flere fritidsfisketegn, klikkes på \"Gå til betaling\".\n\nHvis der skal købes flere fritidsfisketegn, udfyldes felterne med nye oplysninger og der klikkes igen på \"Tilføj til kurv\". Fisketegnet vil blive placeret i kurven sammen med de(t) forrige.\n\nDette fortsættes indtil der ikke ønskes købt flere fritidsfisketegn. Herefter trykkes på \"Gå til betaling\".\n\nMan kommer herefter til et nyt skærmbillede, hvor man udfylder betalingsoplysningerne som angivet i vejledningen på skærmen.\n\nBetalingen foretages og meddelelse om hvorvidt betalingen er gennemført eller ej, vil fås på skærmen.\n\nHvis betalingen er gennemført, kan man herefter printe sit fisketegn ud enten i tekst- eller i PDF-format. Adobe Acrobat Reader er nødvendig for at kunne læse PDF-format. Acrobat Reader kan downloades vha. link på printsiden.",
+    "renew-hobby": "Fiskeren får her mulighed at forny et allerede eksisterende fritidsfisketegn. Hvis fornyelsen sker inden udløb af allerede eksisterende fisketegn, vil fritidsfisketegnet blive fornyet i forlængelse af fritidsfisketegnets nuværende gyldighedsperiode. Ellers vil fritidsfisketegnet få en gyldighedsperiode fra dags dato og 1 år frem.",
+    "buy-angler": "Ved køb af lystfisketegn udfyldes skærmen med en række oplysninger.\n\nHusk at angive om lystfisketegnet skal være et dag-, uge- eller årskort.\n\nNår dette er sket klikkes på \"Tilføj til kurv\". Hvis der ikke skal købes flere lystfisketegn, klik på \"Gå til betaling\".\n\nHvis der skal købes flere lystfisketegn, udfyldes felterne med nye oplysninger og der klikkes igen på \"Tilføj til kurv\". Lystfisketegnet vil blive placeret i kurven sammen med de(t) forrige.\n\nDette fortsættes indtil der ikke ønskes købt flere lystfisketegn. Herefter trykkes på \"Gå til betaling\".\n\nMan kommer herefter til et nyt skærmbillede, hvor man udfylder betalingsoplysningerne som angivet i vejledningen på skærmen.\n\nBetalingen foretages og meddelelse om hvorvidt betalingen er gennemført eller ej, vil fås på skærmen.\nHvis betalingen er gennemført, kan man herefter printe sit fisketegn ud enten i tekst- eller PDF-format. Adobe Acrobat Reader er nødvendig for at kunne læse PDF-format. Acrobat Reader kan downloades vha. link på printsiden.",
+    "renew-angler": "Fiskeren får her mulighed at forny et allerede eksisterende lystfisketegn. Hvis fornyelsen sker inden udløb af allerede eksisterende lystfisketegn, vil lystfisketegnet blive fornyet i forlængelse af lystfisketegnets nuværende gyldighedsperiode. Ellers vil lystfisketegnet få en gyldighedsperiode fra dags dato og 1 år frem.",
+    "get-help": "Alle eventuelle spørgsmål om: Hjemmesiden, regelsættet, betalinger m.v. skal rettes til Fiskeristyrelsen, helst via e-mail: fisketegn@fiskeristyrelsen.dk, ellers på telefon 7218 5606, (tlf.tid: mandag, tirsdag, onsdag og fredag: 9-12, torsdag 13-15).\n\nEller via alm. post:\nFiskeristyrelsen\nNyropsgade 30\n1780 København V."
+  }
+}

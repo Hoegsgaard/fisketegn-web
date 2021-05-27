@@ -1,22 +1,23 @@
 <div class="row justify-content-center">
   <div class=" wrapper col">
-    <h2>{{'formLabels.admin-user-title' | translate}}</h2>
     <form [formGroup]="form">
+
+      <div class="row justify-content-center">
+        <div class="col">
+          <h2>{{'formLabels.admin-user-title' | translate}}</h2>
+        </div>
+        <div class="form-group col" *ngIf="userFound">
+          <input class="btn btn-danger button-cancel" value="{{'formLabels.cancel-search' | translate}}"
+            (click)="cancelSearch()">
+        </div>
+      </div>
 
       <div class="row justify-content-center" *ngIf="!userFound">
         <div class="form-group col-3">
-          <label>{{'formLabels.search-user' | translate}}</label>
-          <input type="text" formControlName="SerchUser" name="SerchUser" class="form-control" placeholder="{{'formLabels.serch-for-user' | translate}}">
+          <label>{{'formLabels.find-user' | translate}}</label>
+          <input type="text" formControlName="SearchUser" name="SearchUser" class="form-control" placeholder="{{'formLabels.serch-for-user' | translate}}">
         </div>
       </div>
-
-      <div class="row justify-content-center" *ngIf="userFound">
-        <div class="form-group col">
-          <input class="btn btn-danger button-cancel" value="{{'formLabels.cancel-search' | translate}}" (click)="cancelSearch()">
-        </div>
-      </div>
-
-      
 
       <div class="row" *ngIf="userFound">
         <div class="form-group col">
@@ -52,8 +53,9 @@
         </div>
       </div>
 
-      <div class="row" *ngIf="editing && userFound">
-        <div class="form-group col">
+      <div class="row">
+
+        <div class="form-group col" *ngIf="editing && userFound">
           <label>{{'formLabels.country' | translate}}</label>
           <div class="col">
             <div ngbDropdown class="d-inline-block">
@@ -110,19 +112,28 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row" *ngIf="!editing && userFound">
-        <div class="form-group col-6">
+          
+        <div class="form-group col-6" *ngIf="!editing && userFound">
           <label>{{'formLabels.country' | translate}}</label>
           <input type="text" formControlName="CountryDisabled" name="Country" class="form-control">
         </div>
+      
+        <div class="form-group col" *ngIf="userFound">
+          <label>{{'formLabels.role' | translate}}</label>
+          <input type="text" formControlName="Role" name="Role" class="form-control" [placeholder]="rolePH">
+        </div>
+
       </div>
+
+
+
+
       <div class="row justify-content-center" *ngIf="userFound">
         <div class="form-group col-3 " *ngIf="!editing">
           <input class="btn btn-info button" value="{{'formLabels.edit' | translate}}" (click)="activateForm()">
         </div>
         <div class="form-group col-3 " *ngIf="!editing">
-          <input class="btn btn-info button" value="{{'formLabels.editRole' | translate}}" (click)="onEditRole()">
+          <input class="btn btn-info button" value="{{'formLabels.editRole' | translate}}" (click)="openEditPop(rolePop)">
         </div>
         <div class="form-group col-3 submitButton justify-content-center" *ngIf="editing">
           <input class="btn btn-info button" value="{{'formLabels.save' | translate}}" (click)="onUpdateUser()">
@@ -160,28 +171,58 @@
         <div *ngIf="license.deletedFlag" class="col-3">{{'LicenseLabels.deleted' | translate}}</div>
         <div *ngIf="!license.deletedFlag && license.status" class="col-3"> {{'LicenseLabels.active' | translate}}</div>
         <div *ngIf="!license.deletedFlag && !license.status" class="col-3">{{'LicenseLabels.expired' | translate}}</div>
-        <button class="col-3 btn btn-info button" *ngIf="!license.deletedFlag && license.status"
-          (click)="openLicense(content2, license)">{{'LicenseLabels.renew' | translate}}</button>
+        <button class="col-3 btn btn-danger" *ngIf="!license.deletedFlag && license.status"
+          (click)="openLicense(refoundPop, license)">{{'LicenseLabels.refund' | translate}}</button>
       </div>
     </li>
   </ul>
 </div>
 
 <!-- refound license popup -->
-<ng-template #content2 let-modal>
+<ng-template #refoundPop let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{'LicenseLabels.renew-license' | translate}}</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{'LicenseLabels.refund-license' | translate}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <p>{{'LicenseLabels.are-you-sure' | translate}} {{selectedLicense.licenseNumber}}?</p>
+    <p>{{'LicenseLabels.refund-are-you-sure' | translate}} {{selectedLicense.licenseNumber}}?</p>
     <form [formGroup]="form">
       <div class="row justify-content-center">
         <div class="form-group col submitButton">
-          <input type="submit" class="btn btn-info button" value="{{'LicenseLabels.renew-license' | translate}}"
+          <input type="submit" class="btn btn-danger button" value="{{'LicenseLabels.refund-license' | translate}}"
             (click)="modal.close(onRefundLicense(selectedLicense.licenseID))">
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Edit role popup -->
+<ng-template #rolePop let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{'LicenseLabels.edit-role' | translate}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{'LicenseLabels.choose-role' | translate}}</p>
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-info" id="dropdownBasic1" ngbDropdownToggle>{{selectedRole}}</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button (click)="changeRole('User')" ngbDropdownItem>User</button>
+          <button (click)="changeRole('Admin')" ngbDropdownItem>Admin</button>
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="form">
+      <div class="row justify-content-center">
+        <div class="form-group col submitButton">
+          <input type="submit" class="btn btn-info button" value="{{'LicenseLabels.edit-role' | translate}}"
+            (click)="modal.close(onEditRole())">
         </div>
       </div>
     </form>

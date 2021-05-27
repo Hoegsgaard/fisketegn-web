@@ -7,7 +7,6 @@ import { FormControl, FormGroup} from '@angular/forms';
 import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ValidateService } from '../../services/validate.service';
 
-
 @Component({
   selector: 'app-admin-bruger',
   templateUrl: './admin-bruger.component.html',
@@ -18,6 +17,7 @@ export class AdminBrugerComponent implements OnInit {
   selectedLicense:any;
   closeResult = '';
   selectedCountry = "Danmark";
+  selectedRole = "User";
   res:any;
   in:any; 
   editing = false;
@@ -28,10 +28,11 @@ export class AdminBrugerComponent implements OnInit {
   emailPH = "n/a";
   addressPH = "n/a";
   zipcodePH = "n/a";
+  rolePH = "n/a";
   "user": Object;
   licenseList:any;
   form = new FormGroup({
-    SerchUser: new FormControl('fisk@fisk.dk'),
+    SearchUser: new FormControl('asd@asd.dk'),
     FirstName: new FormControl(''),
     LastName: new FormControl(''),
     CPR: new FormControl(''),
@@ -40,6 +41,7 @@ export class AdminBrugerComponent implements OnInit {
     ZipCode: new FormControl(''),
     Country: new FormControl('Danmark'),
     CountryDisabled: new FormControl(''),
+    Role: new FormControl(''),
     oldPassword: new FormControl(''),
     newPassword: new FormControl(''),
     repNewPassword: new FormControl(''),
@@ -57,12 +59,13 @@ export class AdminBrugerComponent implements OnInit {
   ngOnInit(): void {}
 
   serchUser() {
-    this.getUser(this.form.value.SerchUser);
+    this.getUser(this.form.value.SearchUser);
+    this.getLicenses(this.form.value.SearchUser);
   }
 
   cancelSearch(){
     this.userFound = false;
-    this.form.patchValue({SerchUser: ""})
+    this.form.patchValue({SearchUser: ""})
   }
 
   getUser(usersemail: string){
@@ -76,31 +79,31 @@ export class AdminBrugerComponent implements OnInit {
       this.emailPH = this.res.email;
       this.addressPH = this.res.address;
       this.zipcodePH = this.res.zipCode;
+      this.rolePH = this.res.role.charAt(0).toUpperCase()+this.res.role.slice(1);
 
       this.disableForm();
     },
     err => {
       this.userFound = false;
-      this.flash.show(`brugern ${this.form.value.SerchUser} findes ikke`, {cssClass: 'alert-danger', timeout: 3000});
+      this.flash.show(`brugern ${this.form.value.SearchUser} findes ikke`, {cssClass: 'alert-danger', timeout: 3000});
       return false;
     })
   }
 
-  getLicenses(){
-    this.auth.getLicenses().subscribe(data => {
+  getLicenses(usersemail: string){
+    this.adminService.getUsersLicenses(usersemail).subscribe(data => {
       this.in = (data.body as any)
       this.licenseList = new Array
-      this.in.forEach((element: { status: any; }) => {
-        if(element.status){
-          this.licenseList.push(element)
-        }
-      });
+      this.in.forEach((element: { status: any; deletedFlag: any; }) => {
+      if(element.status && !element.deletedFlag){
+        this.licenseList.push(element)
+      }
+    });
       this.in.forEach((element: { status: any; deletedFlag: any; }) => {
         if(!element.status || element.deletedFlag){
           this.licenseList.push(element)
         }
       });
-      console.log(this.licenseList)
     });
   }
 
@@ -112,10 +115,9 @@ export class AdminBrugerComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
     this.selectedLicense = license;
-    console.log(license)
   }
 
-  open(content: any) {
+  openEditPop(content: any) {
     const modalRef = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
     modalRef.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -149,7 +151,9 @@ export class AdminBrugerComponent implements OnInit {
     this.form.get('ZipCode')?.disable();
     this.form.get('ZipCode')?.setValue(this.res.zipCode);
     this.form.get('CountryDisabled')?.disable();
-    this.form.get('CountryDisabled')?.setValue(this.res.country)
+    this.form.get('CountryDisabled')?.setValue(this.res.country);
+    this.form.get('Role')?.disable();
+    this.form.get('Role')?.setValue(this.res.role.charAt(0).toUpperCase()+this.res.role.slice(1));
   }
 
   activateForm(){
@@ -171,12 +175,20 @@ export class AdminBrugerComponent implements OnInit {
   }
 
   onEditRole(){
-    
+    const newRole = this.selectedRole.toLowerCase()
+    this.adminService.editRole(this.form.value.SearchUser, newRole).subscribe(data => {
+      this.flash.show(`Brugers rolle er nu ${this.selectedRole}`, {cssClass: 'alert-success', timeout: 3000})
+      this.getUser(this.form.value.SearchUser);
+    })
   }
 
   changeCountry(language: string){
     this.selectedCountry = language
     console.log(language)
+  }
+
+  changeRole(role: string){
+    this.selectedRole = role;
   }
 
   onUpdateUser(){
@@ -189,77 +201,30 @@ export class AdminBrugerComponent implements OnInit {
       email: formValue.Email ? formValue.Email : this.res.email,
       address: formValue.Address ? formValue.Address : this.res.address,
       zipCode: formValue.ZipCode ? formValue.ZipCode : this.res.zipCode,
-      country: formValue.Country ? formValue.Country : this.res.country
+      country: formValue.Country ? formValue.Country : this.res.country,
+      role: formValue.Role ? formValue.Role : this.res.role,
+      oldEmail : formValue.SearchUser
     }
     if(!this.validateServide.validateUpdateUser(user, this.res)){
       this.flash.show('Mindst et skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
-    this.auth.updateUser(user).subscribe(data => {   // SKIFT TIL ADMIN ENDPOINT
+    this.adminService.updateUser(user).subscribe(data => {  
       this.flash.show('Oplysninger opdateret.', {cssClass: 'alert-success', timeout: 3000})
-      console.log(user)
-      this.getUser(this.form.value.SerchUser);
+      this.getUser(this.form.value.SearchUser);
     }, err=> {
       this.flash.show('Noget gik galt, prøv igen', {cssClass: 'alert-danger', timeout: 3000})
       return false
     });
-
     return true;
   }
 
   onRefundLicense(license: any){
-    this.auth.renewLicense({licenseID: license}).subscribe(data => {
-      this.flash.show('Fisketegn fornyet!', {cssClass: 'alert-success', timeout: 3000})
-        this.getLicenses();
-    })
-    
-  }
-
-  onRegisterNewPassword(){
-    const updatePassword ={
-      oldPassword : this.form.value.oldPassword,
-      password : this.form.value.newPassword,
-      gentagPassword : this.form.value.repNewPassword
-    }
-
-    // Valider at alle felter er udfyldt
-    if(!this.validateServide.validateUpdatePassword(updatePassword)){
-      this.flash.show('Alle felter skal udfyldes', {cssClass: 'alert-danger', timeout: 3000});
-      return false;
-    }
-
-    // Vlider at de indtastede passorews er ens
-    if(!this.validateServide.validateEqualPassword(updatePassword)){
-      this.flash.show('Password skal være ens', {cssClass: 'alert-danger', timeout: 3000});
-      return false;
-    }
-
-    // Valider at password er sikkert
-    if(!this.validateServide.validateSecurePassword(updatePassword.password)){
-      this.flash.show('Password er ikke sikkert nok. Password skal mindst indeholde 10 tegen, både tal, store og små bokstaver', {cssClass: 'alert-danger', timeout: 10000});
-      return false;
-    }
-
-    // Opdater Password
-    const update ={
-      oldPassword: this.form.value.oldPassword,
-      password : this.form.value.newPassword
-    }
-    this.userService.updatePassword(update).subscribe(data => {     // SKIFT TIL ADMIN ENDPOINT
-      this.getUser(this.form.value.SerchUser)
-      this.flash.show("Password er ændret", {cssClass: 'alert-success', timeout: 3000}); 
+    this.adminService.refund(license).subscribe(data => {
+      this.flash.show('Fisketegn refunderet!', {cssClass: 'alert-success', timeout: 3000})
+        this.getLicenses(this.form.value.SearchUser);
     }, err => {
-      switch(err.status) { 
-        case 401: { 
-          this.flash.show("Gammelt password er ikke korrekt", {cssClass: 'alert-danger', timeout: 3000}); 
-          break; 
-        } 
-        default: { 
-          this.flash.show("Noget gik galt, prøv igen", {cssClass: 'alert-danger', timeout: 3000});
-          break; 
-        } 
-      } 
+      this.flash.show('Noget gik galt!', {cssClass: 'alert-danger', timeout: 3000})
     })
-    return true;
   }
 }
