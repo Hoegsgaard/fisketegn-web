@@ -75,9 +75,10 @@
     "are-you-sure": "Er du sikker på at du vil fornye fisketegn",
     "type": "Type",
     "hobby": "Fritidsfisketegn",
-    "angler-year": "Lystfisketegn - Årskort",
-    "angler-week": "Lystfisketegn - Ugekort",
-    "angler-day": "Lystfisketegn - Dagskort",
+    "angler-year": "Lystfisketegn-Årskort",
+    "angler-week": "Lystfisketegn-Ugekort",
+    "angler-day": "Lystfisketegn-Dagskort",
+    
     "refund": "Refunder",
     "refund-license": "Refunder fisketegn",
     "refund-are-you-sure": "Er du sikker på du vil refundere fisketegn",

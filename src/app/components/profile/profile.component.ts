@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FlashMessagesService} from 'angular2-flash-messages';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service'
@@ -28,6 +28,8 @@ export class ProfileComponent implements OnInit {
   addressPH = "n/a"
   zipcodePH = "n/a"
   "user": Object;
+  scrWidth:any
+  isCompact: any 
   form = new FormGroup({
     FirstName: new FormControl(''),
     LastName: new FormControl(''),
@@ -52,9 +54,20 @@ export class ProfileComponent implements OnInit {
     private translate: TranslateService
   ) { }
 
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?:any) {
+    this.scrWidth = window.innerWidth
+    if(this.scrWidth < 1000){
+      this.isCompact = true;
+    }else{
+      this.isCompact = false;
+    }
+  }
+
   ngOnInit(): void {
     this.getUser();
     this.getLicenses();
+    this.getScreenSize();
   }
   getUser(){
     this.auth.getUser().subscribe(data => {   

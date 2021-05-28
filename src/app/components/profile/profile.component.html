@@ -122,6 +122,7 @@
   </div>
   <hr>
   <!-- list of licenses-->
+<div *ngIf="!isCompact"> 
   <h2>{{'LicenseLabels.title' | translate}}</h2>
   <ul>
     <li>
@@ -151,6 +152,42 @@
       </div>
     </li>
   </ul>
+</div>
+<div *ngIf="isCompact">
+  <h2 >{{'LicenseLabels.title' | translate}}</h2>
+    <ul class = "licenseList" *ngFor = "let license of licenseList">
+      <li class = "listElement listPadding">
+          <div class = "row">
+            <div class="col-5">{{'LicenseLabels.number' | translate}}</div>
+            <div class="col-7">{{license.licenseNumber}}</div>
+          </div>
+          <div class="row">
+            <div class="col-5">{{'LicenseLabels.start' | translate}} </div>
+            <div class="col-7">{{license.startDate}}</div>
+          </div>
+          <div class="row">
+            <div class="col-5">{{'LicenseLabels.expiration' | translate}}</div>
+            <div class="col-7">{{license.endDate}}</div>
+          </div>
+          <div class="row">
+            <div class="col-5">{{'LicenseLabels.type' | translate}}</div>
+            <div class="col-7" *ngIf = "license.type == 'f'">{{'LicenseLabels.hobby' | translate}}</div>
+            <div class="col-7" *ngIf = "license.type == 'y'">{{'LicenseLabels.angler-year' | translate}}</div>
+            <div class="col-7" *ngIf = "license.type == 'w'">{{'LicenseLabels.angler-week' | translate}}</div>
+            <div class="col-7" *ngIf = "license.type == 'd'">{{'LicenseLabels.angler-day' | translate}}</div>
+          </div>
+          <div class="row">
+            <div class="col-5">{{'LicenseLabels.status' | translate}}</div>
+            <div *ngIf = "license.deletedFlag" class="col-7">{{'LicenseLabels.deleted' | translate}}</div>
+            <div *ngIf = "!license.deletedFlag && license.status" class="col-7"> {{'LicenseLabels.active' | translate}}</div>
+            <div *ngIf = "!license.deletedFlag && !license.status" class="col-7">{{'LicenseLabels.inactive' | translate}}</div>
+          </div>
+          <div class="row">
+            <button class="col btn btn-info button" *ngIf = "license.renewable" (click)="openLicense(content2, license)">{{'LicenseLabels.renew' | translate}}</button>
+          </div>
+      </li>
+    </ul>
+</div>
 
       <!-- renew license popup -->
       <ng-template #content2 let-modal>
