@@ -149,12 +149,12 @@
     "license-refund": "Fisketegn blev refunderet",
     "auto-logout": "Login er udløbet, log venligst ind igen"
   },
-  "TypeLabels": {
+  "TypeLabels":{
     "title": "To typer af fisketegn",
     "angler": "Lystfisketegn",
     "hobby": "Fritidsfisketegn",
     "angler-fisher": "Lystfisker",
-    "hobby-fisher": "Fritisfisker",
+    "hobby-fisher": "Fritidsfisker",
     "angler-description": "Hvis du fisker med lette håndredskaber, skal du have lystfiskertegn. Håndredskaber er fx fiskestang, pilk og harpun - redskaber som du fisker aktivt med.",
     "hobby-description": "Hvis du fisker med redskaber som fx garn, ruser og kroge, skal du have fritidsfiskertegn. Redskaberne fisker passivt, uden at du behøver at være til stede.",
     "angler-excl-one": "Hvem skal",

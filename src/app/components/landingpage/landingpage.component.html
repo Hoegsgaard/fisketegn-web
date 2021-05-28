@@ -49,21 +49,21 @@
 
 <!--Popup til valg af  fisketgnstyppe-->
 <ng-template #content let-modal>
-  <div class="modal-header">
+  <div class="modal-header bg-secondary">
     <h4 class="modal-title" id="modal-basic-title">{{'FrontpageLabels.type' | translate}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body bg-secondary">
     <div class="row">
       <div class=" col">
         <div>
           <a href="buyLystfisketegn"><img class= "frontpage-image" src="../../../assets/img/Lystfisketegn.jpeg"></a>
         </div>
         <div>
-          <a href="buyLystfisketegn">
-            <p class="popupTest bg-info text-white">{{'FrontpageLabels.angler' | translate}}</p>
+          <a class = "text" href="buyLystfisketegn">
+            <p class="popupTest bg-info text-white frontpage-box">{{'FrontpageLabels.angler' | translate}}</p>
           </a>
         </div>
       </div>
@@ -72,7 +72,9 @@
           <a href="buyFritidsfisketegn"><img class= "frontpage-image" src="../../../assets/img/fritidsfisketegn.jpeg"></a>
         </div>
         <div>
-          <a href="buyFritidsfisketegn"><p class="popupTest bg-info text-white">{{'FrontpageLabels.hobby' | translate}}</p></a>
+          <a class="text" href="buyFritidsfisketegn">
+            <p class="popupTest bg-info text-white frontpage-box">{{'FrontpageLabels.hobby' | translate}}</p>
+          </a>
         </div>
       </div>
     </div>
