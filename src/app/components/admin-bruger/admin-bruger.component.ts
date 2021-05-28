@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FlashMessagesService} from 'angular2-flash-messages';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service'
@@ -32,6 +32,8 @@ export class AdminBrugerComponent implements OnInit {
   rolePH = "n/a";
   "user": Object;
   licenseList:any;
+  scrWidth:any
+  isCompact: any 
   form = new FormGroup({
     SearchUser: new FormControl(''),
     FirstName: new FormControl(''),
@@ -58,7 +60,19 @@ export class AdminBrugerComponent implements OnInit {
     private translate: TranslateService
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getScreenSize()
+  }
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?:any) {
+    this.scrWidth = window.innerWidth
+    if(this.scrWidth < 1000){
+      this.isCompact = true;
+    }else{
+      this.isCompact = false;
+    }
+  }
 
   serchUser() {
     this.getUser(this.form.value.SearchUser);
@@ -73,7 +87,7 @@ export class AdminBrugerComponent implements OnInit {
   getUser(usersemail: string){
     this.adminService.getUser(usersemail).subscribe(data => {
       this.userFound = true;
-
+      console.log(data.body as any)
       this.res = (data.body as any);
       this.firstnamePH = this.res.firstName;
       this.lastnamePH = this.res.lastName;
@@ -82,7 +96,6 @@ export class AdminBrugerComponent implements OnInit {
       this.addressPH = this.res.address;
       this.zipcodePH = this.res.zipCode;
       this.rolePH = this.res.role.charAt(0).toUpperCase()+this.res.role.slice(1);
-
       this.disableForm();
     },
     err => {
