@@ -158,6 +158,7 @@
     <li>
       <div class="row listPadding">
         <h3 class="col-2">{{'LicenseLabels.number' | translate}}</h3>
+        <h3 class="col-2">{{'LicenseLabels.start' | translate}}</h3>
         <h3 class="col-2">{{'LicenseLabels.expiration' | translate}}</h3>
         <h3 class="col-2">{{'LicenseLabels.type' | translate}}</h3>
         <h3 class="col-2">{{'LicenseLabels.status' | translate}}</h3>
@@ -168,6 +169,7 @@
     <li class="listElement listPadding">
       <div class="row">
         <div class="col-2">{{license.licenseNumber}}</div>
+        <div class="col-2">{{license.startDate}}</div>
         <div class="col-2">{{license.endDate}}</div>
         <div class="col-2" *ngIf="license.type == 'f'">{{'LicenseLabels.hobby' | translate}}</div>
         <div class="col-2" *ngIf="license.type == 'y'">{{'LicenseLabels.angler-year' | translate}}</div>
