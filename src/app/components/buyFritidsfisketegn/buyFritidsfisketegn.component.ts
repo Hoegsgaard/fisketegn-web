@@ -82,19 +82,21 @@ export class BuyFritidsfisketegnComponent implements OnInit {
     // Lav en bruger baseret på inputs
     const user = {
       cpr: formValue.CPR,
-      firstName: formValue.FirstName,
-      lastName: formValue.LastName,
-      email: formValue.Email,
-      address: formValue.Address,
-      zipCode: formValue.ZipCode,
-      country: 'Danmark',
+      firstName: formValue.FirstName.toLowerCase(),
+      lastName: formValue.LastName.toLowerCase(),
+      email: formValue.Email.toLowerCase(),
+      address: formValue.Address.toLowerCase(),
+      zipCode: formValue.ZipCode.toLowerCase(),
+      country: 'danmark',
       type: 'f',
       highQuality: formValue.HighQuality ? true : false,
       startDate: this.datePipe.transform(new Date, 'dd/MM/yyyy'),
       password: formValue.Password,
       gentagPassword: formValue.gentagPassword
     }
-    this.disableForm();
+    if(this.auth.isLoggedIn()){
+      this.disableForm();
+    }
 
     // Valider at alle felter er udfyldt
     if(!this.validateServide.validateBuyLicense(user)){

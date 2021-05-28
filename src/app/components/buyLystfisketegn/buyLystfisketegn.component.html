@@ -5,11 +5,11 @@
       <div class="row">
         <div class="form-group col">
           <label>{{'formLabels.firstname' | translate}}</label>
-          <input type="text" formControlName="FirstName" name="FirstName" class="form-control">
+          <input type="text" formControlName="FirstName" name="FirstName" class="form-control uppercase">
         </div>
         <div class="form-group col">
           <label>{{'formLabels.lastname' | translate}}</label>
-          <input type="text" formControlName="LastName" name="LastName" class="form-control">
+          <input type="text" formControlName="LastName" name="LastName" class="form-control uppercase">
         </div>
       </div>
 
@@ -20,14 +20,14 @@
         </div>
         <div class="form-group col">
           <label>{{'formLabels.email' | translate}}</label>
-          <input type="text" formControlName="Email" name="Email" class="form-control">
+          <input type="text" formControlName="Email" name="Email" class="form-control uppercase">
         </div>
       </div>
       
       <div class="row">
         <div class="form-group col">
           <label>{{'formLabels.address' | translate}}</label>
-          <input type="text" formControlName="Address" name="Address" class="form-control">
+          <input type="text" formControlName="Address" name="Address" class="form-control uppercase">
         </div>
         <div class="form-group col">
           <label>{{'formLabels.zipcode' | translate}}</label>
@@ -91,7 +91,7 @@
                 <button (click)="changeCountry('Andet land')" ngbDropdownItem>{{'country.Other-Countries' | translate}}</button>
               </div>
             </div>
-            <input type="text" formControlName="CountryDisabled" name="Country" class="form-control" *ngIf="this.auth.isLoggedIn()">
+            <input type="text" formControlName="CountryDisabled" name="Country" class="form-control uppercase" *ngIf="this.auth.isLoggedIn()">
           </div>
         </div>
 

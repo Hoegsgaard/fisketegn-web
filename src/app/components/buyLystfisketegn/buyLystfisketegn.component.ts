@@ -104,6 +104,7 @@ export class buyLystfisketegnComponent implements OnInit {
     this.form.get('ZipCode')?.disable();
     this.form.get('CountryDisabled')?.disable();
   }
+  
 
   onRegisterSubmit(){
     this.activateForm();
@@ -129,19 +130,21 @@ export class buyLystfisketegnComponent implements OnInit {
     // Lav en bruger baseret på inputs
     const user = {
       cpr: formValue.CPR,
-      firstName: formValue.FirstName,
-      lastName: formValue.LastName,
-      email: formValue.Email,
-      address: formValue.Address,
+      firstName: formValue.FirstName.toLowerCase(),
+      lastName: formValue.LastName.toLowerCase(),
+      email: formValue.Email.toLowerCase(),
+      address: formValue.Address.toLowerCase(),
       zipCode: formValue.ZipCode,
-      country: formValue.Country,
+      country: formValue.Country.toLowerCase(),
       type: formValue.Type,
       highQuality: formValue.HighQuality ? true : false,
       startDate: `${startData[2]}/${startData[1]}/${startData[0]}`,
       password: formValue.Password,
       gentagPassword: formValue.gentagPassword
     }
-    this.disableForm();
+    if(this.auth.isLoggedIn()){
+      this.disableForm();
+    }
     // Valider at alle felter er udfyldt
     if(!this.validateServide.validateBuyLicense(user)){
       this.flash.show(this.translate.instant('FlashMsq.all-fields-requred'), {cssClass: 'alert-danger', timeout: 3000});

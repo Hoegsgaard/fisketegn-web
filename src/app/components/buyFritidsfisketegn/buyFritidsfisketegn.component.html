@@ -3,13 +3,13 @@
     <h2>{{'formLabels.hobby-title' | translate}}</h2>
     <form [formGroup]="form">
       <div class="row">
-        <div class="form-group col">
+        <div class="form-group col uppercase">
           <label>{{'formLabels.firstname' | translate}}</label>
-          <input type="text" formControlName="FirstName" name="FirstName" class="form-control">
+          <input type="text" formControlName="FirstName" name="FirstName" class="form-control uppercase">
         </div>
-        <div class="form-group col">
+        <div class="form-group col ">
           <label>{{'formLabels.lastname' | translate}}</label>
-          <input type="text" formControlName="LastName" name="LastName" class="form-control">
+          <input type="text" formControlName="LastName" name="LastName" class="form-control uppercase">
         </div>
       </div>
 
@@ -20,14 +20,14 @@
         </div>
         <div class="form-group col">
           <label>{{'formLabels.email' | translate}}</label>
-          <input type="text" formControlName="Email" name="Email" class="form-control">
+          <input type="text" formControlName="Email" name="Email" class="form-control uppercase">
         </div>
       </div>
 
       <div class="row">
         <div class="form-group col">
           <label>{{'formLabels.address' | translate}}</label>
-          <input type="text" formControlName="Address" name="Address" class="form-control">
+          <input type="text" formControlName="Address" name="Address" class="form-control uppercase">
         </div>
         <div class="form-group col">
           <label>{{'formLabels.zipcode' | translate}}</label>
