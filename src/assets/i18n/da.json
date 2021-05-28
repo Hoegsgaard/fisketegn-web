@@ -50,7 +50,6 @@
     "change-password": "Skift password",
     "role": "Role",
     "delete-user": "Slet bruger",
-
     "admin-user-title": "Administrer Brugere",
     "find-user": "Find bruger",
     "serch-for-user": "Indtast brugers email",
@@ -61,6 +60,7 @@
   "LicenseLabels": {
     "title": "Licenser",
     "number": "Licensnummer",
+    "start": "Startdato",
     "expiration": "Udløbsdato",
     "status": "Status",
     "active": "Aktiv",

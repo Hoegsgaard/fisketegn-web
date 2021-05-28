@@ -49,7 +49,7 @@
     "cancel": "Cancel",
     "change-password": "Change password",
     "role": "Rolle",
-
+    "delete-user": "Delete user",
     "admin-user-title": "Administrate users",
     "find-user": "Find user",
     "serch-for-user": "Enter users email",
@@ -60,6 +60,7 @@
   "LicenseLabels": {
     "title": "Licenses",
     "number": "License number",
+    "start": "Start date",
     "expiration": "Expiration date",
     "status": "Status",
     "active": "Active",
@@ -81,7 +82,10 @@
     "refund-license": "Refund License",
     "refund-are-you-sure": "Are you sure you want to refound this license",
     "edit-role": "Edit role",
-    "choose-role": "Which role should the user have?"
+    "choose-role": "Which role should the user have?",
+    "delete-user": "Delete user",
+    "delete-are-you-sure": "Are you sure you want to delete your user profile?",
+    "license-invalidation": "All of your fishing lisences will be invalidated"
   },
   "FrontpageLabels": {
     "welcome": "Welcome to the fishing license system",
