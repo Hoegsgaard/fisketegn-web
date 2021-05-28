@@ -105,16 +105,16 @@
             <input class="btn btn-info button" value="{{'formLabels.edit' | translate}}" (click)="activateForm()">
           </div>
           <div class="form-group col-3 submitButton justify-content-center" *ngIf="editing">
-            <input class="btn btn-info" value="{{'formLabels.save' | translate}}" (click)="onUpdateUser()">
+            <input class="btn btn-info button" value="{{'formLabels.save' | translate}}" (click)="onUpdateUser()">
           </div>
           <div class="form-group col-3  justify-content-end justify-content-center" *ngIf="editing">
-            <input class="btn btn-info" value="{{'formLabels.cancel' | translate}}" (click)="disableForm()">
+            <input class="btn btn-info button" value="{{'formLabels.cancel' | translate}}" (click)="disableForm()">
           </div>
           <div class="form-group col-3 submitButton justify-content-end justify-content-center" *ngIf="!editing">
-            <input class="btn btn-info" value="{{'formLabels.change-password' | translate}}" (click)="open(content)">
+            <input class="btn btn-info button" value="{{'formLabels.change-password' | translate}}" (click)="open(content)">
           </div>
           <div class="form-group col-3 submitButton justify-content-end justify-content-center" *ngIf="editing">
-            <input class="btn btn-danger" value="{{'formLabels.delete-user' | translate}}" (click)="open(deleteUserPop)">
+            <input class="btn btn-danger button" value="{{'formLabels.delete-user' | translate}}" (click)="open(deleteUserPop)">
           </div>
         </div>
       </form>
