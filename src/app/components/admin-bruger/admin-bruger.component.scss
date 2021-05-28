@@ -48,3 +48,10 @@ ul {
 .button-cancel {
   float: right;
 }
+
+.dropdown-menu {
+  max-height: 280px;
+  overflow-y: auto;
+  min-width: 100%;
+  background-attachment: local, local, scroll, scroll;
+}
