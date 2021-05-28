@@ -28,7 +28,7 @@ export class AuthService {
 
   isLoggedIn(){
     this.getUsersToken()
-    return !jwtHelper.isTokenExpired(this.token)
+    return !jwtHelper.isTokenExpired(this.token) 
   }
 
   isAdmin(){
@@ -93,6 +93,6 @@ export class AuthService {
         const role = jwtHelper.decodeToken(this.token).role
         return role;
       })
-    ).toPromise()
+    ).toPromise().catch(e => console.log(e))
   }
 }

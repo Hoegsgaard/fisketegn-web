@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouteConfigLoadEnd } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Injectable()
@@ -7,6 +7,7 @@ export class UserRoleGuard implements CanActivate {
   
   constructor(
     private auth: AuthService,
+    private router: Router
   ){}
 
   async canActivate(route: ActivatedRouteSnapshot){
@@ -14,6 +15,7 @@ export class UserRoleGuard implements CanActivate {
     if(role == route.data.role){
       return true;
     } else {
+      this.router.navigate(['/login']);
       return false;
     }
   }
