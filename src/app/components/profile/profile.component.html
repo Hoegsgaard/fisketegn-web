@@ -113,6 +113,9 @@
           <div class="form-group col-3 submitButton justify-content-end justify-content-center" *ngIf="!editing">
             <input class="btn btn-info" value="{{'formLabels.change-password' | translate}}" (click)="open(content)">
           </div>
+          <div class="form-group col-3 submitButton justify-content-end justify-content-center" *ngIf="editing">
+            <input class="btn btn-danger" value="{{'formLabels.delete-user' | translate}}" (click)="open(deleteUserPop)">
+          </div>
         </div>
       </form>
     </div>
@@ -148,25 +151,25 @@
   </ul>
 
 
-      <!-- renew license popup -->
-      <ng-template #content2 let-modal>
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">{{'LicenseLabels.renew-license' | translate}}</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>{{'LicenseLabels.are-you-sure' | translate}} {{selectedLicense.licenseNumber}}?</p>
-          <form [formGroup]="form">
-            <div class="row justify-content-center">
-              <div class="form-group col submitButton">
-                <input type="submit" class="btn btn-info" value="{{'LicenseLabels.renew-license' | translate}}" (click)="modal.close(onRenewLicense(selectedLicense.licenseID))">
-              </div>
+    <!-- renew license popup -->
+    <ng-template #content2 let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{'LicenseLabels.renew-license' | translate}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{'LicenseLabels.are-you-sure' | translate}} {{selectedLicense.licenseNumber}}?</p>
+        <form [formGroup]="form">
+          <div class="row justify-content-center">
+            <div class="form-group col submitButton">
+              <input type="submit" class="btn btn-info" value="{{'LicenseLabels.renew-license' | translate}}" (click)="modal.close(onRenewLicense(selectedLicense.licenseID))">
             </div>
-          </form>
-        </div>
-      </ng-template>
+          </div>
+        </form>
+      </div>
+    </ng-template>
 
     <!-- New password popup -->
     <ng-template #content let-modal>
@@ -202,6 +205,28 @@
           <div class="row justify-content-center">
             <div class="form-group col submitButton">
               <input type="submit" class="btn btn-info" value="{{'LicenseLabels.change-password' | translate}}" (click)="modal.close(onRegisterNewPassword())">
+            </div>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+
+    <!-- Delete user popup -->
+    <ng-template #deleteUserPop let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{'LicenseLabels.delete-user' | translate}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{'LicenseLabels.delete-are-you-sure' | translate}}</p>
+        <p>{{'LicenseLabels.license-invalidation' | translate}}</p>
+        <form [formGroup]="form">
+          <div class="row justify-content-center">
+            <div class="form-group col submitButton">
+              <input type="submit" class="btn btn-danger" value="{{'LicenseLabels.delete-user' | translate}}"
+                (click)="modal.close(onDeleteUser())">
             </div>
           </div>
         </form>

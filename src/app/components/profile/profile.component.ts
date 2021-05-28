@@ -200,6 +200,12 @@ export class ProfileComponent implements OnInit {
     }) 
   }
 
+  onDeleteUser(){
+    this.userService.deleteUser().subscribe(data => {
+      this.auth.logout();
+    });
+  }
+
   onRegisterNewPassword(){
     const updatePassword ={
       oldPassword : this.form.value.oldPassword,
