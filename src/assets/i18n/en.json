@@ -146,7 +146,8 @@
     "user": "User",
     "doesnt-exist": "does not exist",
     "users-role-is-now": "Users role is now",
-    "license-refund": "Fishing license was refunded"
+    "license-refund": "Fishing license was refunded",
+    "auto-logout": "Login expired, please log in again"
   },
   "TypeLabels": {
     "title": "Two types of fishing licenses",

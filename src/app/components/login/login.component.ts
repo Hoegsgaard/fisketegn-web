@@ -44,8 +44,8 @@ export class LoginComponent implements OnInit {
     } else {
       this.auth.authenticateUser(user).subscribe(data => {
         const res = (data as any);
-        this.flash.show(`${this.email} ${this.translate.instant('FlashMsq.is-logged-in')}`, {cssClass: 'alert-success', timeout: 3000});
         this.auth.storeToken(res.body.token)
+        this.auth.autoLogout();
         if(this.auth.isAdmin()){
           this.router.navigate(['/adminbruger'])  
         } else {

@@ -146,7 +146,8 @@
     "user": "Bruger",
     "doesnt-exist": "findes ikke",
     "users-role-is-now": "Brugerens rolle er nu",
-    "license-refund": "Fisketegn blev refunderet"
+    "license-refund": "Fisketegn blev refunderet",
+    "auto-logout": "Login er udløbet, log venligst ind igen"
   },
   "TypeLabels": {
     "title": "To typer af fisketegn",

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 
@@ -15,7 +14,6 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public auth : AuthService,
-    private router : Router,
     public translate: TranslateService
   ) {
     translate.setDefaultLang('da');
@@ -47,7 +45,6 @@ export class HeaderComponent implements OnInit {
 
   onLogoutClick(){
     this.auth.logout();
-    this.router.navigate(['/login']);
     return false;
   }
 }
