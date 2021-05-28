@@ -5,6 +5,10 @@ body {
   min-height: 100vh;
 }
 
+input{
+  box-shadow: 5px 5px 5px grey;
+}
+
 //@import "../node_modules/bootstrap/scss/bootstrap.scss";
 
 /* Importing Bootstrap SCSS file. */
