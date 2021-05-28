@@ -49,6 +49,7 @@
     "cancel": "Annuler",
     "change-password": "Skift password",
     "role": "Role",
+    "delete-user": "Slet bruger",
 
     "admin-user-title": "Administrer Brugere",
     "find-user": "Find bruger",
@@ -81,7 +82,10 @@
     "refund-license": "Refunder fisketegn",
     "refund-are-you-sure": "Er du sikker på du vil refundere fisketegn",
     "edit-role": "Rediger rolle",
-    "choose-role": "Hvilken rolle skal brugeren have?"
+    "choose-role": "Hvilken rolle skal brugeren have?",
+    "delete-user": "Slet bruger",
+    "delete-are-you-sure": "Er du sikker på at du vil slette din bruger?",
+    "license-invalidation": "Alle dine fisketegn vil blive gjort ugyldige"
   },
   "FrontpageLabels": {
     "welcome": "Velkommen til Fisketegn",
@@ -146,9 +150,10 @@
     "user": "Bruger",
     "doesnt-exist": "findes ikke",
     "users-role-is-now": "Brugerens rolle er nu",
-    "license-refund": "Fisketegn blev refunderet"
+    "license-refund": "Fisketegn blev refunderet",
+    "auto-logout": "Login er udløbet, log venligst ind igen"
   },
-  "TypeLabels":{
+  "TypeLabels": {
     "title": "To typer af fisketegn",
     "angler": "Lystfisketegn",
     "hobby": "Fritidsfisketegn",

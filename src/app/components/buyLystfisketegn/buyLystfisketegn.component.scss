@@ -33,4 +33,10 @@ input[type="number"] {
 
 .uppercase {
   text-transform: capitalize;
+
+.dropdown-menu {
+  max-height: 280px;
+  overflow-y: auto;
+  min-width: 100%;
+  background-attachment: local, local, scroll, scroll;
 }

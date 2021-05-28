@@ -144,7 +144,8 @@ export class BuyFritidsfisketegnComponent implements OnInit {
     this.auth.buyLicense(user).subscribe(data => {
       const res = (data as any);
       this.flash.show(this.translate.instant('FlashMsq.license-created'), {cssClass: 'alert-success', timeout: 3000});
-      this.auth.storeToken(res.body.token)
+      this.auth.storeToken(res.body.token);
+      this.auth.autoLogout();
       this.router.navigate(['/profile']) 
     }, err => {
       switch(err.status) {

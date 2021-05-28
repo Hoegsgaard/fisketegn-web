@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { JwtHelperService  } from '@auth0/angular-jwt';
 import { map } from 'rxjs/operators'
+import { Router } from '@angular/router';
+import { FlashMessagesService} from 'angular2-flash-messages';
+import { TranslateService } from '@ngx-translate/core';
+
 
 const jwtHelper = new JwtHelperService();
 
@@ -12,7 +16,12 @@ export class AuthService {
   token: any;
 
 
-  constructor(private http : HttpClient) { }
+  constructor(
+    private http : HttpClient,
+    private router : Router,
+    private flash : FlashMessagesService,
+    private translate: TranslateService
+    ) { }
 
   buyLicense(user: any){
     let headers = new HttpHeaders({
@@ -39,6 +48,18 @@ export class AuthService {
   logout(){
     this.token = null;
     localStorage.removeItem('fiskeToken');
+    this.router.navigate(['/login']);
+  }
+
+  autoLogout(){
+    this.getUsersToken();
+    let expire =jwtHelper.getTokenExpirationDate(this.token)!.getTime();
+    let today = new Date;
+    expire = expire - today.getTime();
+    setTimeout(()=>{
+      this.logout();
+      this.flash.show(this.translate.instant('FlashMsq.auto-logout'), {cssClass: 'alert-primary', timeout: 3000});
+    }, expire)
   }
 
   getLicenses(){

@@ -20,20 +20,26 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.listElement{
-  border-style:solid;
+.listElement {
+  border-style: solid;
   border-radius: 5px;
   border-width: 1px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-.listPadding{
+.listPadding {
   padding-right: 50px;
   padding-left: 50px;
-
 }
 
-ul{
+ul {
   list-style: none;
+}
+
+.dropdown-menu {
+  max-height: 280px;
+  overflow-y: auto;
+  min-width: 100%;
+  background-attachment: local, local, scroll, scroll;
 }

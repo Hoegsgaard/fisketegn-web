@@ -19,6 +19,14 @@ export class UserService {
     return this.http.put('/camel/api/user/updatePassword', update, {headers: headers, observe: 'response'})
   }
 
+  deleteUser(){
+  this.getUsersToken()
+  let headers = new HttpHeaders({
+    'Content-Type':'application/json',
+    'fiskeToken':this.token});
+  return this.http.delete('/camel/api/user', {headers: headers, observe: 'response'})
+  }
+
   getUsersToken(){
     const token = localStorage.getItem('fiskeToken');
     this.token = token;
