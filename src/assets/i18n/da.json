@@ -78,7 +78,7 @@
     "angler-year": "Lystfisketegn-Årskort",
     "angler-week": "Lystfisketegn-Ugekort",
     "angler-day": "Lystfisketegn-Dagskort",
-    
+
     "refund": "Refunder",
     "refund-license": "Refunder fisketegn",
     "refund-are-you-sure": "Er du sikker på du vil refundere fisketegn",
@@ -227,5 +227,8 @@
     "Vatican-City": "Vatikanstaten",
     "Austria": "Østrig",
     "Other-Countries": "Andet land"
+  },
+  "Login": {
+    "log-in": "Log ind"
   }
 }

@@ -226,5 +226,8 @@
     "Vatican-City": "Vatican City",
     "Austria": "Austria",
     "Other-Countries": "Other Countries"
+  },
+  "Login": {
+    "log-in": "Log in"
   }
 }
