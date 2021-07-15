@@ -2,29 +2,26 @@
   <div class=" wrapper col">
     <h2>{{'FrontpageLabels.welcome' | translate}}</h2>
     <div class="row">
-      <div class="col">
-        <div>
-          <a class="flex-logo clicker" (click)="open(content)"><img class= "frontpage-image" src="assets/img/Lystfisketegn.jpeg"></a>
-        </div>
-        <div class="bg-info frontpage-box" >
-          <a class="flex-logo text-white clicker" (click)="open(content)">
-            <p class = "frontpage-text">{{'FrontpageLabels.buy' | translate}}</p>
-          </a>
-        </div>
+      <div class="col-6">
+        <button class = "big-button frontpage-box-container" (click)="open(content)" attr.aria-label="{{'FrontpageLabels.buy' | translate}}">
+             <div class="flex-logo" ><img class= "frontpage-image" src="assets/img/Lystfisketegn.jpeg"></div>
+           <div class="bg-info frontpage-box" >              
+              <p class = "frontpage-text">{{'FrontpageLabels.buy' | translate}}</p>
+          </div>
+        </button>
       </div>
-      <div class=" col">
-        <div>
-          <a href="/profile"><img class= "frontpage-image" src="assets/img/forny-fisketegn.jpg"></a>
-        </div>
-        <div class="bg-info frontpage-box">
-          <a class="flex-logo text-white clicker" href="/profile">
-            <p class = "frontpage-text">{{'FrontpageLabels.renew' | translate}}</p>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class=" col">
+      <div class="col-6">
+        <button class = "big-button frontpage-box-container" [routerLink]="['/profile']">
+          <div ><img class= "frontpage-image" src="assets/img/forny-fisketegn.jpg"></div>
+          <div class="flex-logo text-white">
+            <div class="bg-info frontpage-box">
+              <p class = "frontpage-text">{{'FrontpageLabels.renew' | translate}}</p>
+            </div> 
+          </div>
+        </button>
+     </div>
+    <div class="row frontpage-box-container">
+      <div class=" col-12">
         <div>
           <img class= "frontpage-image" src="assets/img/Genudsaetning.jpg">
         </div>
@@ -58,24 +55,16 @@
   <div class="modal-body bg-secondary">
     <div class="row">
       <div class=" col">
-        <div>
-          <a href="buyLystfisketegn"><img class= "frontpage-image" src="../../../assets/img/Lystfisketegn.jpeg"></a>
-        </div>
-        <div>
-          <a class = "text" href="buyLystfisketegn">
-            <p class="popupTest bg-info text-white frontpage-box">{{'FrontpageLabels.angler' | translate}}</p>
-          </a>
-        </div>
+        <button class = "big-button frontpage-box-container" [routerLink]="['/buyLystfisketegn']" (click)="modal.dismiss('item selected')">
+          <img class= "frontpage-image" src="../../../assets/img/Lystfisketegn.jpeg">
+          <p class="popupTest bg-info text-white frontpage-box">{{'FrontpageLabels.angler' | translate}}</p>
+        </button>
       </div>
       <div class=" col">
-        <div>
-          <a href="buyFritidsfisketegn"><img class= "frontpage-image" src="../../../assets/img/fritidsfisketegn.jpeg"></a>
-        </div>
-        <div>
-          <a class="text" href="buyFritidsfisketegn">
-            <p class="popupTest bg-info text-white frontpage-box">{{'FrontpageLabels.hobby' | translate}}</p>
-          </a>
-        </div>
+        <button class = "big-button frontpage-box-container" [routerLink]="['/buyFritidsfisketegn']" (click)="modal.dismiss('item selected')">
+          <img class= "frontpage-image" src="../../../assets/img/fritidsfisketegn.jpeg">
+          <p class="popupTest bg-info text-white frontpage-box">{{'FrontpageLabels.hobby' | translate}}</p>
+        </button>
       </div>
     </div>
     <div class="row">

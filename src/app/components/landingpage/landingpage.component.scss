@@ -9,6 +9,14 @@ img {
 .popupTest {
   text-align: center;
 }
+.frontpage-box-container{
+  border-style: none;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
 
 .frontpage-image{
  border-top-left-radius: 10px;
@@ -23,8 +31,19 @@ img {
 .frontpage-text{
   padding: 10px;
   padding-left: 20px;
+  
+  color: white;
+  text-decoration: underline;
+  text-align: left;
 }
 
 .text {
   text-decoration: none;
+}
+
+.big-button {
+	border-radius: 0;
+	border-style: none;
+	background-color: transparent;
+	width: 100%;
 }

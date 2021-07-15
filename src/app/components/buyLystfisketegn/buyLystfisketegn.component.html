@@ -1,11 +1,11 @@
 <div class="row justify-content-center">
   <div class=" wrapper col">
-    <h2>{{'formLabels.angler-title' | translate}}</h2>
+    <h2 attr.aria-label="{{'formLabels.angler-title' | translate}}">{{'formLabels.angler-title' | translate}}</h2>
     <form [formGroup]="form">
       <div class="row">
         <div class="form-group col">
           <label>{{'formLabels.firstname' | translate}}</label>
-          <input type="text" formControlName="FirstName" name="FirstName" class="form-control uppercase">
+          <input type="text" formControlName="FirstName" name="FirstName" class="form-control uppercase" attr.aria-label="{{'formLabels.firstname' | translate}}">
         </div>
         <div class="form-group col">
           <label>{{'formLabels.lastname' | translate}}</label>

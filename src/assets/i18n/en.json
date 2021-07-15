@@ -6,7 +6,8 @@
     "aboutAgency": "About the agency",
     "aboutLicense": "About anglers' license",
     "log-in": "LOG IN",
-    "log-off": "LOG OFF"
+    "log-off": "LOG OFF",
+    "logo-text":"Welcome to the fishing license system"
   },
   "FooterLabels": {
     "title": "Fishing license",
@@ -20,7 +21,7 @@
   "NavbarLabels": {
     "title": "Fishing license",
     "profile": "Profile",
-    "angler": "Buy angler fishing lisence",
+    "angler": "Buy angler fishing license",
     "hobby": "Buy hobby fishing license",
     "admin-user": "Administrate user"
   },

@@ -6,7 +6,8 @@
     "aboutAgency": "Om Fiskeristyrelsen",
     "aboutLicense": "Om lyst- og fritidsfiskeri",
     "log-in": "LOG IND",
-    "log-off": "LOG AF"
+    "log-off": "LOG AF",
+    "logo-text": "Velkommen til fisketegn.dk"
   },
   "FooterLabels": {
     "title": "Fisketegn",

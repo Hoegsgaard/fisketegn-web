@@ -1,6 +1,6 @@
 <header>
     <div class="flex-container bg-secondary">
-        <a class = "flex-logo" [routerLink]="['/']"><img src="assets/svg/Fiskeristyrelsen_crown.svg" height=100></a>
+        <a class = "flex-logo" [routerLink]="['/']"><img src="assets/svg/Fiskeristyrelsen_crown.svg" height=100 attr.aria-label="{{'HeaderLabels.logo-text' | translate}}"></a>
         
             <a class = "flex-text" [routerLink]="['/help']">{{'HeaderLabels.help' | translate}}</a>
             <div class = "separator">|</div>
@@ -8,12 +8,12 @@
             <div class = "separator">|</div>
             <a class = "flex-text clicker" [routerLink]="['/contact']">{{'HeaderLabels.contact' | translate}}</a>
             <div class = "separator">|</div>
-            <a (click)="goToLink('https://fiskeristyrelsen.dk/vaerd-at-vide-om-os/om-fiskeristyrelsen/')" class = "flex-text clicker">{{'HeaderLabels.aboutAgency' | translate}}</a>
+            <a (click)="goToLink('https://fiskeristyrelsen.dk/vaerd-at-vide-om-os/om-fiskeristyrelsen/')" (keyup.enter)="goToLink('https://fiskeristyrelsen.dk/vaerd-at-vide-om-os/om-fiskeristyrelsen/')" tabindex="0" class = "flex-text clicker">{{'HeaderLabels.aboutAgency' | translate}}</a>
             <div class = "separator">|</div>
-            <a (click)="goToLink('https://fiskeristyrelsen.dk/lyst-og-fritidsfiskeri/')" class = "flex-text clicker">{{'HeaderLabels.aboutLicense' | translate}}</a>
+            <a (click)="goToLink('https://fiskeristyrelsen.dk/lyst-og-fritidsfiskeri/')" (keyup.enter)="goToLink('https://fiskeristyrelsen.dk/lyst-og-fritidsfiskeri/')" tabindex="0"  class = "flex-text clicker">{{'HeaderLabels.aboutLicense' | translate}}</a>
             <div class = "separator">|</div>
-            <div ngbDropdown class="d-inline-block">
-                <button class="btn btn-outline-info dropdown-button" id="dropdownBasic1" ngbDropdownToggle>{{selectedLanguage}}</button>
+            <div ngbDropdown class="d-inline-block" aria-hidden>
+                <button class="btn btn-outline-info dropdown-button" aria-role="Combo-box" id="dropdownBasic1" ngbDropdownToggle>{{selectedLanguage}}</button>
                 <div ngbDropdownMenu class = "dropdown-menu" aria-labelledby="dropdownBasic1">
                     <button class = "dropdown-item" (click)="changeLanguage('Dansk')" ngbDropdownItem>Dansk</button>
                     <button class = "dropdown-item" (click)="changeLanguage('English')" ngbDropdownItem>English</button>
