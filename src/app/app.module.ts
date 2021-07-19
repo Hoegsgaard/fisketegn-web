@@ -35,6 +35,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
 import { UserRoleGuard } from './guards/user-role.guard';
 
+import {A11yModule} from '@angular/cdk/a11y';
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
   }
@@ -70,7 +72,7 @@ const appRoutes: Routes =[
     ContactComponent,
     FaqComponent,
     PageNotFoundComponent,
-    AdminBrugerComponent
+    AdminBrugerComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +90,10 @@ const appRoutes: Routes =[
       deps: [HttpClient]
       }
       })
+  ],
+  exports: [
+    // CDK
+    A11yModule,
   ],
   providers: [
     ValidateService,
