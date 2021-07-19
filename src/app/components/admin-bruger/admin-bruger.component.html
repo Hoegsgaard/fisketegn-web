@@ -7,7 +7,7 @@
           <h2>{{'formLabels.admin-user-title' | translate}}</h2>
         </div>
         <div class="form-group col" *ngIf="userFound">
-          <input class="btn btn-danger button-cancel" value="{{'formLabels.cancel-search' | translate}}"
+          <input type="button" class="btn btn-danger button-cancel" value="{{'formLabels.cancel-search' | translate}}"
             (click)="cancelSearch()">
         </div>
       </div>
@@ -130,16 +130,16 @@
 
       <div class="row justify-content-center" *ngIf="userFound">
         <div class="form-group col-3 " *ngIf="!editing">
-          <input class="btn btn-info button" value="{{'formLabels.edit' | translate}}" (click)="activateForm()">
+          <input type="button" class="btn btn-info button" value="{{'formLabels.edit' | translate}}" (click)="activateForm()">
         </div>
         <div class="form-group col-3 " *ngIf="!editing">
-          <input class="btn btn-info button" value="{{'formLabels.editRole' | translate}}" (click)="openEditPop(rolePop)">
+          <input type="button" class="btn btn-info button" value="{{'formLabels.editRole' | translate}}" (click)="openEditPop(rolePop)">
         </div>
         <div class="form-group col-3 submitButton justify-content-center" *ngIf="editing">
-          <input class="btn btn-info button" value="{{'formLabels.save' | translate}}" (click)="onUpdateUser()">
+          <input type="button" class="btn btn-info button" value="{{'formLabels.save' | translate}}" (click)="onUpdateUser()">
         </div>
         <div class="form-group col-3  justify-content-end justify-content-center" *ngIf="editing">
-          <input class="btn btn-info button" value="{{'formLabels.cancel' | translate}}" (click)="disableForm()">
+          <input type="button" class="btn btn-info button" value="{{'formLabels.cancel' | translate}}" (click)="disableForm()">
         </div>
       </div>
       <div class="row justify-content-center">
