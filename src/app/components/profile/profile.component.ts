@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FlashMessagesService} from 'angular2-flash-messages';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service'
@@ -15,6 +15,12 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ProfileComponent implements OnInit {
   
+ @ViewChild('firstName', {static:false})
+ public firstNameInput!:ElementRef; 
+
+ @ViewChild('editButton', {static:false})
+ public editButton!:ElementRef; 
+
   selectedLicense:any;
   closeResult = '';
   selectedCountry = "Danmark"
@@ -138,6 +144,11 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  cancel(){
+    this.disableForm()
+    setTimeout(() => {this.editButton.nativeElement.focus()}, 10)
+  }
+
   disableForm(){
     this.editing = false;
     this.form.get('FirstName')?.disable();
@@ -153,7 +164,7 @@ export class ProfileComponent implements OnInit {
     this.form.get('ZipCode')?.disable();
     this.form.get('ZipCode')?.setValue(this.res.zipCode);
     this.form.get('CountryDisabled')?.disable();
-    this.form.get('CountryDisabled')?.setValue(this.res.country)
+    this.form.get('CountryDisabled')?.setValue(this.res.country);
   }
 
   activateForm(){
@@ -172,7 +183,7 @@ export class ProfileComponent implements OnInit {
     this.form.get('ZipCode')?.reset();
     this.form.get('CountryDisabled')?.enable();
     this.form.get('CountryDisabled')?.reset();
-
+    this.firstNameInput.nativeElement.focus();
   }
 
   changeCountry(language: string){
