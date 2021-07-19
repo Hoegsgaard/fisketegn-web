@@ -7,7 +7,8 @@
     "aboutLicense": "Om lyst- og fritidsfiskeri",
     "log-in": "LOG IND",
     "log-off": "LOG AF",
-    "logo-text": "Velkommen til fisketegn.dk"
+    "logo-text": "Velkommen til fisketegn.dk",
+    "language-dropdown": "Sprogvalg"
   },
   "FooterLabels": {
     "title": "Fisketegn",

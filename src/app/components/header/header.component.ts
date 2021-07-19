@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ViewChild } from '@angular/core';
+import { ElementRef } from '@angular/core';
 
 
 @Component({
@@ -9,6 +11,10 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  
+  @ViewChild('language', { static: false })
+  public mydiv!: ElementRef;
+
   selectedLanguage = "Dansk"
   sysLang = "da"
 
@@ -28,7 +34,12 @@ export class HeaderComponent implements OnInit {
     window.open(link, "_blank");
   }
 
+  
   changeLanguage(language: string){
+    setTimeout(()=>{ // this will make the execution after the above boolean has changed
+      this.mydiv.nativeElement.focus();
+    },0);  
+    this.mydiv.nativeElement.foc
     if(language == "Dansk"){
       this.selectedLanguage = 'Dansk';
       this.sysLang = "da";
@@ -48,3 +59,4 @@ export class HeaderComponent implements OnInit {
     return false;
   }
 }
+

@@ -12,8 +12,8 @@
             <div class = "separator">|</div>
             <a (click)="goToLink('https://fiskeristyrelsen.dk/lyst-og-fritidsfiskeri/')" (keyup.enter)="goToLink('https://fiskeristyrelsen.dk/lyst-og-fritidsfiskeri/')" tabindex="0"  class = "flex-text clicker">{{'HeaderLabels.aboutLicense' | translate}}</a>
             <div class = "separator">|</div>
-            <div ngbDropdown class="d-inline-block" aria-hidden>
-                <button class="btn btn-outline-info dropdown-button" aria-role="Combo-box" id="dropdownBasic1" ngbDropdownToggle>{{selectedLanguage}}</button>
+            <div ngbDropdown class="d-inline-block">
+                <button #language class="btn btn-outline-info dropdown-button" role="combobox" aria-hidden="false" attr.aria-label="{{'HeaderLabels.language-dropdown' | translate}}" id="dropdownBasic1" ngbDropdownToggle>{{selectedLanguage}}</button>
                 <div ngbDropdownMenu class = "dropdown-menu" aria-labelledby="dropdownBasic1">
                     <button class = "dropdown-item" (click)="changeLanguage('Dansk')" ngbDropdownItem>Dansk</button>
                     <button class = "dropdown-item" (click)="changeLanguage('English')" ngbDropdownItem>English</button>
