@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { FlashMessagesService} from 'angular2-flash-messages';
 import { FormControl, FormGroup} from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { LiveAnnouncer } from "@angular/cdk/a11y";
+
 
 @Component({
   selector: 'app-buyLystfisketegn',
@@ -38,7 +40,8 @@ export class buyLystfisketegnComponent implements OnInit {
     public auth : AuthService,
     private router : Router,
     private flash : FlashMessagesService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private announcer: LiveAnnouncer
     ) {}
   ngOnInit(): void {
     this.disableStartDate();
@@ -120,7 +123,9 @@ export class buyLystfisketegnComponent implements OnInit {
     } else {
       if(formValue.StartDate == undefined ||
       formValue.StartDate == ""){
-        this.flash.show(this.translate.instant('FlashMsq.all-fields-requred'), {cssClass: 'alert-danger', timeout: 3000});
+        const message = this.translate.instant('FlashMsq.all-fields-requred')
+        this.announcer.announce(message, "assertive");
+        this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000});
         this.loading = false;
         return false;
       }
@@ -147,42 +152,52 @@ export class buyLystfisketegnComponent implements OnInit {
     }
     // Valider at alle felter er udfyldt
     if(!this.validateServide.validateBuyLicense(user)){
-      this.flash.show(this.translate.instant('FlashMsq.all-fields-requred'), {cssClass: 'alert-danger', timeout: 3000});
-      this.loading = false;
+      const message = this.translate.instant('FlashMsq.all-fields-requred')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000});this.loading = false;
       return false;
     }
 
     // Valider at CPR nummer indeholder 10 tegn
     if(!this.validateServide.validateCPR(user.cpr)){
-      this.flash.show(this.translate.instant('FlashMsq.cpr-ten-digts'), {cssClass: 'alert-danger', timeout: 3000});
-      this.loading = false;
+      const message = this.translate.instant('FlashMsq.cpr-ten-digts')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000});this.loading = false;
       return false;
     }
     
     // Valider at postnummer indeholder 4 tegn
     if(!this.validateServide.validateZipcode(user.zipCode)){
-      this.flash.show(this.translate.instant('FlashMsq.zipcode-four-digts'), {cssClass: 'alert-danger', timeout: 3000});
+      const message = this.translate.instant('FlashMsq.zipcode-four-digts')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000});
       this.loading = false;
       return false;
     }
 
     // Vlider at de indtastede passorews er ens
     if(!this.validateServide.validateEqualPassword(user)){
-      this.flash.show(this.translate.instant('FlashMsq.password-must-match'), {cssClass: 'alert-danger', timeout: 3000});
+      const message = this.translate.instant('FlashMsq.password-must-match')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000});this.loading = false;
       this.loading = false;
       return false;
     }
 
     // Valider at password er sikkert
     if(!this.validateServide.validateSecurePassword(user.password)){
-      this.flash.show(this.translate.instant('FlashMsq.password-must-be-safe'), {cssClass: 'alert-danger', timeout: 10000});
+      const message = this.translate.instant('FlashMsq.password-must-be-safe')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000});this.loading = false;
       this.loading = false;
       return false;
     }
 
     // Validate Email by regex
     if(!this.validateServide.validateEmail(user.email)){
-      this.flash.show(this.translate.instant('FlashMsq.email-invalid'), {cssClass: 'alert-danger', timeout: 3000});
+      const message = this.translate.instant('FlashMsq.email-invalid')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000});this.loading = false;
       this.loading = false;
       return false;
     } 
@@ -190,18 +205,24 @@ export class buyLystfisketegnComponent implements OnInit {
     // Buy License
     this.auth.buyLicense(user).subscribe(data => {
       const res = (data as any);
-      this.flash.show(this.translate.instant('FlashMsq.license-created'), {cssClass: 'alert-success', timeout: 3000});
+      const message = this.translate.instant('FlashMsq.license-created')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-success', timeout: 3000});this.auth.storeToken(res.body.token);
       this.auth.storeToken(res.body.token);
       this.auth.autoLogout();
       this.router.navigate(['/profile']) 
     }, err => {
       switch(err.status) {
         case 401: { 
-          this.flash.show(this.translate.instant('FlashMsq.invalid-credentials'), {cssClass: 'alert-danger', timeout: 3000}); 
+          const message = this.translate.instant('FlashMsq.invalid-credentials')
+          this.announcer.announce(message, "assertive");
+          this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000}); 
           break; 
         } 
         default: { 
-          this.flash.show(this.translate.instant('FlashMsq.something-went-wrong'), {cssClass: 'alert-danger', timeout: 3000});
+          const message = this.translate.instant('FlashMsq.something-went-wrong')
+          this.announcer.announce(message, "assertive");
+          this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000}); 
           break; 
         } 
       }

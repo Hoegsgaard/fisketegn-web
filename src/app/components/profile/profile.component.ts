@@ -6,6 +6,8 @@ import { FormControl, FormGroup} from '@angular/forms';
 import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ValidateService } from '../../services/validate.service';
 import { TranslateService } from '@ngx-translate/core';
+import { LiveAnnouncer } from "@angular/cdk/a11y";
+
 
 
 @Component({
@@ -51,7 +53,8 @@ export class ProfileComponent implements OnInit {
     private modalService: NgbModal,
     private userService : UserService,
     private validateServide : ValidateService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private announcer: LiveAnnouncer
   ) { }
 
   @HostListener('window:resize', ['$event'])
@@ -192,14 +195,20 @@ export class ProfileComponent implements OnInit {
       country: formValue.Country ? formValue.Country : this.res.country
     }
     if(!this.validateServide.validateUpdateUser(user, this.res)){
-      this.flash.show(this.translate.instant('FlashMsq.fill-at-least-one'), {cssClass: 'alert-danger', timeout: 3000});
+      const message = this.translate.instant('FlashMsq.fill-at-least-one')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000}); 
       return false;
     }
     this.auth.updateUser(user).subscribe(data => {
-      this.flash.show(this.translate.instant('FlashMsq.info-updated'), {cssClass: 'alert-success', timeout: 3000})
+      const message = this.translate.instant('FlashMsq.info-updated')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-success', timeout: 3000}); 
       this.getUser();
     }, err=> {
-      this.flash.show(this.translate.instant('FlashMsq.something-went-wrong'), {cssClass: 'alert-danger', timeout: 3000})
+      const message = this.translate.instant('FlashMsq.something-went-wrong')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000}); 
       return false
     });
 
@@ -208,8 +217,10 @@ export class ProfileComponent implements OnInit {
 
   onRenewLicense(license: any){
     this.auth.renewLicense({licenseID: license}).subscribe(data => {
-      this.flash.show(this.translate.instant('FlashMsq.license-renewed'), {cssClass: 'alert-success', timeout: 3000})
-        this.getLicenses();
+      const message = this.translate.instant('FlashMsq.license-renewed')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-success', timeout: 3000}); 
+      this.getLicenses();
     }) 
   }
 
@@ -228,19 +239,25 @@ export class ProfileComponent implements OnInit {
 
     // Valider at alle felter er udfyldt
     if(!this.validateServide.validateUpdatePassword(updatePassword)){
-      this.flash.show(this.translate.instant('FlashMsq.all-fields-requred'), {cssClass: 'alert-danger', timeout: 3000});
+      const message = this.translate.instant('FlashMsq.all-fields-requred')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000}); 
       return false;
     }
 
     // Vlider at de indtastede passorews er ens
     if(!this.validateServide.validateEqualPassword(updatePassword)){
-      this.flash.show(this.translate.instant('FlashMsq.password-must-match'), {cssClass: 'alert-danger', timeout: 3000});
+      const message = this.translate.instant('FlashMsq.password-must-match')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000}); 
       return false;
     }
 
     // Valider at password er sikkert
     if(!this.validateServide.validateSecurePassword(updatePassword.password)){
-      this.flash.show(this.translate.instant('FlashMsq.password-must-be-safe'), {cssClass: 'alert-danger', timeout: 10000});
+      const message = this.translate.instant('FlashMsq.password-must-be-safe')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
 
@@ -251,15 +268,21 @@ export class ProfileComponent implements OnInit {
     }
     this.userService.updatePassword(update).subscribe(data => {   
       this.getUser()
-      this.flash.show(this.translate.instant('FlashMsq.password-changed'), {cssClass: 'alert-success', timeout: 3000}); 
+      const message = this.translate.instant('FlashMsq.password-changed')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-success', timeout: 3000}); 
     }, err => {
       switch(err.status) { 
         case 401: { 
-          this.flash.show(this.translate.instant('FlashMsq.old-password-wrong'), {cssClass: 'alert-danger', timeout: 3000}); 
+          const message = this.translate.instant('FlashMsq.old-password-wrong')
+          this.announcer.announce(message, "assertive");
+          this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000});  
           break; 
         } 
         default: { 
-          this.flash.show(this.translate.instant('FlashMsq.something-went-wrong'), {cssClass: 'alert-danger', timeout: 3000});
+          const message = this.translate.instant('FlashMsq.something-went-wrong')
+          this.announcer.announce(message, "assertive");
+          this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000}); 
           break; 
         } 
       } 

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ValidateService } from '../../services/validate.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import { TranslateService } from '@ngx-translate/core';
+import { LiveAnnouncer } from "@angular/cdk/a11y";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
     private router : Router,
     private validateServide : ValidateService,
     private flash : FlashMessagesService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private announcer: LiveAnnouncer
   ) { }
 
   ngOnInit(): void {
@@ -33,13 +35,17 @@ export class LoginComponent implements OnInit {
     
     // Alle felter skal være udfyldt
     if(!this.validateServide.validatelogIn(this.email, this.password)){
-      this.flash.show(this.translate.instant('FlashMsq.all-fields-requred'), {cssClass: 'alert-danger', timeout: 3000});
+      const message = this.translate.instant('FlashMsq.all-fields-requred')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
 
     // Validate Email by regex
     if(!this.validateServide.validateEmail(this.email)){
-      this.flash.show(this.translate.instant('FlashMsq.email-invalid'), {cssClass: 'alert-danger', timeout: 3000});
+      const message = this.translate.instant('FlashMsq.email-invalid')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000});
       return false;
     } else {
       this.auth.authenticateUser(user).subscribe(data => {
@@ -52,7 +58,9 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/profile'])  
         }    
       }, err =>{
-        this.flash.show(this.translate.instant('FlashMsq.invalid-credentials'), {cssClass: 'alert-danger', timeout: 3000});
+        const message = this.translate.instant('FlashMsq.invalid-credentials')
+        this.announcer.announce(message, "assertive");
+        this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000});
       });
       return true;
     }

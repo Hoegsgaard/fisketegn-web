@@ -17,10 +17,6 @@ export class LandingpageComponent implements OnInit {
     private announcer: LiveAnnouncer
   ) { }
 
-  public announce(){
-    this.announcer.announce("FUCKING WORK", "assertive");
-  }
-
   open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
