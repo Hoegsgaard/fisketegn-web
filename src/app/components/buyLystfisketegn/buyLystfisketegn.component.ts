@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ValidateService } from '../../services/validate.service';
 import { AuthService } from '../../services/auth.service'; 
 import { Router } from '@angular/router';
@@ -35,6 +35,9 @@ export class buyLystfisketegnComponent implements OnInit {
     gentagPassword: new FormControl('')
   });
 
+  @ViewChild('firstName', {static:false})
+  public firstNameInput!:ElementRef; 
+
   constructor(
     private validateServide: ValidateService,
     public auth : AuthService,
@@ -47,6 +50,10 @@ export class buyLystfisketegnComponent implements OnInit {
     this.disableStartDate();
     if(this.auth.isLoggedIn()){
       this.getUser()
+    }else{
+      setTimeout(()=>{
+        this.firstNameInput.nativeElement.focus();
+      }, 10)
     }
   }
 

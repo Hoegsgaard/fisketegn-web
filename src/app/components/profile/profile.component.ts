@@ -23,6 +23,9 @@ export class ProfileComponent implements OnInit {
  @ViewChild('editButton', {static:false})
  public editButton!:ElementRef; 
 
+ @ViewChild('renewButton ', {static:false})
+ public renewButton!:ElementRef; 
+
   selectedLicense:any;
   closeResult = '';
   selectedCountry = "Danmark"
@@ -120,7 +123,11 @@ export class ProfileComponent implements OnInit {
   }
 
   openLicense(content: any, license: any) {
+    console.log("opening log", license.licenseNumber)
     const modalRef = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+    setTimeout(()=>{
+      this.renewButton.nativeElement.focus();
+    }, 10)
     modalRef.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -145,6 +152,45 @@ export class ProfileComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  getLicenseDescription(license: any){
+    let description = ""
+    description += (this.translate.instant('LicenseLabels.number') + ": " + license.licenseNumber + ".\n")
+    description += (this.translate.instant('LicenseLabels.start') + ": " + license.startDate + ".\n")
+    description += (this.translate.instant('LicenseLabels.expiration') + ": " + license.endDate + ".\n")
+    switch(license.type){
+      case "d":{
+        description += (this.translate.instant('LicenseLabels.type') + ": " + this.translate.instant('LicenseLabels.angler-day') + ".\n")
+        break;
+      }
+      case "w":{
+        description += (this.translate.instant('LicenseLabels.type') + ": " + this.translate.instant('LicenseLabels.angler-week') + ".\n")
+        break;
+      }
+      case "y":{
+        description += (this.translate.instant('LicenseLabels.type') + ": " + this.translate.instant('LicenseLabels.angler-year') + ".\n")
+        break;
+      }
+      case "f":{
+        description += (this.translate.instant('LicenseLabels.type') + ": " + this.translate.instant('LicenseLabels.hobby') + ".\n")
+        break;
+      }
+    }
+
+    if(license.deletedFlag){
+      description += (this.translate.instant('LicenseLabels.status') + ": " + this.translate.instant('LicenseLabels.deleted') + ".\n")
+    }else if(license.status){
+      description += (this.translate.instant('LicenseLabels.status') + ": " + this.translate.instant('LicenseLabels.active') + ".\n")
+    }else{
+      description += (this.translate.instant('LicenseLabels.status') + ": " + this.translate.instant('LicenseLabels.inactive') + ".\n")
+    }
+
+    if(license.renewable){
+      description += (this.translate.instant('LicenseLabels.isRenewable'))
+    }
+
+    return description
   }
 
   cancel(){

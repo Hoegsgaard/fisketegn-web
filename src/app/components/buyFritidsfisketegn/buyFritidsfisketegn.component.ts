@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ValidateService } from '../../services/validate.service';
 import { AuthService } from '../../services/auth.service'; 
 import { Router } from '@angular/router';
@@ -13,6 +13,8 @@ import { LiveAnnouncer } from "@angular/cdk/a11y";
   templateUrl: './buyFritidsfisketegn.component.html',
   styleUrls: ['./buyFritidsfisketegn.component.scss']
 })
+
+
 export class BuyFritidsfisketegnComponent implements OnInit {
   loading = false;
   res: any
@@ -28,6 +30,9 @@ export class BuyFritidsfisketegnComponent implements OnInit {
     gentagPassword: new FormControl('')
   });
 
+  @ViewChild('firstName', {static:false})
+  public firstNameInput!:ElementRef; 
+
   constructor(
     private validateServide: ValidateService,
     private announcer: LiveAnnouncer,
@@ -41,8 +46,13 @@ export class BuyFritidsfisketegnComponent implements OnInit {
   ngOnInit(): void {
     if(this.auth.isLoggedIn()){
       this.getUser()
+    }else{
+      setTimeout(()=>{
+        this.firstNameInput.nativeElement.focus();
+      }, 10)
     }
   }
+
 
   getUser(){
     this.auth.getUser().subscribe(data =>{

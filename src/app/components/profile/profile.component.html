@@ -122,7 +122,7 @@
   </div>
   <hr>
   <!-- list of licenses-->
-<div *ngIf="!isCompact"> 
+<div *ngIf="!isCompact" aria-hidden="true"> 
   <h2>{{'LicenseLabels.title' | translate}}</h2>
   <ul>
     <li>
@@ -189,6 +189,19 @@
     </ul>
 </div>
 
+<!--Hidden list of licenses for screen reader support-->
+<div class="cdk-visually-hidden">
+  <h2 >{{'LicenseLabels.title' | translate}}</h2>
+  <ul class = "licenseList" *ngFor = "let license of licenseList">
+    <li *ngIf="license.renewable" (click)="openLicense(content2, license)">
+      {{getLicenseDescription(license)}}
+    </li>
+    <li *ngIf="!license.renewable">
+      {{getLicenseDescription(license)}}
+    </li>
+  </ul>
+</div>
+
       <!-- renew license popup -->
       <ng-template #content2 let-modal>
         <div class="modal-header">
@@ -202,7 +215,7 @@
           <form [formGroup]="form">
             <div class="row justify-content-center">
               <div class="form-group col submitButton">
-                <input type="submit" class="btn btn-info" value="{{'LicenseLabels.renew-license' | translate}}" (click)="modal.close(onRenewLicense(selectedLicense.licenseID))">
+                <input type="submit" class="btn btn-info" value="{{'LicenseLabels.renew-license' | translate}}" (click)="modal.close(onRenewLicense(selectedLicense.licenseID))" #renewButton>
               </div>
             </div>
         </form>

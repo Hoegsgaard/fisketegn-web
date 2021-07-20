@@ -87,7 +87,8 @@
     "choose-role": "Which role should the user have?",
     "delete-user": "Delete user",
     "delete-are-you-sure": "Are you sure you want to delete your user profile?",
-    "license-invalidation": "All of your fishing lisences will be invalidated"
+    "license-invalidation": "All of your fishing lisences will be invalidated",
+    "isRenewable": "This license can be renewed. Press the space bar to go to the renewal menu."
   },
   "FrontpageLabels": {
     "welcome": "Welcome to the fishing license system",

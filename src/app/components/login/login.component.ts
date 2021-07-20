@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../services/auth.service'
 import { Router } from '@angular/router';
 import { ValidateService } from '../../services/validate.service';
@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
   "email": String;
   "password": String;
 
+  @ViewChild('emailInput', {static:false})
+  public emailInput!:ElementRef; 
+
   constructor(
     private auth : AuthService,
     private router : Router,
@@ -25,6 +28,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    setTimeout(()=>{
+      this.emailInput.nativeElement.focus();
+    },10)
   }
 
   onLoginSubmit(){
