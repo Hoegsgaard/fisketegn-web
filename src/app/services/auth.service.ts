@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators'
 import { Router } from '@angular/router';
 import { FlashMessagesService} from 'angular2-flash-messages';
 import { TranslateService } from '@ngx-translate/core';
+import { LiveAnnouncer } from "@angular/cdk/a11y";
+
 
 
 const jwtHelper = new JwtHelperService();
@@ -20,7 +22,8 @@ export class AuthService {
     private http : HttpClient,
     private router : Router,
     private flash : FlashMessagesService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private announcer: LiveAnnouncer
     ) { }
 
   buyLicense(user: any){
@@ -58,7 +61,9 @@ export class AuthService {
     expire = expire - today.getTime();
     setTimeout(()=>{
       this.logout();
-      this.flash.show(this.translate.instant('FlashMsq.auto-logout'), {cssClass: 'alert-primary', timeout: 3000});
+      const message = this.translate.instant('FlashMsq.auto-logout')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-primary', timeout: 3000}); 
     }, expire)
   }
 

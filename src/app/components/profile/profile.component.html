@@ -5,33 +5,33 @@
         <div class="row">
           <div class="form-group col">
             <label>{{'formLabels.firstname' | translate}}</label>
-            <input type="text" formControlName="FirstName" name="FirstName" class="form-control" [placeholder]="firstnamePH">
+            <input type="text" formControlName="FirstName" name="FirstName" class="form-control" [placeholder]="firstnamePH" #firstName attr.aria-label="{{'formLabels.firstname' | translate}}">
           </div>
           <div class="form-group col">
             <label>{{'formLabels.lastname' | translate}}</label>
-            <input type="text" formControlName="LastName" name="LastName" class="form-control" [placeholder]="lastnamePH">
+            <input type="text" formControlName="LastName" name="LastName" class="form-control" [placeholder]="lastnamePH" attr.aria-label="{{'formLabels.lastname' | translate}}">
           </div>
         </div>
   
         <div class="row">
           <div class="form-group col-6">
             <label>{{'formLabels.cpr' | translate}}</label>
-            <input type="text" formControlName="CPR" name="CPR" class="form-control" [placeholder]="cprPH">
+            <input type="text" formControlName="CPR" name="CPR" class="form-control" [placeholder]="cprPH" attr.aria-label="{{'formLabels.cpr' | translate}}">
           </div>
           <div class="form-group col">
             <label>{{'formLabels.email' | translate}}</label>
-            <input type="text" formControlName="Email" name="Email" class="form-control" [placeholder]="emailPH">
+            <input type="text" formControlName="Email" name="Email" class="form-control" [placeholder]="emailPH" attr.aria-label="{{'formLabels.email' | translate}}">
           </div>
         </div>
         
         <div class="row">
           <div class="form-group col">
             <label>{{'formLabels.address' | translate}}</label>
-            <input type="text" formControlName="Address" name="Address" class="form-control" [placeholder]="addressPH">
+            <input type="text" formControlName="Address" name="Address" class="form-control" [placeholder]="addressPH" attr.aria-label="{{'formLabels.address' | translate}}">
           </div>
           <div class="form-group col">
             <label>{{'formLabels.zipcode' | translate}}</label>
-            <input type="text" formControlName="ZipCode" name="ZipCode" class="form-control" [placeholder]="zipcodePH">
+            <input type="text" formControlName="ZipCode" name="ZipCode" class="form-control" [placeholder]="zipcodePH" attr.aria-label="{{'formLabels.zipcode' | translate}}">
           </div>
         </div>
         
@@ -102,19 +102,19 @@
         </div>
         <div class="row justify-content-center">
           <div class="form-group col-3 " *ngIf="!editing">
-            <input class="btn btn-info button" value="{{'formLabels.edit' | translate}}" (click)="activateForm()">
+            <input type="button" class="btn btn-info button" value="{{'formLabels.edit' | translate}}" (click)="activateForm()" #editButton>
           </div>
           <div class="form-group col-3 submitButton justify-content-center" *ngIf="editing">
-            <input class="btn btn-info button" value="{{'formLabels.save' | translate}}" (click)="onUpdateUser()">
+            <input type="button" class="btn btn-info button" value="{{'formLabels.save' | translate}}" (click)="onUpdateUser()">
           </div>
           <div class="form-group col-3  justify-content-end justify-content-center" *ngIf="editing">
-            <input class="btn btn-info button" value="{{'formLabels.cancel' | translate}}" (click)="disableForm()">
+            <input type="button" class="btn btn-info button" value="{{'formLabels.cancel' | translate}}" (click)="cancel()">
           </div>
           <div class="form-group col-3 submitButton justify-content-end justify-content-center" *ngIf="!editing">
-            <input class="btn btn-info button" value="{{'formLabels.change-password' | translate}}" (click)="open(content)">
+            <input type="button" class="btn btn-info button" value="{{'formLabels.change-password' | translate}}" (click)="open(content)">
           </div>
           <div class="form-group col-3 submitButton justify-content-end justify-content-center" *ngIf="editing">
-            <input class="btn btn-danger button" value="{{'formLabels.delete-user' | translate}}" (click)="open(deleteUserPop)">
+            <input type="button" class="btn btn-danger button" value="{{'formLabels.delete-user' | translate}}" (click)="open(deleteUserPop)">
           </div>
         </div>
       </form>
@@ -122,7 +122,7 @@
   </div>
   <hr>
   <!-- list of licenses-->
-<div *ngIf="!isCompact"> 
+<div *ngIf="!isCompact" aria-hidden="true"> 
   <h2>{{'LicenseLabels.title' | translate}}</h2>
   <ul>
     <li>
@@ -189,6 +189,19 @@
     </ul>
 </div>
 
+<!--Hidden list of licenses for screen reader support-->
+<div class="cdk-visually-hidden">
+  <h2 >{{'LicenseLabels.title' | translate}}</h2>
+  <ul class = "licenseList" *ngFor = "let license of licenseList">
+    <li *ngIf="license.renewable" (click)="openLicense(content2, license)">
+      {{getLicenseDescription(license)}}
+    </li>
+    <li *ngIf="!license.renewable">
+      {{getLicenseDescription(license)}}
+    </li>
+  </ul>
+</div>
+
       <!-- renew license popup -->
       <ng-template #content2 let-modal>
         <div class="modal-header">
@@ -202,7 +215,7 @@
           <form [formGroup]="form">
             <div class="row justify-content-center">
               <div class="form-group col submitButton">
-                <input type="submit" class="btn btn-info" value="{{'LicenseLabels.renew-license' | translate}}" (click)="modal.close(onRenewLicense(selectedLicense.licenseID))">
+                <input type="submit" class="btn btn-info" value="{{'LicenseLabels.renew-license' | translate}}" (click)="modal.close(onRenewLicense(selectedLicense.licenseID))" #renewButton>
               </div>
             </div>
         </form>
@@ -222,21 +235,21 @@
           <div class="row">
             <div class="form-group col">
               <label>{{'LicenseLabels.old-password' | translate}}</label>
-              <input type="password" formControlName="oldPassword" name="oldPassword" class="form-control">
+              <input type="password" formControlName="oldPassword" name="oldPassword" class="form-control" attr.aria-label="{{'LicenseLabels.old-password' | translate}}">
             </div>
           </div>
         
           <div class="row">
             <div class="form-group col">
               <label>{{'LicenseLabels.new-password' | translate}}</label>
-              <input type="password" formControlName="newPassword" name="newPassword" class="form-control">
+              <input type="password" formControlName="newPassword" name="newPassword" class="form-control" attr.aria-label="{{'LicenseLabels.new-password' | translate}}">
             </div>
           </div>
         
           <div class="row">
             <div class="form-group col">
               <label>{{'LicenseLabels.repeat-password' | translate}}</label>
-              <input type="password" formControlName="repNewPassword" name="repNewPassword" class="form-control">
+              <input type="password" formControlName="repNewPassword" name="repNewPassword" class="form-control" attr.aria-label="{{'LicenseLabels.repeat-password' | translate}}">
             </div>
           </div>
         

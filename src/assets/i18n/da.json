@@ -7,7 +7,8 @@
     "aboutLicense": "Om lyst- og fritidsfiskeri",
     "log-in": "LOG IND",
     "log-off": "LOG AF",
-    "logo-text": "Velkommen til fisketegn.dk"
+    "logo-text": "Velkommen til fisketegn.dk",
+    "language-dropdown": "Sprogvalg"
   },
   "FooterLabels": {
     "title": "Fisketegn",
@@ -79,7 +80,6 @@
     "angler-year": "Lystfisketegn-Årskort",
     "angler-week": "Lystfisketegn-Ugekort",
     "angler-day": "Lystfisketegn-Dagskort",
-
     "refund": "Refunder",
     "refund-license": "Refunder fisketegn",
     "refund-are-you-sure": "Er du sikker på du vil refundere fisketegn",
@@ -87,7 +87,8 @@
     "choose-role": "Hvilken rolle skal brugeren have?",
     "delete-user": "Slet bruger",
     "delete-are-you-sure": "Er du sikker på at du vil slette din bruger?",
-    "license-invalidation": "Alle dine fisketegn vil blive gjort ugyldige"
+    "license-invalidation": "Alle dine fisketegn vil blive gjort ugyldige",
+    "isRenewable": "Dette fisketegn kan fornyes. Tryk mellemrum for at gå til fornyelses-menuen"
   },
   "FrontpageLabels": {
     "welcome": "Velkommen til Fisketegn",

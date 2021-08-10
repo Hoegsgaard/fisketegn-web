@@ -1,3 +1,8 @@
+@use '~@angular/cdk';
+
+@include cdk.a11y-visually-hidden();
+
+
 $info: #476885;
 $secondary: #e5e5e5;
 
@@ -8,6 +13,7 @@ body {
 input{
   box-shadow: 5px 5px 5px grey;
 }
+
 
 //@import "../node_modules/bootstrap/scss/bootstrap.scss";
 

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {A11yModule} from '@angular/cdk/a11y';
+import { LiveAnnouncer } from "@angular/cdk/a11y";
+
 
 @Component({
   selector: 'app-landingpage',
@@ -10,7 +13,8 @@ export class LandingpageComponent implements OnInit {
   closeResult = '';
 
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private announcer: LiveAnnouncer
   ) { }
 
   open(content: any) {

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FlashMessagesService} from 'angular2-flash-messages';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service'
@@ -6,6 +6,8 @@ import { FormControl, FormGroup} from '@angular/forms';
 import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ValidateService } from '../../services/validate.service';
 import { TranslateService } from '@ngx-translate/core';
+import { LiveAnnouncer } from "@angular/cdk/a11y";
+
 
 
 @Component({
@@ -15,6 +17,15 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ProfileComponent implements OnInit {
   
+ @ViewChild('firstName', {static:false})
+ public firstNameInput!:ElementRef; 
+
+ @ViewChild('editButton', {static:false})
+ public editButton!:ElementRef; 
+
+ @ViewChild('renewButton ', {static:false})
+ public renewButton!:ElementRef; 
+
   selectedLicense:any;
   closeResult = '';
   selectedCountry = "Danmark"
@@ -51,7 +62,8 @@ export class ProfileComponent implements OnInit {
     private modalService: NgbModal,
     private userService : UserService,
     private validateServide : ValidateService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private announcer: LiveAnnouncer
   ) { }
 
   @HostListener('window:resize', ['$event'])
@@ -111,7 +123,11 @@ export class ProfileComponent implements OnInit {
   }
 
   openLicense(content: any, license: any) {
+    console.log("opening log", license.licenseNumber)
     const modalRef = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+    setTimeout(()=>{
+      this.renewButton.nativeElement.focus();
+    }, 10)
     modalRef.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -138,6 +154,50 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  getLicenseDescription(license: any){
+    let description = ""
+    description += (this.translate.instant('LicenseLabels.number') + ": " + license.licenseNumber + ".\n")
+    description += (this.translate.instant('LicenseLabels.start') + ": " + license.startDate + ".\n")
+    description += (this.translate.instant('LicenseLabels.expiration') + ": " + license.endDate + ".\n")
+    switch(license.type){
+      case "d":{
+        description += (this.translate.instant('LicenseLabels.type') + ": " + this.translate.instant('LicenseLabels.angler-day') + ".\n")
+        break;
+      }
+      case "w":{
+        description += (this.translate.instant('LicenseLabels.type') + ": " + this.translate.instant('LicenseLabels.angler-week') + ".\n")
+        break;
+      }
+      case "y":{
+        description += (this.translate.instant('LicenseLabels.type') + ": " + this.translate.instant('LicenseLabels.angler-year') + ".\n")
+        break;
+      }
+      case "f":{
+        description += (this.translate.instant('LicenseLabels.type') + ": " + this.translate.instant('LicenseLabels.hobby') + ".\n")
+        break;
+      }
+    }
+
+    if(license.deletedFlag){
+      description += (this.translate.instant('LicenseLabels.status') + ": " + this.translate.instant('LicenseLabels.deleted') + ".\n")
+    }else if(license.status){
+      description += (this.translate.instant('LicenseLabels.status') + ": " + this.translate.instant('LicenseLabels.active') + ".\n")
+    }else{
+      description += (this.translate.instant('LicenseLabels.status') + ": " + this.translate.instant('LicenseLabels.inactive') + ".\n")
+    }
+
+    if(license.renewable){
+      description += (this.translate.instant('LicenseLabels.isRenewable'))
+    }
+
+    return description
+  }
+
+  cancel(){
+    this.disableForm()
+    setTimeout(() => {this.editButton.nativeElement.focus()}, 10)
+  }
+
   disableForm(){
     this.editing = false;
     this.form.get('FirstName')?.disable();
@@ -153,7 +213,7 @@ export class ProfileComponent implements OnInit {
     this.form.get('ZipCode')?.disable();
     this.form.get('ZipCode')?.setValue(this.res.zipCode);
     this.form.get('CountryDisabled')?.disable();
-    this.form.get('CountryDisabled')?.setValue(this.res.country)
+    this.form.get('CountryDisabled')?.setValue(this.res.country);
   }
 
   activateForm(){
@@ -172,7 +232,7 @@ export class ProfileComponent implements OnInit {
     this.form.get('ZipCode')?.reset();
     this.form.get('CountryDisabled')?.enable();
     this.form.get('CountryDisabled')?.reset();
-
+    this.firstNameInput.nativeElement.focus();
   }
 
   changeCountry(language: string){
@@ -192,14 +252,20 @@ export class ProfileComponent implements OnInit {
       country: formValue.Country ? formValue.Country : this.res.country
     }
     if(!this.validateServide.validateUpdateUser(user, this.res)){
-      this.flash.show(this.translate.instant('FlashMsq.fill-at-least-one'), {cssClass: 'alert-danger', timeout: 3000});
+      const message = this.translate.instant('FlashMsq.fill-at-least-one')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000}); 
       return false;
     }
     this.auth.updateUser(user).subscribe(data => {
-      this.flash.show(this.translate.instant('FlashMsq.info-updated'), {cssClass: 'alert-success', timeout: 3000})
+      const message = this.translate.instant('FlashMsq.info-updated')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-success', timeout: 3000}); 
       this.getUser();
     }, err=> {
-      this.flash.show(this.translate.instant('FlashMsq.something-went-wrong'), {cssClass: 'alert-danger', timeout: 3000})
+      const message = this.translate.instant('FlashMsq.something-went-wrong')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000}); 
       return false
     });
 
@@ -208,8 +274,10 @@ export class ProfileComponent implements OnInit {
 
   onRenewLicense(license: any){
     this.auth.renewLicense({licenseID: license}).subscribe(data => {
-      this.flash.show(this.translate.instant('FlashMsq.license-renewed'), {cssClass: 'alert-success', timeout: 3000})
-        this.getLicenses();
+      const message = this.translate.instant('FlashMsq.license-renewed')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-success', timeout: 3000}); 
+      this.getLicenses();
     }) 
   }
 
@@ -228,19 +296,25 @@ export class ProfileComponent implements OnInit {
 
     // Valider at alle felter er udfyldt
     if(!this.validateServide.validateUpdatePassword(updatePassword)){
-      this.flash.show(this.translate.instant('FlashMsq.all-fields-requred'), {cssClass: 'alert-danger', timeout: 3000});
+      const message = this.translate.instant('FlashMsq.all-fields-requred')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000}); 
       return false;
     }
 
     // Vlider at de indtastede passorews er ens
     if(!this.validateServide.validateEqualPassword(updatePassword)){
-      this.flash.show(this.translate.instant('FlashMsq.password-must-match'), {cssClass: 'alert-danger', timeout: 3000});
+      const message = this.translate.instant('FlashMsq.password-must-match')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000}); 
       return false;
     }
 
     // Valider at password er sikkert
     if(!this.validateServide.validateSecurePassword(updatePassword.password)){
-      this.flash.show(this.translate.instant('FlashMsq.password-must-be-safe'), {cssClass: 'alert-danger', timeout: 10000});
+      const message = this.translate.instant('FlashMsq.password-must-be-safe')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
 
@@ -251,15 +325,21 @@ export class ProfileComponent implements OnInit {
     }
     this.userService.updatePassword(update).subscribe(data => {   
       this.getUser()
-      this.flash.show(this.translate.instant('FlashMsq.password-changed'), {cssClass: 'alert-success', timeout: 3000}); 
+      const message = this.translate.instant('FlashMsq.password-changed')
+      this.announcer.announce(message, "assertive");
+      this.flash.show(message, {cssClass: 'alert-success', timeout: 3000}); 
     }, err => {
       switch(err.status) { 
         case 401: { 
-          this.flash.show(this.translate.instant('FlashMsq.old-password-wrong'), {cssClass: 'alert-danger', timeout: 3000}); 
+          const message = this.translate.instant('FlashMsq.old-password-wrong')
+          this.announcer.announce(message, "assertive");
+          this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000});  
           break; 
         } 
         default: { 
-          this.flash.show(this.translate.instant('FlashMsq.something-went-wrong'), {cssClass: 'alert-danger', timeout: 3000});
+          const message = this.translate.instant('FlashMsq.something-went-wrong')
+          this.announcer.announce(message, "assertive");
+          this.flash.show(message, {cssClass: 'alert-danger', timeout: 3000}); 
           break; 
         } 
       } 
