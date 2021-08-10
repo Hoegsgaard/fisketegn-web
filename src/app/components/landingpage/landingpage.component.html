@@ -6,16 +6,16 @@
         <button class = "big-button frontpage-box-container" (click)="open(content)" attr.aria-label="{{'FrontpageLabels.buy' | translate}}">
              <div class="flex-logo" ><img class= "frontpage-image" src="assets/img/Lystfisketegn.jpeg"></div>
            <div class="bg-info frontpage-box" >              
-              <p class = "frontpage-text">{{'FrontpageLabels.buy' | translate}}</p>
+              <p class = "frontpage-text-underlined">{{'FrontpageLabels.buy' | translate}}</p>
           </div>
         </button>
       </div>
       <div class="col-6">
-        <button class = "big-button frontpage-box-container" [routerLink]="['/profile']">
+        <button class = "big-button frontpage-box-container" [routerLink]="['/profile']" attr.aria-label="{{'FrontpageLabels.renew' | translate}}">
           <div ><img class= "frontpage-image" src="assets/img/forny-fisketegn.jpg"></div>
           <div class="flex-logo text-white">
             <div class="bg-info frontpage-box">
-              <p class = "frontpage-text">{{'FrontpageLabels.renew' | translate}}</p>
+              <p class = "frontpage-text-underlined">{{'FrontpageLabels.renew' | translate}}</p>
             </div> 
           </div>
         </button>
