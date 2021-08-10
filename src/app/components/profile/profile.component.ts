@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
  @ViewChild('editButton', {static:false})
  public editButton!:ElementRef; 
 
- @ViewChild('renewButton ', {static:false})
+ @ViewChild('renewButton', {static:false})
  public renewButton!:ElementRef; 
 
   selectedLicense:any;
