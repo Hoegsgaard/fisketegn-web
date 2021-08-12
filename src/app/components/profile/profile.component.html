@@ -206,7 +206,7 @@
       <ng-template #content2 let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">{{'LicenseLabels.renew-license' | translate}}</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <button type="button" class="close" tabindex="2" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -215,7 +215,7 @@
           <form [formGroup]="form">
             <div class="row justify-content-center">
               <div class="form-group col submitButton">
-                <input type="submit" class="btn btn-info" value="{{'LicenseLabels.renew-license' | translate}}" (click)="modal.close(onRenewLicense(selectedLicense.licenseID))" #renewButton>
+                <input type="submit" class="btn btn-info" tabindex="1" value="{{'LicenseLabels.renew-license' | translate}}" (click)="modal.close(onRenewLicense(selectedLicense.licenseID))" #renewButton>
               </div>
             </div>
         </form>
