@@ -17,7 +17,8 @@
     "opening-hours-label": "Opening hours for the fishing license phone",
     "opening-hours": "Monday - Friday 10.00am- 2.00pm",
     "cvr": "CVR no.",
-    "ean": "EAN no."
+    "ean": "EAN no.",
+    "logo-text": "image of the agency's logo."
   },
   "NavbarLabels": {
     "title": "Fishing license",

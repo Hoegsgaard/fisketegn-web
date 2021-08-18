@@ -12,5 +12,15 @@ navbar-nav.collapse a:after{
 }
 
 .navbar-text{
-    font-size: larger;
+    font-size: x-large;
+    color: white !important;
+}
+
+.nav-link{
+    color: white !important;
+}
+
+.nav-link:hover{
+    background-color: rgba(0, 0, 0, 0.250);
+    border-radius: 5px;
 }
